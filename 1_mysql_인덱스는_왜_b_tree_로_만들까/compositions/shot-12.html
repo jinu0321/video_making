@@ -1,0 +1,81 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s12-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s12-tab b { color: #3ddc97; font-weight: 400; }
+    #s12-tab i { color: #7d8590; font-style: normal; }
+    #s12-stage {
+      position: absolute; left: 0; top: 105px; width: 1080px; height: 895px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #s12-plate {
+      position: absolute; left: 40px; top: calc(50% - 500px); width: 1000px; height: 1000px;
+      background: #172033;
+    }
+    #s12-box {
+      position: relative; text-align: left;
+      font-family: "D2Coding", monospace; font-size: 120px; line-height: 1.17; color: #ffffff;
+    }
+    #s12-box .ln, #s12-box .ch { display: none; }
+    #s12-box .ln { white-space: pre; }
+    #s12-box .ln.p { display: block; }
+    #s12-box .ch.p { display: inline; }
+    #s12-box .u[data-c="1"]::after { content: "\258c"; color: #3ddc97; }
+    #s12-box .k { color: #ff6b8b; }
+    #s12-box .n { color: #b699ff; }
+    #s12-box .s { color: #e6db74; }
+    #s12-box .c { color: #8b98ad; }
+    #s12-box .r { color: #ff4438; }
+    #s12-box .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-12" data-width="1080" data-height="1920">
+    <div id="s12-tab" data-layout-ignore><b>❯</b> <i>cat</i> leaves.txt</div>
+    <div id="s12-stage">
+      <div id="s12-plate"></div>
+      <div id="s12-box">
+        <div class="ln"><span class="u lead"></span><span class="u ch w">[</span><span class="u ch w">잎</span><span class="u ch w">]</span><span class="u ch w"> </span><span class="u ch w">↔</span><span class="u ch w"> </span><span class="u ch w">[</span><span class="u ch w">잎</span><span class="u ch w">]</span><span class="u ch w"> </span><span class="u ch w">↔</span><span class="u ch w"> </span><span class="u ch w">[</span><span class="u ch w">잎</span><span class="u ch w">]</span><span class="u ch w"> </span><span class="u ch w">↔</span><span class="u ch w"> </span><span class="u ch w">[</span><span class="u ch w">잎</span><span class="u ch w">]</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch c">#</span><span class="u ch c"> </span><span class="u ch c">키</span><span class="u ch c"> </span><span class="u ch c">순</span><span class="u ch c">서</span><span class="u ch c">대</span><span class="u ch c">로</span><span class="u ch c"> </span><span class="u ch c">연</span><span class="u ch c">결</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch k">W</span><span class="u ch k">H</span><span class="u ch k">E</span><span class="u ch k">R</span><span class="u ch k">E</span><span class="u ch w"> </span><span class="u ch w">e</span><span class="u ch w">m</span><span class="u ch w">a</span><span class="u ch w">i</span><span class="u ch w">l</span><span class="u ch w"> </span><span class="u ch k">L</span><span class="u ch k">I</span><span class="u ch k">K</span><span class="u ch k">E</span><span class="u ch w"> </span><span class="u ch s">&#x27;</span><span class="u ch s">k</span><span class="u ch s">i</span><span class="u ch s">m</span><span class="u ch s">%</span><span class="u ch s">&#x27;</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w">1</span><span class="u ch w">.</span><span class="u ch w"> </span><span class="u ch w">위</span><span class="u ch w">에</span><span class="u ch w">서</span><span class="u ch w"> </span><span class="u ch s">&#x27;</span><span class="u ch s">k</span><span class="u ch s">i</span><span class="u ch s">m</span><span class="u ch s">&#x27;</span><span class="u ch w"> </span><span class="u ch w">자</span><span class="u ch w">리</span><span class="u ch w"> </span><span class="u ch w">찾</span><span class="u ch w">기</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w">2</span><span class="u ch w">.</span><span class="u ch w"> </span><span class="u ch w">옆</span><span class="u ch w"> </span><span class="u ch w">페</span><span class="u ch w">이</span><span class="u ch w">지</span><span class="u ch w">로</span><span class="u ch w"> </span><span class="u ch w">쭉</span><span class="u ch w"> </span><span class="u ch w">읽</span><span class="u ch w">기</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w">3</span><span class="u ch w">.</span><span class="u ch w"> </span><span class="u ch s">&#x27;</span><span class="u ch s">k</span><span class="u ch s">i</span><span class="u ch s">n</span><span class="u ch s">&#x27;</span><span class="u ch w"> </span><span class="u ch w">나</span><span class="u ch w">오</span><span class="u ch w">면</span><span class="u ch w"> </span><span class="u ch w">멈</span><span class="u ch w">춤</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      const box = document.getElementById("s12-box");
+      const plate = document.getElementById("s12-plate");
+      const units = box.querySelectorAll(".u");
+      // [time, unit index, text scale, plate scaleY (0 = unchanged), tween duration]
+      const STEPS = [[0.0,0,0,0,0.1],[0.111,1,0,0,0.1],[0.222,2,0,0,0.1],[0.333,3,0,0,0.1],[0.444,4,0,0,0.1],[0.556,5,0,0,0.1],[0.667,6,0,0,0.1],[0.778,7,1.6742,0.5485,0.1],[0.889,8,1.37,0.4488,0.1],[1.0,9,1.2558,0.4114,0.1],[1.111,10,1.1592,0.3797,0.1],[1.222,11,1.0758,0.3524,0.1],[1.333,12,1.0042,0.329,0.1],[1.444,13,0.9417,0.3085,0.1],[1.556,14,0.8367,0.2741,0.1],[1.667,15,0.7933,0.2599,0.1],[1.778,16,0.7533,0.2468,0.1],[1.889,17,0.7175,0.2351,0.1],[2.0,18,0.685,0.2244,0.1],[2.111,19,0.655,0.2146,0.1],[2.222,20,0.6025,0.1974,0.1],[2.333,21,0.5792,0.1897,0.1],[2.444,22,0.6025,0.282,0.1],[2.556,23,0,0,0.1],[2.667,24,0,0,0.1],[2.778,25,0,0,0.1],[2.889,26,0,0,0.1],[3.0,27,0,0,0.1],[3.111,28,0,0,0.1],[3.222,29,0,0,0.1],[3.333,30,0,0,0.1],[3.444,31,0,0,0.1],[3.556,32,0,0,0.1],[3.667,33,0,0,0.1],[4.885,34,0.6025,0.3666,0.085],[4.97,35,0,0,0.085],[5.055,36,0,0,0.085],[5.14,37,0,0,0.085],[5.225,38,0,0,0.085],[5.31,39,0,0,0.085],[5.395,40,0,0,0.085],[5.481,41,0,0,0.085],[5.566,42,0,0,0.085],[5.651,43,0,0,0.085],[5.736,44,0,0,0.085],[5.821,45,0,0,0.085],[5.906,46,0,0,0.085],[5.991,47,0,0,0.085],[6.076,48,0,0,0.085],[6.161,49,0,0,0.085],[6.246,50,0,0,0.085],[6.331,51,0,0,0.085],[6.416,52,0,0,0.085],[6.502,53,0,0,0.085],[6.587,54,0,0,0.085],[6.672,55,0,0,0.085],[6.757,56,0,0,0.085],[6.842,57,0,0,0.085],[6.927,58,0.6025,0.4512,0.085],[7.012,59,0,0,0.085],[7.097,60,0,0,0.085],[7.182,61,0,0,0.085],[7.267,62,0,0,0.085],[7.352,63,0,0,0.085],[7.437,64,0,0,0.085],[7.522,65,0,0,0.085],[7.608,66,0,0,0.085],[7.693,67,0,0,0.085],[7.778,68,0,0,0.085],[7.863,69,0,0,0.085],[7.948,70,0,0,0.085],[8.033,71,0,0,0.085],[8.118,72,0,0,0.085],[8.203,73,0,0,0.085],[8.288,74,0,0,0.085],[8.373,75,0,0,0.085],[8.458,76,0.5792,0.4337,0.085],[9.458,77,0.6025,0.5357,0.1],[9.569,78,0,0,0.1],[9.68,79,0,0,0.1],[9.791,80,0,0,0.1],[9.902,81,0,0,0.1],[10.014,82,0,0,0.1],[10.125,83,0,0,0.1],[10.236,84,0,0,0.1],[10.347,85,0,0,0.1],[10.458,86,0,0,0.1],[10.569,87,0,0,0.1],[10.68,88,0,0,0.1],[10.791,89,0,0,0.1],[10.902,90,0,0,0.1],[11.014,91,0,0,0.1],[11.125,92,0.6025,0.6203,0.1],[11.236,93,0,0,0.1],[11.347,94,0,0,0.1],[11.458,95,0,0,0.1],[11.569,96,0,0,0.1],[11.68,97,0,0,0.1],[11.791,98,0,0,0.1],[11.902,99,0,0,0.1],[12.014,100,0,0,0.1],[12.125,101,0,0,0.1],[12.236,102,0,0,0.1],[12.347,103,0,0,0.1],[12.458,104,0,0,0.1],[12.569,105,0,0,0.1],[12.68,106,0,0,0.1],[12.791,107,0,0,0.1]];
+      tl.set(box, { scale: 1.8333 }, 0);
+      tl.set(plate, { scaleY: 0.6006 }, 0);
+      // [time, unit index]: cursor leaves when a block finishes typing
+      const OFFS = [[4.128,33],[8.893,76],[13.252,107]];
+      let prev = null;
+      for (const [t, i, sc, by, d] of STEPS) {
+        const u = units[i];
+        if (u.classList.contains("lead")) tl.set(u.parentNode, { display: "block" }, t);
+        else tl.set(u, { display: "inline" }, t);
+        if (prev) tl.set(prev, { attr: { "data-c": "0" } }, t);
+        tl.set(u, { attr: { "data-c": "1" } }, t);
+        if (sc) {
+          tl.to(box, { scale: sc, duration: d, ease: "power2.out" }, t);
+          tl.to(plate, { scaleY: by, duration: d, ease: "power2.out" }, t);
+        }
+        prev = u;
+      }
+      for (const [t, i] of OFFS) tl.set(units[i], { attr: { "data-c": "0" } }, t);
+      tl.set({}, {}, 13.831);
+      window.__timelines["shot-12"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,77 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s02-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s02-tab b { color: #3ddc97; font-weight: 400; }
+    #s02-tab i { color: #7d8590; font-style: normal; }
+    #s02-stage {
+      position: absolute; left: 0; top: 105px; width: 1080px; height: 895px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #s02-plate {
+      position: absolute; left: 40px; top: calc(50% - 500px); width: 1000px; height: 1000px;
+      background: #172033;
+    }
+    #s02-box {
+      position: relative; text-align: left;
+      font-family: "D2Coding", monospace; font-size: 120px; line-height: 1.17; color: #ffffff;
+    }
+    #s02-box .ln, #s02-box .ch { display: none; }
+    #s02-box .ln { white-space: pre; }
+    #s02-box .ln.p { display: block; }
+    #s02-box .ch.p { display: inline; }
+    #s02-box .u[data-c="1"]::after { content: "\258c"; color: #3ddc97; }
+    #s02-box .k { color: #ff6b8b; }
+    #s02-box .n { color: #b699ff; }
+    #s02-box .s { color: #e6db74; }
+    #s02-box .c { color: #8b98ad; }
+    #s02-box .r { color: #ff4438; }
+    #s02-box .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-02" data-width="1080" data-height="1920">
+    <div id="s02-tab" data-layout-ignore><b>❯</b> <i>cat</i> question.md</div>
+    <div id="s02-stage">
+      <div id="s02-plate"></div>
+      <div id="s02-box">
+        <div class="ln"><span class="u lead"></span><span class="u ch w">왜</span><span class="u ch w"> </span><span class="u ch r">B</span><span class="u ch r">-</span><span class="u ch r">t</span><span class="u ch r">r</span><span class="u ch r">e</span><span class="u ch r">e</span><span class="u ch w">?</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch c">이</span><span class="u ch c">진</span><span class="u ch c"> </span><span class="u ch c">트</span><span class="u ch c">리</span><span class="u ch c">는</span><span class="u ch c">?</span><span class="u ch c"> </span><span class="u ch c">해</span><span class="u ch c">시</span><span class="u ch c">는</span><span class="u ch c">?</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      const box = document.getElementById("s02-box");
+      const plate = document.getElementById("s02-plate");
+      const units = box.querySelectorAll(".u");
+      // [time, unit index, text scale, plate scaleY (0 = unchanged), tween duration]
+      const STEPS = [[0.0,0,0,0,0.1],[0.111,1,0,0,0.1],[0.222,2,0,0,0.1],[0.333,3,0,0,0.1],[0.444,4,0,0,0.1],[0.556,5,0,0,0.1],[0.667,6,0,0,0.1],[0.778,7,1.6742,0.5485,0.1],[0.889,8,1.5067,0.4936,0.1],[1.0,9,1.37,0.4488,0.1],[1.111,10,1.5067,0.7051,0.1],[1.222,11,0,0,0.1],[1.333,12,0,0,0.1],[1.444,13,0,0,0.1],[1.556,14,0,0,0.1],[1.667,15,0,0,0.1],[1.778,16,1.2558,0.5877,0.1],[1.889,17,1.1592,0.5425,0.1],[2.0,18,1.0758,0.5035,0.1],[2.111,19,0.9417,0.4407,0.1],[2.222,20,0.8367,0.3916,0.1],[2.333,21,0.7533,0.3526,0.1],[2.444,22,0.7175,0.3358,0.1]];
+      tl.set(box, { scale: 1.8333 }, 0);
+      tl.set(plate, { scaleY: 0.6006 }, 0);
+      // [time, unit index]: cursor leaves when a block finishes typing
+      const OFFS = [[2.906,22]];
+      let prev = null;
+      for (const [t, i, sc, by, d] of STEPS) {
+        const u = units[i];
+        if (u.classList.contains("lead")) tl.set(u.parentNode, { display: "block" }, t);
+        else tl.set(u, { display: "inline" }, t);
+        if (prev) tl.set(prev, { attr: { "data-c": "0" } }, t);
+        tl.set(u, { attr: { "data-c": "1" } }, t);
+        if (sc) {
+          tl.to(box, { scale: sc, duration: d, ease: "power2.out" }, t);
+          tl.to(plate, { scaleY: by, duration: d, ease: "power2.out" }, t);
+        }
+        prev = u;
+      }
+      for (const [t, i] of OFFS) tl.set(units[i], { attr: { "data-c": "0" } }, t);
+      tl.set({}, {}, 5.659);
+      window.__timelines["shot-02"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,402 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "MySQL": "마이에스큐엘",
+    "SQL": "에스큐엘",
+    "InnoDB": "이노디비",
+    "UPDATE": "업데이트",
+    "START TRANSACTION": "스타트 트랜잭션",
+    "COMMIT": "커밋",
+    "ROLLBACK": "롤백",
+    "autocommit": "오토커밋",
+    "undo log": "언두 로그",
+    "redo log": "리두 로그",
+    "API": "에이피아이"
+  },
+  "thumbnail": {
+    "file": "mysql",
+    "sub": "# MySQL 이체 중 서버가 꺼지면",
+    "title": [
+      "<r>트랜잭션</r>",
+      "왜 묶고",
+      "대가는?"
+    ]
+  },
+  "question": "MySQL 트랜잭션이 무엇이고, 왜 쓰며(안 쓰면 무엇이 다르며), 단점은 무엇인가요?",
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강 · 그 외 흰색",
+  "shots": [
+    {
+      "file": "transfer.sql",
+      "sentences": [
+        {
+          "text": "1번 계좌에서 2번 계좌로 만 원을 보내려면, UPDATE가 두 번 필요해요.",
+          "say": "일번 계좌에서 이번 계좌로 만 원을 보내려면, 업데이트가 두 번 필요해요."
+        }
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<c># 예시: 1번에서 2번으로 1만 원</c>",
+            "<k>UPDATE</k> account <k>SET</k> balance",
+            "  = balance - <n>10000</n> <k>WHERE</k> id = <n>1</n>;",
+            "<k>UPDATE</k> account <k>SET</k> balance",
+            "  = balance + <n>10000</n> <k>WHERE</k> id = <n>2</n>;"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "incident.log",
+      "sentences": [
+        "그런데 첫 줄이 끝난 순간, 서버가 꺼지면 어떻게 될까요?",
+        "1번에선 만 원이 빠졌는데, 2번엔 안 들어왔어요. 돈이 사라진 거죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 예시: 첫 UPDATE 뒤 서버 다운</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "1번   <n>50,000</n> → <n>40,000</n>",
+            "2번   <n>20,000</n> → <n>20,000</n>",
+            "합계  <n>70,000</n> → <k>60,000</k>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "mysql",
+      "sentences": [
+        "이럴 때 꺼내는 게 바로, 트랜잭션이에요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<r>TRANSACTION</r>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "transfer.sql",
+      "sentences": [
+        "트랜잭션은 여러 SQL을 하나로 묶어서, 전부 반영하거나 전부 취소해요.",
+        "START TRANSACTION으로 열고, 다 끝나면 COMMIT으로 확정하죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>START TRANSACTION</k>;",
+            "<c>-- 1번에서 10000 빼기</c>",
+            "<c>-- 2번에 10000 더하기</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>COMMIT</k>;   <c># 둘 다 확정</c>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "mysql",
+      "sentences": [
+        "트랜잭션 없이 쓰면, 기본값인 autocommit이라 문장마다 바로 COMMIT돼요.",
+        "그래서 첫 UPDATE는 이미 확정이고, ROLLBACK으로도 못 되돌려요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "mysql> <k>SELECT</k> @@autocommit;",
+            "<n>1</n>   <c># 켜짐, 기본값</c>",
+            "UPDATE 1번  <k>→ 바로 COMMIT</k>",
+            "UPDATE 2번  <k>→ 바로 COMMIT</k>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>ROLLBACK</k>;   <c># 1번은 그대로</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "rollback.sql",
+      "sentences": [
+        "묶어 두면, 두 번째가 실패해도 ROLLBACK 한 번에 첫 UPDATE까지 되돌아가요.",
+        "COMMIT 전에 서버가 꺼져도, 다시 켤 때 MySQL이 알아서 되돌리고요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>START TRANSACTION</k>;",
+            "<c>-- 1번 -10000</c>   성공",
+            "<c>-- 2번 +10000</c>   <k>실패</k>",
+            "<k>ROLLBACK</k>;   <c># 1번도 50,000</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># COMMIT 전 다운: 재시작 때 취소</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "undo.log",
+      "sentences": [
+        "되돌릴 수 있는 건, MySQL 기본 엔진인 InnoDB가 undo log를 남기기 때문이에요.",
+        "행을 바꾸기 전에, 원래 값을 먼저 적어 둬요. 1번은 5만 원이었다고요.",
+        "ROLLBACK하면, 이 기록대로 원래 값을 되살리죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># InnoDB: MySQL 기본 저장 엔진</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "[undo log]",
+            "1번 balance 원래 <n>50,000</n>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<k>ROLLBACK</k> → 1번 = <n>50,000</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "redo.log",
+      "sentences": [
+        "반대로 COMMIT이 끝났다면, 바로 뒤에 서버가 꺼져도 변경은 남아요.",
+        "COMMIT할 때, 바뀐 내용을 redo log에 적어 디스크에 내려 두거든요.",
+        "데이터 파일엔 아직 못 썼어도, 다시 켤 때 이 기록으로 마저 반영해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>COMMIT</k>;   <c># 성공 = 꺼져도 남음</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "1. redo log → 디스크  <c># 기본 설정</c>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "2. 데이터 파일엔 나중에",
+            "<c># 재시작: redo log로 마저 반영</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "session_b.sql",
+      "sentences": [
+        "기본 설정에서는, 이체 도중에 다른 세션이 합계를 봐도 7만 원 그대로예요.",
+        "아직 COMMIT 안 된 행은, undo log의 예전 값으로 보여 주거든요.",
+        "autocommit이었다면 6만 원, 돈이 빠진 순간이 그대로 보였겠죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 이체 도중, 다른 세션에서</c>",
+            "<k>SELECT SUM</k>(balance) <k>FROM</k> account;"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<n>70,000</n>   <c># 트랜잭션: 예전 값</c>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<k>60,000</k>   <c># autocommit: 중간 상태</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "lock.txt",
+      "sentences": [
+        "대신 대가가 있어요. UPDATE한 행에는, 남이 못 바꾸게 락이 걸려요.",
+        "이 락은 COMMIT이나 ROLLBACK 때 풀려서, 같은 계좌를 바꾸려는 쪽은 그때까지 기다리죠.",
+        "기본 50초를 넘기면, 기다리던 문장은 에러로 끝나요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># A가 COMMIT 하기 전</c>",
+            "A  1번 UPDATE  <c># 락</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "B  1번 UPDATE  <k>대기</k>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<c># 50초 넘으면 (기본값)</c>",
+            "ERROR <n>1205</n>: Lock wait timeout"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "transfer.sql",
+      "sentences": [
+        "그래서 트랜잭션이 길수록, 다른 쪽도 그만큼 오래 기다려요.",
+        "열린 트랜잭션이 예전 값을 볼 수도 있어서, InnoDB는 undo log도 못 지우고 쌓아 둬요.",
+        "외부 API 응답 같은 느린 일은 밖으로 빼고, 바꿀 것만 묶어 바로 COMMIT해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>START TRANSACTION</k>;",
+            "<c>-- 1번 UPDATE (락)</c>",
+            "<c>-- 결제 API 응답 대기...</c>",
+            "<k>COMMIT</k>;   <c># 이제야 풀림</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 그동안 undo log도 쌓임</c>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<k>→ API는 밖에서, 묶음은 짧게</k>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "deadlock.txt",
+      "sentences": [
+        "더 곤란한 건 데드락이에요. A는 1번에서 2번으로, B는 반대로 동시에 보내요.",
+        {
+          "text": "A는 1번 락을 쥔 채 2번을, B는 2번 락을 쥔 채 1번을 기다려요.",
+          "say": "A는 일번 락을 쥔 채 2번을, B는 이번 락을 쥔 채 1번을 기다려요."
+        },
+        "서로 상대가 놓기만 기다리니, 둘 다 영원히 못 끝나요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 예시: 동시에 반대로 이체</c>",
+            "A: 1번 → 2번",
+            "B: 2번 → 1번"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "A  1번 락 쥠, 2번 기다림",
+            "B  2번 락 쥠, 1번 기다림"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<k>서로 기다림, 끝나지 않음</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "mysql",
+      "sentences": [
+        "InnoDB는 이걸 알아채고, 한쪽 트랜잭션을 통째로 ROLLBACK해요.",
+        "그래서 이 에러가 나면, 앱이 트랜잭션을 처음부터 다시 실행해야 해요.",
+        "애초에 늘 작은 번호부터 UPDATE하면, B는 1번에서 줄을 서서 데드락이 안 생기고요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "ERROR <n>1213</n>: Deadlock found",
+            "<c># 한쪽만 통째로 ROLLBACK</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>→ 트랜잭션 다시 실행</k>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<c># 순서 고정: 작은 id부터</c>",
+            "A: 1번 → 2번",
+            "B: 1번 → 2번  <c># 1번에서 대기</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, 같이 성공해야 하는 여러 문장을 트랜잭션으로 묶어요.",
+        "undo log로 되돌리고 redo log로 COMMIT을 지키는 대신, 락을 쥐니까 짧게 써요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[정리]",
+            "<r>TRANSACTION</r>: 전부 아니면 전무",
+            "실패:   undo log로 되돌림",
+            "COMMIT: redo log로 지킴"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "대가: 락 대기, 데드락",
+            "<k>→ 짧게 묶고, 데드락엔 재시도</k>"
+          ]
+        }
+      ]
+    }
+  ]
+}

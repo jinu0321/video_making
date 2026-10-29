@@ -1,0 +1,374 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "Redis": "레디스",
+    "DB": "디비",
+    "CPU": "씨피유",
+    "SSD": "에스에스디",
+    "RDB": "알디비",
+    "AOF": "에이오에프"
+  },
+  "thumbnail": {
+    "file": "redis-cli",
+    "sub": "# DB가 8초씩 걸릴 때",
+    "title": [
+      "<r>Redis</r>,",
+      "왜 쓸까?"
+    ]
+  },
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>Redis</r> 빨강 · 그 외 흰색. 각 block은 sentence의 첫 문장이 시작될 때 타이핑을 시작합니다. · hold: 장면 뒤에 추가로 머무는 초.",
+  "shots": [
+    {
+      "file": "incident.log",
+      "sentences": [
+        "이벤트를 열자마자, 상품 페이지가 8초씩 걸리기 시작했어요.",
+        "DB CPU는 100%를 찍고 있었죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<c># 예시 상황</c>",
+            "[이벤트 오픈 10분 후]",
+            "동시 접속: <n>10,000</n>명",
+            "응답 시간: <n>0.1</n>초 → <n>8</n>초"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "DB CPU: <n>100%</n>  <k>← 과부하</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "query.sql",
+      "sentences": [
+        "원인은 만 명이 똑같은 상품 정보를, 매번 DB에 물어본 거예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>SELECT</k> * <k>FROM</k> products",
+            "<k>WHERE</k> id = <n>42</n>;",
+            "<c>-- × 10,000번 반복</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "flow.txt",
+      "sentences": [
+        "DB는 그때마다 디스크에서, 같은 데이터를 다시 읽어야 했고요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "요청 → DB → 디스크 읽기",
+            "요청 → DB → 디스크 읽기",
+            "요청 → DB → 디스크 읽기",
+            "<c>... 만 번 똑같이</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "redis-cli",
+      "sentences": [
+        "이럴 때 꺼내는 게 바로, Redis예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<r>Redis</r>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "README.md",
+      "sentences": [
+        "Redis는 데이터를 디스크가 아니라, 메모리에 저장하는 저장소예요.",
+        "키와 값을 짝지어 넣어 두는, 거대한 해시맵이라고 보면 돼요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[<r>Redis</r>]",
+            "Remote Dictionary Server",
+            "저장 위치: <n>메모리(RAM)</n>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "구조: <k>키</k> → <n>값</n> (Key-Value)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "redis-cli",
+      "sentences": [
+        "키로 저장하고, 키로 바로 꺼내는 거죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "> <k>SET</k> product:42 <s>\"무선 이어폰\"</s>",
+            "OK",
+            "> <k>GET</k> product:42",
+            "<s>\"무선 이어폰\"</s>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "latency.txt",
+      "sentences": [
+        "메모리는 디스크와 속도부터 차원이 달라요.",
+        "SSD에서 한 번 읽는 데 약 15만 나노초, 메모리는 약 100나노초예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[읽기 한 번, 대략]"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "SSD 랜덤 읽기  ~<n>150,000</n> ns",
+            "메모리 참조    ~<n>100</n> ns",
+            "<k>→ 1,000배 넘게 차이</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "cache.md",
+      "sentences": [
+        "그래서 자주 쓰는 데이터를 Redis에 올려 두는데, 이걸 캐시라고 해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[캐시 Cache]",
+            "자주 쓰는 데이터를",
+            "빠른 곳에 미리 두기"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "cache.py",
+      "sentences": [
+        "요청이 오면 먼저 Redis를 확인하고, 있으면 DB까지 가지 않고 바로 돌려줘요.",
+        "없을 때만 DB에서 가져와서, Redis에 저장해 두고요.",
+        "여기 붙은 60은 만료 시간이에요. 60초가 지나면 자동으로 지워져서, 오래된 데이터가 남지 않아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "data = redis.<k>get</k>(<s>\"product:42\"</s>)",
+            "<k>if</k> data:",
+            "    <k>return</k> data  <c># 캐시 히트</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "data = db.<k>find</k>(<n>42</n>)  <c># 캐시 미스</c>",
+            "redis.<k>set</k>(<s>\"product:42\"</s>, data, ex=<n>60</n>)",
+            "<k>return</k> data"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<c># ex=60 → 60초 뒤 자동 삭제</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "result.log",
+      "sentences": [
+        "이제 만 명이 몰려도, DB는 1분에 한 번만 조회하면 돼요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[캐시 적용 후]",
+            "DB 조회: <n>10,000</n>번 → 1분에 <n>1</n>번"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "types.txt",
+      "sentences": [
+        "그런데 Redis는 캐시만 하는 게 아니에요.",
+        "문자열, 리스트, 해시, 셋, 정렬된 셋 같은 자료구조를 그대로 다뤄요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[<r>Redis</r> 자료구조]"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>String</k>      <s>\"무선 이어폰\"</s>",
+            "<k>List</k>        [a, b, c]",
+            "<k>Hash</k>        {name, price}",
+            "<k>Set</k>         {a, b, c}",
+            "<k>Sorted Set</k>  {kim: <n>980</n>, lee: <n>870</n>}"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "redis-cli",
+      "sentences": [
+        "그래서 여러 서버가 로그인 세션을 같이 쓰거나,"
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "> <k>SET</k> session:a1b2 <s>\"user:7\"</s> EX <n>1800</n>",
+            "<c># 서버 A, B, C 어디서든 같은 로그인</c>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "redis-cli",
+      "sentences": [
+        "정렬된 셋으로 실시간 랭킹을 만들고,"
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "> <k>ZADD</k> ranking <n>980</n> kim <n>870</n> lee",
+            "> <k>ZRANGE</k> ranking <n>0</n> <n>1</n> REV",
+            "1) <s>\"kim\"</s>",
+            "2) <s>\"lee\"</s>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "redis-cli",
+      "sentences": [
+        "요청 횟수를 세서, 너무 많이 보내는 사용자를 막기도 해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "> <k>INCR</k> req:user:7",
+            "(integer) <n>101</n>",
+            "<c># 1분에 100번 넘으면 차단</c>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "warning.md",
+      "sentences": [
+        "단, 주의할 점도 있어요.",
+        "메모리는 디스크보다 비싸고 작아서, 모든 데이터를 다 올릴 수는 없어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[주의 1]"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "메모리 = 빠르지만 비싸고 작다",
+            "<k>→ 자주 쓰는 데이터만 올리기</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "warning.md",
+      "sentences": [
+        "그리고 서버가 꺼지면, 메모리에 있던 데이터는 사라질 수 있어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[주의 2]",
+            "서버 재시작 → 메모리 비워짐",
+            "<k>→ 데이터 유실 가능</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "redis.conf",
+      "sentences": [
+        "그래서 RDB 스냅샷이나 AOF 로그로, 디스크에 백업하는 기능도 있어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>save</k> <n>60</n> <n>1000</n>      <c># RDB 스냅샷</c>",
+            "<k>appendonly</k> <n>yes</n>    <c># AOF 쓰기 로그</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, Redis는 DB를 대체하는 게 아니라,",
+        "DB 앞에서 자주 쓰는 데이터를 빠르게 꺼내 주는, 메모리 저장소예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[정리]",
+            "DB 대체 X"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<r>Redis</r> = DB 앞의 메모리 저장소",
+            "<k>→ DB 부담은 줄이고, 응답은 빠르게</k>"
+          ]
+        }
+      ]
+    }
+  ]
+}

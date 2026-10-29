@@ -1,0 +1,19 @@
+{
+  "title": "MySQL 인덱스, 왜 빠르고 언제 손해일까?",
+  "description": "MySQL 인덱스가 무엇이고, 왜 쓰며, 단점은 무엇인가요?\n\n- 인덱스 = 컬럼 값을 정렬해 두고 각 값의 기본 키를 적어 둔 목록. 정렬돼 있어서 처음부터 다 안 읽는다\n- 인덱스가 없으면 Full Table Scan. 행이 두 배면 읽는 양도 두 배\n- 인덱스가 있으면 B-tree를 몇 단계만 내려가 찾는다. 50만 행에서 약 4번\n- 단점 1: INSERT·UPDATE·DELETE가 느려진다. 인덱스마다 정렬된 자리에 값을 끼워 넣어야 해서\n- 단점 2: 저장 공간을 더 쓴다. 인덱스마다 값과 기본 키를 한 벌씩 따로 저장해서\n- 값 종류가 적은 컬럼은 인덱스가 있어도 MySQL이 Full Scan을 고르기도 한다. 찾은 행마다 기본 키로 실제 행을 한 번 더 찾아가야 해서\n- 인덱스를 실제로 쓰는지는 EXPLAIN으로 확인한다(type, key, rows)\n- 만들 곳: 행이 많고, 자주 찾는 조건이고, 값이 잘 안 겹치는 컬럼\n\n#MySQL #인덱스 #데이터베이스 #백엔드 #개발",
+  "tags": [
+    "MySQL",
+    "인덱스",
+    "MySQL 인덱스",
+    "B-tree",
+    "EXPLAIN",
+    "Full Table Scan",
+    "데이터베이스",
+    "백엔드"
+  ],
+  "videoId": "xhCBZ-Wgqbo",
+  "url": "https://youtube.com/shorts/xhCBZ-Wgqbo",
+  "privacy": "public",
+  "publishAt": null,
+  "uploadedAt": "2026-10-28T07:49:04+00:00"
+}

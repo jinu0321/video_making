@@ -1,0 +1,402 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "Full Table Scan": "풀 테이블 스캔",
+    "Full Scan": "풀 스캔",
+    "MySQL": "마이에스큐엘",
+    "EXPLAIN": "익스플레인",
+    "B-tree": "비트리"
+  },
+  "thumbnail": {
+    "file": "mysql",
+    "sub": "# 1명 찾으려고 50만 줄을 읽을 때",
+    "title": [
+      "<r>MySQL</r> 인덱스",
+      "왜 빠르고",
+      "언제 손해?"
+    ]
+  },
+  "question": "MySQL 인덱스가 무엇이고, 왜 쓰며, 단점은 무엇인가요?",
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강 · 그 외 흰색",
+  "shots": [
+    {
+      "file": "query.sql",
+      "sentences": [
+        "회원이 50만 명인 테이블에서, 이메일로 한 명을 찾아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<c># 예시: 회원 50만 명</c>",
+            "<k>SELECT</k> * <k>FROM</k> users",
+            "<k>WHERE</k> email = <s>'kim@ex.com'</s>;"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "mysql",
+      "sentences": [
+        "쿼리 앞에 EXPLAIN을 붙이면, 어떻게 실행할지 미리 보여 줘요.",
+        "결과는 한 명인데, 50만 줄을 전부 읽겠다고 나와요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "mysql> <k>EXPLAIN</k> <k>SELECT</k> ...\\G"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "type: <n>ALL</n>       <c># 전부 읽기</c>",
+            "key:  <n>NULL</n>      <c># 인덱스 없음</c>",
+            "rows: <n>~500,000</n>  <c># 읽을 행 수</c>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "users.txt",
+      "sentences": [
+        "테이블은 기본 키, 그러니까 회원 번호 순서로 저장돼요.",
+        "이메일 순서가 아니라서, 어디 있는지 모르니 첫 줄부터 하나씩 비교하죠.",
+        "이걸 Full Table Scan이라고 해요. 회원이 두 배면, 읽을 양도 두 배예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 저장 순서 = id 순서</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<n>1</n>  park@ex.com  <c>아님</c>",
+            "<n>2</n>  lee@ex.com   <c>아님</c>",
+            "<n>3</n>  choi@ex.com  <c>아님</c>",
+            "<c>... 50만 번째 줄까지</c>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<k>Full Table Scan</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "mysql",
+      "sentences": [
+        "이럴 때 꺼내는 게 바로, 인덱스예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<r>INDEX</r>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "idx_email.txt",
+      "sentences": [
+        "인덱스는 컬럼 값을 미리 정렬해 두고, 그 값이 어느 행인지 적어 둔 목록이에요.",
+        "책 맨 뒤의 찾아보기처럼요. 가나다순이라, 처음부터 넘기지 않고 바로 찾죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[email 인덱스: 정렬됨]",
+            "ahn@ex.com   → id <n>8812</n>",
+            "choi@ex.com  → id <n>3</n>",
+            "kim@ex.com   → id <n>42</n>",
+            "lee@ex.com   → id <n>2</n>",
+            "park@ex.com  → id <n>1</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "schema.sql",
+      "sentences": [
+        "만드는 건 한 줄이에요. 자주 찾는 이메일 컬럼에 걸어 주면 돼요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>CREATE INDEX</k> idx_email",
+            "<k>ON</k> users (email);"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "btree.txt",
+      "sentences": [
+        "이 목록은 B-tree라는, 낮고 넓은 나무 모양으로 저장돼요.",
+        "맨 위에서 찾는 값이 어느 구간인지 보고, 그쪽으로 한 단계씩 내려가요.",
+        "한 칸에 값이 여러 개씩 들어 있어서, 몇 단계만 내려가면 바닥에 닿아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># B-tree 에서 kim 찾기</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "[루트]  a~j | <k>k~r</k> | s~z",
+            "[가지]  ka~kh | <k>ki~ko</k>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "[잎]    <s>kim@ex.com</s> → id <n>42</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "compare.txt",
+      "sentences": [
+        "MySQL 문서의 계산 예로는, 50만 행에서 약 네 번 읽으면 찾아요.",
+        "행이 열 배로 늘어도, 읽는 횟수는 많아야 한 번쯤 늘어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 50만 행, MySQL 문서 계산 예</c>",
+            "풀 스캔   <n>500,000</n>줄 비교",
+            "인덱스    약 <n>4</n>번 읽기"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 행 10배 → 읽기 1번쯤 추가</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "mysql",
+      "sentences": [
+        "인덱스를 만들고 다시 보면, 읽을 행이 한 줄로 줄어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "mysql> <k>EXPLAIN</k> <k>SELECT</k> ...\\G",
+            "type: <n>ref</n>        <c># 인덱스로 찾기</c>",
+            "key:  <n>idx_email</n>  <c># 쓴 인덱스</c>",
+            "rows: <n>1</n>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "insert.sql",
+      "sentences": [
+        "그런데 인덱스는 공짜가 아니에요. 회원이 가입하면, 한 줄 넣고 끝이 아니거든요.",
+        "인덱스마다 정렬된 자리를 찾아서, 값을 끼워 넣어야 하거든요.",
+        "수정과 삭제도 마찬가지라, 인덱스가 많을수록 쓰기가 느려져요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>-- 인덱스 3개: email, name, phone</c>",
+            "<k>INSERT INTO</k> users ...;"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "1. 테이블에 행 추가",
+            "2. idx_email 에 끼워 넣기",
+            "3. idx_name  에 끼워 넣기",
+            "4. idx_phone 에 끼워 넣기"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "disk.txt",
+      "sentences": [
+        "공간도 더 들어요. 인덱스마다 컬럼 값과 기본 키를, 따로 한 벌씩 저장하거든요.",
+        "그래서 정말 자주 찾는 조건에만 만들고, 안 쓰는 인덱스는 지워요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[users 저장 공간]",
+            "테이블      (id, email, ...)",
+            "+ idx_email (email, id)",
+            "+ idx_name  (name, id)",
+            "+ idx_phone (phone, id)"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>DROP INDEX</k> idx_phone <k>ON</k> users;"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "mysql",
+      "sentences": [
+        "값 종류가 적은 컬럼은 조심해야 해요. 회원 상태가 활성과 휴면, 두 가지뿐이라면요.",
+        "휴면이 절반이면, 인덱스가 있어도 MySQL이 안 쓰기도 해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># status: active, dormant</c>",
+            "<c># dormant 가 절반</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>WHERE</k> status = <s>'dormant'</s>",
+            "possible_keys: idx_status",
+            "key:  <n>NULL</n>  <c># 안 씀</c>",
+            "type: <n>ALL</n>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "lookup.txt",
+      "sentences": [
+        "인덱스에는 값과 기본 키만 들어 있어요.",
+        "그래서 인덱스로 찾은 뒤, 기본 키로 실제 행을 한 번 더 찾아가요.",
+        "휴면이 25만 명이면, 이 왕복을 25만 번 해야 하죠.",
+        "그럴 바엔 처음부터 쭉 읽는 게 빨라서, Full Scan을 고르는 거예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[idx_status]   [테이블]"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "dormant, id <n>2</n>  → id <n>2</n> 행",
+            "dormant, id <n>5</n>  → id <n>5</n> 행"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<c>... 25만 번 왕복</c>"
+          ]
+        },
+        {
+          "at": 3,
+          "lines": [
+            "<k>→ 처음부터 읽는 게 빠름</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "mysql",
+      "sentences": [
+        "이렇게 인덱스를 쓸지 말지는, MySQL이 쿼리마다 정해요.",
+        "그래서 인덱스를 만든 뒤엔, EXPLAIN으로 정말 쓰는지 꼭 확인해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 쓸지는 MySQL이 쿼리마다 결정</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "mysql> <k>EXPLAIN</k> <k>SELECT</k> ...\\G",
+            "key:  <n>idx_email</n>  <c># 쓴다</c>",
+            "key:  <n>NULL</n>       <c># 안 쓴다</c>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "checklist.md",
+      "sentences": [
+        "정리하면, 행이 많고 자주 찾는 조건이면서, 값이 잘 안 겹치는 컬럼에 만들어요.",
+        "행이 적으면 다 읽어도 금방이고, 쓰기가 대부분이면 비용이 더 커서 안 만들어도 돼요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>만든다</k>",
+            "  큰 테이블, WHERE 단골",
+            "  email 처럼 고유한 값"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>안 만들어도 된다</k>",
+            "  작은 테이블, 쓰기 위주",
+            "  status 처럼 몇 종류"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "인덱스는 정렬된 찾아보기라서, 50만 줄 대신 몇 번만 읽게 해 줘요.",
+        "대신 쓰기와 공간을 내주니까, 꼭 필요한 컬럼에만 거는 거예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[정리]",
+            "<r>INDEX</r> = 정렬된 찾아보기",
+            "읽기: <n>50만</n> 줄 → 약 <n>4</n>번"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "대가: 쓰기 느려짐, 공간 더 씀",
+            "<k>→ 꼭 필요한 컬럼에만</k>"
+          ]
+        }
+      ]
+    }
+  ]
+}

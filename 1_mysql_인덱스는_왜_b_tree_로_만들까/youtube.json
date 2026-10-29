@@ -1,0 +1,21 @@
+{
+  "title": "MySQL 인덱스는 왜 B-tree일까? 이진 트리도, 해시도 아닌 이유",
+  "description": "MySQL 인덱스는 왜 B-tree예요? 이진 트리나 해시는 왜 안 써요?\n\n- 인덱스 비용은 비교 횟수가 아니라 페이지를 읽는 횟수. InnoDB는 데이터를 16KB 페이지 단위로 디스크에서 가져온다\n- 이진 트리는 높다. 한 칸에 값이 1개라 50만 개면 약 19층, 페이지를 최대 19번 읽는다\n- B-tree는 낮고 넓다. 한 칸이 페이지 하나라 값이 수백 개 들어가서 50만 개면 3~4층\n- 실제 디스크 읽기는 더 적다. 위쪽 층은 늘 지나가서 buffer pool(메모리 캐시)에 남아 있다\n- 정렬 배열은 중간에 끼우면 뒤의 값을 전부 밀어야 하지만, B-tree는 페이지 하나만 고친다(꽉 차면 페이지 분할)\n- 해시는 등호 검색은 한 번에 끝나지만 순서가 없어서 범위 검색, 정렬, 앞부분 검색(LIKE 'kim%')에 못 쓴다\n- B-tree 바닥 페이지는 키 순서대로 옆으로 이어져 있어서(B+tree) 시작점만 찾고 옆으로 읽는다. BETWEEN, ORDER BY도 같다\n\n#MySQL #인덱스 #BTree #데이터베이스 #백엔드",
+  "tags": [
+    "MySQL",
+    "인덱스",
+    "B-tree",
+    "B+tree",
+    "InnoDB",
+    "이진 트리",
+    "해시 인덱스",
+    "buffer pool",
+    "데이터베이스",
+    "백엔드"
+  ],
+  "videoId": "XKSaHESEYh8",
+  "url": "https://youtube.com/shorts/XKSaHESEYh8",
+  "privacy": "public",
+  "publishAt": null,
+  "uploadedAt": "2026-10-28T08:19:05+00:00"
+}
