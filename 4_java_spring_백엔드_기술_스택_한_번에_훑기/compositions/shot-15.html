@@ -1,0 +1,96 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s15-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s15-tab b { color: #3ddc97; font-weight: 400; }
+    #s15-tab i { color: #7d8590; font-style: normal; }
+    #s15-plate {
+      position: absolute; left: 40px; top: 125px; width: 1000px; height: 860px;
+      background: #172033;
+    }
+    #s15-dia {
+      position: absolute; left: 100.0px; top: 267.0px; width: 880px; height: 576px;
+      transform: scale(1.0); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }
+    #s15-dia svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #s15-dia .fr { position: absolute; box-sizing: border-box; border: 4px dashed #8b98ad; border-radius: 18px; }
+    #s15-dia .fr.spec { border-color: #e6db74; }
+    #s15-dia .fr .lb { position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }
+    #s15-dia .fr.spec .lb { color: #e6db74; }
+    #s15-dia .nd {
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: #22304a; border: 4px solid #8b98ad; border-radius: 14px;
+    }
+    #s15-dia .nd.spec { border-style: dashed; border-color: #e6db74; }
+    #s15-dia .nd.impl { border-color: #ff6b8b; }
+    #s15-dia .nd.text, #s15-dia .nd.db { background: none; border: none; }
+    #s15-dia .nd .sub { margin-top: 6px; color: #aab4c3; }
+    #s15-dia .nd.db .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+    #s15-dia .cyl { fill: #22304a; stroke: #8b98ad; stroke-width: 4; }
+    #s15-dia .bd {
+      position: absolute; height: 45px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 30px/45px "Pretendard", sans-serif; color: #172033; background: #8b98ad;
+    }
+    #s15-dia .bd.spec { background: #e6db74; }
+    #s15-dia .bd.impl { background: #ff6b8b; }
+    #s15-dia .al { position: absolute; white-space: pre; font-size: 40px; line-height: 1.25; color: #aab4c3; }
+    #s15-dia .al.chip { padding: 0 12px; background: #172033; }
+    #s15-dia .k { color: #ff6b8b; }
+    #s15-dia .n { color: #b699ff; }
+    #s15-dia .s { color: #e6db74; }
+    #s15-dia .c { color: #8b98ad; }
+    #s15-dia .r { color: #ff4438; }
+    #s15-dia .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-15" data-width="1080" data-height="1920">
+    <div id="s15-tab" data-layout-ignore><b>❯</b> <i>cat</i> upload.md</div>
+    <div id="s15-plate"></div>
+    <div id="s15-dia">
+      
+      <svg width="880" height="576" viewBox="0 0 880 576">
+        <line id="s15-a0-l" x1="210.0" y1="376.0" x2="210.0" y2="436.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="60.0" stroke-dashoffset="60.0" />
+        <polygon id="s15-a0-h" points="210.0,454.0 197.0,434.0 223.0,434.0" fill="#8b98ad" opacity="0" />
+        <line id="s15-a1-l" x1="210.0" y1="224.0" x2="210.0" y2="144.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="80.0" stroke-dashoffset="80.0" />
+        <polygon id="s15-a1-h" points="210.0,126.0 223.0,146.0 197.0,146.0" fill="#8b98ad" opacity="0" />
+        <line id="s15-a2-l" x1="366.0" y1="70.0" x2="496.0" y2="70.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="130.0" stroke-dashoffset="130.0" />
+        <polygon id="s15-a2-h" points="514.0,70.0 494.0,83.0 494.0,57.0" fill="#8b98ad" opacity="0" />
+      </svg>
+      <div id="s15-browser" class="nd box" style="left: 60.0px; top: 20.0px; width: 300px; height: 100px; opacity: 0;"><div class="t" style="font-size: 53.0px;">브라우저</div></div>
+      <div id="s15-s3" class="nd box" style="left: 520.0px; top: 0.0px; width: 300px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">S3</div><div class="sub" style="font-size: 36px;">파일</div></div>
+      <div id="s15-server" class="nd box" style="left: 60.0px; top: 230.0px; width: 300px; height: 140px;"><div class="t" style="font-size: 54px;">서버</div><div class="sub" style="font-size: 36px;">Spring Boot</div></div>
+      <div id="s15-db" class="nd db" style="left: 60.0px; top: 460.0px; width: 300px; height: 116px; opacity: 0;">
+          <svg width="300" height="116" viewBox="0 0 300 116">
+            <path class="cyl" d="M2 18 V98 A148.0 16 0 0 0 298 98 V18" />
+            <ellipse class="cyl" cx="150.0" cy="18" rx="148.0" ry="16" />
+          </svg>
+          <div class="t" style="top: 34px; font-size: 54px;">MySQL</div>
+        </div>
+      <div id="s15-a0-t" class="al" style="left: 230.0px; top: 381.0px; opacity: 0;">image_key</div>
+      <div id="s15-a1-t" class="al" style="left: 230.0px; top: 159.0px; opacity: 0;">Presigned URL</div>
+      <div id="s15-a2-t" class="al" style="left: 391.0px; top: 12.0px; opacity: 0;">파일</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = [[4.988,"#s15-browser",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[1.706,"#s15-s3",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[0.612,"#s15-db",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[3.592,"#s15-a0-l",{"attr":{"stroke-dashoffset":60.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[3.692,"#s15-a0-t",{"opacity":0},{"opacity":1,"duration":0.2}],[5.644,"#s15-a1-l",{"attr":{"stroke-dashoffset":80.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[5.744,"#s15-a1-t",{"opacity":0},{"opacity":1,"duration":0.2}],[7.447,"#s15-a2-l",{"attr":{"stroke-dashoffset":130.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[7.547,"#s15-a2-t",{"opacity":0},{"opacity":1,"duration":0.2}],[8.801,"#s15-server",null,{"scale":1.06,"duration":0.18,"yoyo":true,"repeat":1,"ease":"power2.out"}]];
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = [[3.842,"#s15-a0-h",{"opacity":1}],[5.894,"#s15-a1-h",{"opacity":1}],[7.697,"#s15-a2-h",{"opacity":1}],[0.612,"#s15-db .cyl",{"attr":{"stroke":"#3ddc97"}}],[1.706,"#s15-db .cyl",{"attr":{"stroke":"#8b98ad"}}],[1.706,"#s15-s3",{"borderColor":"#3ddc97"}],[3.592,"#s15-s3",{"borderColor":"#8b98ad"}],[3.592,"#s15-a0-l",{"attr":{"stroke":"#3ddc97"}}],[3.592,"#s15-a0-h",{"attr":{"fill":"#3ddc97"}}],[3.592,"#s15-a0-t",{"color":"#3ddc97"}],[4.988,"#s15-a0-l",{"attr":{"stroke":"#8b98ad"}}],[4.988,"#s15-a0-h",{"attr":{"fill":"#8b98ad"}}],[4.988,"#s15-a0-t",{"color":"#aab4c3"}],[4.988,"#s15-browser",{"borderColor":"#3ddc97"}],[5.644,"#s15-browser",{"borderColor":"#8b98ad"}],[5.644,"#s15-a1-l",{"attr":{"stroke":"#3ddc97"}}],[5.644,"#s15-a1-h",{"attr":{"fill":"#3ddc97"}}],[5.644,"#s15-a1-t",{"color":"#3ddc97"}],[7.447,"#s15-a1-l",{"attr":{"stroke":"#8b98ad"}}],[7.447,"#s15-a1-h",{"attr":{"fill":"#8b98ad"}}],[7.447,"#s15-a1-t",{"color":"#aab4c3"}],[7.447,"#s15-a2-l",{"attr":{"stroke":"#3ddc97"}}],[7.447,"#s15-a2-h",{"attr":{"fill":"#3ddc97"}}],[7.447,"#s15-a2-t",{"color":"#3ddc97"}],[8.801,"#s15-a2-l",{"attr":{"stroke":"#8b98ad"}}],[8.801,"#s15-a2-h",{"attr":{"fill":"#8b98ad"}}],[8.801,"#s15-a2-t",{"color":"#aab4c3"}],[8.801,"#s15-server",{"borderColor":"#3ddc97"}]];
+      for (const [t, sel, from, to] of TWEENS) {
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({}, {}, 11.32);
+      window.__timelines["shot-15"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,81 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s01-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s01-tab b { color: #3ddc97; font-weight: 400; }
+    #s01-tab i { color: #7d8590; font-style: normal; }
+    #s01-stage {
+      position: absolute; left: 0; top: 105px; width: 1080px; height: 895px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #s01-plate {
+      position: absolute; left: 40px; top: calc(50% - 500px); width: 1000px; height: 1000px;
+      background: #172033;
+    }
+    #s01-box {
+      position: relative; text-align: left;
+      font-family: "D2Coding", monospace; font-size: 120px; line-height: 1.17; color: #ffffff;
+    }
+    #s01-box .ln, #s01-box .ch { display: none; }
+    #s01-box .ln { white-space: pre; }
+    #s01-box .ln.p { display: block; }
+    #s01-box .ch.p { display: inline; }
+    #s01-box .u[data-c="1"]::after { content: "\258c"; color: #3ddc97; }
+    #s01-box .k { color: #ff6b8b; }
+    #s01-box .n { color: #b699ff; }
+    #s01-box .s { color: #e6db74; }
+    #s01-box .c { color: #8b98ad; }
+    #s01-box .r { color: #ff4438; }
+    #s01-box .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-01" data-width="1080" data-height="1920">
+    <div id="s01-tab" data-layout-ignore><b>❯</b> <i>cat</i> run.log</div>
+    <div id="s01-stage">
+      <div id="s01-plate"></div>
+      <div id="s01-box">
+        <div class="ln p"><span class="u lead"></span><span class="u ch c p">#</span><span class="u ch c p"> </span><span class="u ch c p">실</span><span class="u ch c p">행</span><span class="u ch c p"> </span><span class="u ch c p">로</span><span class="u ch c p">그</span><span class="u ch c p"> </span><span class="u ch c p">(</span><span class="u ch c p">줄</span><span class="u ch c p">임</span><span class="u ch c p">)</span></div>
+        <div class="ln p"><span class="u lead"></span><span class="u ch w p">m</span><span class="u ch w p">e</span><span class="u ch w p">m</span><span class="u ch w p">b</span><span class="u ch w p">e</span><span class="u ch w p">r</span><span class="u ch w p">S</span><span class="u ch w p">e</span><span class="u ch w p">r</span><span class="u ch w p">v</span><span class="u ch w p">i</span><span class="u ch w p">c</span><span class="u ch w p">e</span><span class="u ch w p"> </span><span class="u ch w p">필</span><span class="u ch w p">드</span></div>
+        <div class="ln p"><span class="u lead"></span><span class="u ch w p"> </span><span class="u ch w p"> </span><span class="u ch w p">=</span><span class="u ch w p"> </span><span class="u ch k p">M</span><span class="u ch k p">e</span><span class="u ch k p">m</span><span class="u ch k p">b</span><span class="u ch k p">e</span><span class="u ch k p">r</span><span class="u ch k p">S</span><span class="u ch k p">e</span><span class="u ch k p">r</span><span class="u ch k p">v</span><span class="u ch k p">i</span><span class="u ch k p">c</span><span class="u ch k p">e</span><span class="u ch k p">$</span><span class="u ch k p">$</span><span class="u ch k p">S</span><span class="u ch k p">p</span><span class="u ch k p">r</span><span class="u ch k p">i</span><span class="u ch k p">n</span><span class="u ch k p">g</span><span class="u ch k p">C</span><span class="u ch k p">G</span><span class="u ch k p">L</span><span class="u ch k p">I</span><span class="u ch k p">B</span><span class="u ch k p">$</span><span class="u ch k p">$</span><span class="u ch k p">0</span><span class="u ch w p">…</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w">$</span><span class="u ch w"> </span><span class="u ch w">j</span><span class="u ch w">a</span><span class="u ch w">r</span><span class="u ch w"> </span><span class="u ch w">t</span><span class="u ch w">f</span><span class="u ch w"> </span><span class="u ch w">p</span><span class="u ch w">x</span><span class="u ch w">.</span><span class="u ch w">j</span><span class="u ch w">a</span><span class="u ch w">r</span><span class="u ch w"> </span><span class="u ch w">|</span><span class="u ch w"> </span><span class="u ch w">g</span><span class="u ch w">r</span><span class="u ch w">e</span><span class="u ch w">p</span><span class="u ch w"> </span><span class="u ch w">M</span><span class="u ch w">e</span><span class="u ch w">m</span><span class="u ch w">b</span><span class="u ch w">e</span><span class="u ch w">r</span><span class="u ch w">S</span><span class="u ch w">e</span><span class="u ch w">r</span><span class="u ch w">v</span><span class="u ch w">i</span><span class="u ch w">c</span><span class="u ch w">e</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w">…</span><span class="u ch w">/</span><span class="u ch w">M</span><span class="u ch w">e</span><span class="u ch w">m</span><span class="u ch w">b</span><span class="u ch w">e</span><span class="u ch w">r</span><span class="u ch w">S</span><span class="u ch w">e</span><span class="u ch w">r</span><span class="u ch w">v</span><span class="u ch w">i</span><span class="u ch w">c</span><span class="u ch w">e</span><span class="u ch w">.</span><span class="u ch w">c</span><span class="u ch w">l</span><span class="u ch w">a</span><span class="u ch w">s</span><span class="u ch w">s</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch c">#</span><span class="u ch c"> </span><span class="u ch c">프</span><span class="u ch c">록</span><span class="u ch c">시</span><span class="u ch c"> </span><span class="u ch c">클</span><span class="u ch c">래</span><span class="u ch c">스</span><span class="u ch c"> </span><span class="u ch c">파</span><span class="u ch c">일</span><span class="u ch c">은</span><span class="u ch c"> </span><span class="u ch c">없</span><span class="u ch c">음</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      const box = document.getElementById("s01-box");
+      const plate = document.getElementById("s01-plate");
+      const units = box.querySelectorAll(".u");
+      // [time, unit index, text scale, plate scaleY (0 = unchanged), tween duration]
+      const STEPS = [[5.909,65,0.4433,0.332,0.091],[6.0,66,0,0,0.091],[6.091,67,0,0,0.091],[6.182,68,0,0,0.091],[6.273,69,0,0,0.091],[6.363,70,0,0,0.091],[6.454,71,0,0,0.091],[6.545,72,0,0,0.091],[6.636,73,0,0,0.091],[6.727,74,0,0,0.091],[6.818,75,0,0,0.091],[6.909,76,0,0,0.091],[7.0,77,0,0,0.091],[7.091,78,0,0,0.091],[7.182,79,0,0,0.091],[7.272,80,0,0,0.091],[7.363,81,0,0,0.091],[7.454,82,0,0,0.091],[7.545,83,0,0,0.091],[7.636,84,0,0,0.091],[7.727,85,0,0,0.091],[7.818,86,0,0,0.091],[7.909,87,0,0,0.091],[8.0,88,0,0,0.091],[8.09,89,0,0,0.091],[8.181,90,0,0,0.091],[8.272,91,0,0,0.091],[8.363,92,0,0,0.091],[8.454,93,0,0,0.091],[8.545,94,0,0,0.091],[8.636,95,0,0,0.091],[8.727,96,0,0,0.091],[8.818,97,0,0,0.091],[8.909,98,0,0,0.091],[8.999,99,0.4308,0.3226,0.091],[9.09,100,0.4183,0.3132,0.091],[9.181,101,0.4075,0.3051,0.091],[9.272,102,0.4183,0.372,0.091],[9.363,103,0,0,0.091],[9.454,104,0,0,0.091],[9.545,105,0,0,0.091],[9.636,106,0,0,0.091],[9.727,107,0,0,0.091],[9.817,108,0,0,0.091],[9.908,109,0,0,0.091],[9.999,110,0,0,0.091],[10.09,111,0,0,0.091],[10.181,112,0,0,0.091],[10.272,113,0,0,0.091],[10.363,114,0,0,0.091],[10.454,115,0,0,0.091],[10.545,116,0,0,0.091],[10.636,117,0,0,0.091],[10.726,118,0,0,0.091],[10.817,119,0,0,0.091],[10.908,120,0,0,0.091],[10.999,121,0,0,0.091],[11.09,122,0,0,0.091],[11.181,123,0,0,0.091],[11.272,124,0.4183,0.4307,0.091],[11.363,125,0,0,0.091],[11.454,126,0,0,0.091],[11.544,127,0,0,0.091],[11.635,128,0,0,0.091],[11.726,129,0,0,0.091],[11.817,130,0,0,0.091],[11.908,131,0,0,0.091],[11.999,132,0,0,0.091],[12.09,133,0,0,0.091],[12.181,134,0,0,0.091],[12.272,135,0,0,0.091],[12.363,136,0,0,0.091],[12.453,137,0,0,0.091],[12.544,138,0,0,0.091],[12.635,139,0,0,0.091],[12.726,140,0,0,0.091]];
+      tl.set(box, { scale: 0.4433 }, 0);
+      tl.set(plate, { scaleY: 0.2697 }, 0);
+      // [time, unit index]: cursor leaves when a block finishes typing
+      const OFFS = [[13.167,140]];
+      let prev = null;
+      for (const [t, i, sc, by, d] of STEPS) {
+        const u = units[i];
+        if (u.classList.contains("lead")) tl.set(u.parentNode, { display: "block" }, t);
+        else tl.set(u, { display: "inline" }, t);
+        if (prev) tl.set(prev, { attr: { "data-c": "0" } }, t);
+        tl.set(u, { attr: { "data-c": "1" } }, t);
+        if (sc) {
+          tl.to(box, { scale: sc, duration: d, ease: "power2.out" }, t);
+          tl.to(plate, { scaleY: by, duration: d, ease: "power2.out" }, t);
+        }
+        prev = u;
+      }
+      for (const [t, i] of OFFS) tl.set(units[i], { attr: { "data-c": "0" } }, t);
+      tl.set({}, {}, 14.543);
+      window.__timelines["shot-01"] = tl;
+    })();
+  </script>
+</template>

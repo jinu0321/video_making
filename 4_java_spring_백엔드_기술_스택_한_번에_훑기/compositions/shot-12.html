@@ -1,0 +1,80 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s12-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s12-tab b { color: #3ddc97; font-weight: 400; }
+    #s12-tab i { color: #7d8590; font-style: normal; }
+    #s12-stage {
+      position: absolute; left: 0; top: 105px; width: 1080px; height: 895px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #s12-plate {
+      position: absolute; left: 40px; top: calc(50% - 500px); width: 1000px; height: 1000px;
+      background: #172033;
+    }
+    #s12-box {
+      position: relative; text-align: left;
+      font-family: "D2Coding", monospace; font-size: 120px; line-height: 1.17; color: #ffffff;
+    }
+    #s12-box .ln, #s12-box .ch { display: none; }
+    #s12-box .ln { white-space: pre; }
+    #s12-box .ln.p { display: block; }
+    #s12-box .ch.p { display: inline; }
+    #s12-box .u[data-c="1"]::after { content: "\258c"; color: #3ddc97; }
+    #s12-box .k { color: #ff6b8b; }
+    #s12-box .n { color: #b699ff; }
+    #s12-box .s { color: #e6db74; }
+    #s12-box .c { color: #8b98ad; }
+    #s12-box .r { color: #ff4438; }
+    #s12-box .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-12" data-width="1080" data-height="1920">
+    <div id="s12-tab" data-layout-ignore><b>❯</b> <i>cat</i> application.yml</div>
+    <div id="s12-stage">
+      <div id="s12-plate"></div>
+      <div id="s12-box">
+        <div class="ln"><span class="u lead"></span><span class="u ch k">s</span><span class="u ch k">p</span><span class="u ch k">r</span><span class="u ch k">i</span><span class="u ch k">n</span><span class="u ch k">g</span><span class="u ch w">:</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch k">d</span><span class="u ch k">a</span><span class="u ch k">t</span><span class="u ch k">a</span><span class="u ch k">s</span><span class="u ch k">o</span><span class="u ch k">u</span><span class="u ch k">r</span><span class="u ch k">c</span><span class="u ch k">e</span><span class="u ch w">:</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch k">h</span><span class="u ch k">i</span><span class="u ch k">k</span><span class="u ch k">a</span><span class="u ch k">r</span><span class="u ch k">i</span><span class="u ch w">:</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch k">m</span><span class="u ch k">a</span><span class="u ch k">x</span><span class="u ch k">i</span><span class="u ch k">m</span><span class="u ch k">u</span><span class="u ch k">m</span><span class="u ch k">-</span><span class="u ch k">p</span><span class="u ch k">o</span><span class="u ch k">o</span><span class="u ch k">l</span><span class="u ch k">-</span><span class="u ch k">s</span><span class="u ch k">i</span><span class="u ch k">z</span><span class="u ch k">e</span><span class="u ch w">:</span><span class="u ch w"> </span><span class="u ch n">1</span><span class="u ch n">0</span><span class="u ch w"> </span><span class="u ch w"> </span><span class="u ch c">#</span><span class="u ch c"> </span><span class="u ch c">기</span><span class="u ch c">본</span><span class="u ch c">값</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch c">#</span><span class="u ch c"> </span><span class="u ch c">연</span><span class="u ch c">결</span><span class="u ch c">을</span><span class="u ch c"> </span><span class="u ch c">미</span><span class="u ch c">리</span><span class="u ch c"> </span><span class="u ch c">열</span><span class="u ch c">어</span><span class="u ch c"> </span><span class="u ch c">두</span><span class="u ch c">고</span><span class="u ch c"> </span><span class="u ch c">빌</span><span class="u ch c">려</span><span class="u ch c"> </span><span class="u ch c">쓰</span><span class="u ch c">기</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      const box = document.getElementById("s12-box");
+      const plate = document.getElementById("s12-plate");
+      const units = box.querySelectorAll(".u");
+      // [time, unit index, text scale, plate scaleY (0 = unchanged), tween duration]
+      const STEPS = [[0.0,0,0,0,0.051],[0.051,1,0,0,0.051],[0.103,2,0,0,0.051],[0.154,3,0,0,0.051],[0.206,4,0,0,0.051],[0.257,5,0,0,0.051],[0.309,6,0,0,0.051],[0.36,7,0,0,0.051],[0.412,8,1.7092,0.7999,0.051],[0.463,9,0,0,0.051],[0.514,10,0,0,0.051],[0.566,11,0,0,0.051],[0.617,12,0,0,0.051],[0.669,13,0,0,0.051],[0.72,14,0,0,0.051],[0.772,15,0,0,0.051],[0.823,16,1.6742,0.7835,0.051],[0.875,17,1.5067,0.7051,0.051],[0.926,18,1.37,0.6412,0.051],[0.978,19,1.2558,0.5877,0.051],[1.029,20,1.1592,0.5425,0.051],[1.08,21,1.0758,0.5035,0.051],[1.132,22,1.1592,0.7052,0.051],[1.183,23,0,0,0.051],[1.235,24,0,0,0.051],[1.286,25,0,0,0.051],[1.338,26,0,0,0.051],[1.389,27,0,0,0.051],[1.441,28,0,0,0.051],[1.492,29,0,0,0.051],[1.543,30,0,0,0.051],[1.595,31,0,0,0.051],[1.646,32,0,0,0.051],[1.698,33,0,0,0.051],[1.749,34,1.0683,0.8,0.051],[1.801,35,0,0,0.051],[1.852,36,0,0,0.051],[1.904,37,0,0,0.051],[1.955,38,0,0,0.051],[2.007,39,0,0,0.051],[2.058,40,0,0,0.051],[2.109,41,0,0,0.051],[2.161,42,0,0,0.051],[2.212,43,0,0,0.051],[2.264,44,0,0,0.051],[2.315,45,0,0,0.051],[2.367,46,0,0,0.051],[2.418,47,0,0,0.051],[2.47,48,1.0042,0.7519,0.051],[2.521,49,0.9417,0.7051,0.051],[2.572,50,0.8867,0.6639,0.051],[2.624,51,0.8367,0.6265,0.051],[2.675,52,0.7933,0.594,0.051],[2.727,53,0.7533,0.5641,0.051],[2.778,54,0.7175,0.5373,0.051],[2.83,55,0.685,0.5129,0.051],[2.881,56,0.655,0.4905,0.051],[2.933,57,0.6275,0.4699,0.051],[2.984,58,0.6025,0.4512,0.051],[3.035,59,0.5792,0.4337,0.051],[3.087,60,0.5583,0.4181,0.051],[3.138,61,0.5383,0.4031,0.051],[3.19,62,0.5192,0.3888,0.051],[3.241,63,0.5025,0.3763,0.051],[3.293,64,0.4858,0.3638,0.051],[3.344,65,0.4708,0.3526,0.051],[3.396,66,0.4433,0.332,0.051],[3.447,67,0.4183,0.3132,0.051],[3.499,68,0.3967,0.297,0.051],[3.55,69,0.4075,0.3623,0.051],[3.601,70,0,0,0.051],[3.653,71,0,0,0.051],[3.704,72,0,0,0.051],[3.756,73,0,0,0.051],[3.807,74,0,0,0.051],[3.859,75,0,0,0.051],[3.91,76,0,0,0.051],[3.962,77,0,0,0.051],[4.013,78,0,0,0.051],[4.064,79,0,0,0.051],[4.116,80,0,0,0.051],[4.167,81,0,0,0.051],[4.219,82,0,0,0.051],[4.27,83,0,0,0.051],[4.322,84,0,0,0.051],[4.373,85,0,0,0.051],[4.425,86,0,0,0.051],[4.476,87,0,0,0.051],[4.528,88,0,0,0.051],[4.579,89,0,0,0.051]];
+      tl.set(box, { scale: 1.8333 }, 0);
+      tl.set(plate, { scaleY: 0.6006 }, 0);
+      // [time, unit index]: cursor leaves when a block finishes typing
+      const OFFS = [[4.98,89]];
+      let prev = null;
+      for (const [t, i, sc, by, d] of STEPS) {
+        const u = units[i];
+        if (u.classList.contains("lead")) tl.set(u.parentNode, { display: "block" }, t);
+        else tl.set(u, { display: "inline" }, t);
+        if (prev) tl.set(prev, { attr: { "data-c": "0" } }, t);
+        tl.set(u, { attr: { "data-c": "1" } }, t);
+        if (sc) {
+          tl.to(box, { scale: sc, duration: d, ease: "power2.out" }, t);
+          tl.to(plate, { scaleY: by, duration: d, ease: "power2.out" }, t);
+        }
+        prev = u;
+      }
+      for (const [t, i] of OFFS) tl.set(units[i], { attr: { "data-c": "0" } }, t);
+      tl.set({}, {}, 5.787);
+      window.__timelines["shot-12"] = tl;
+    })();
+  </script>
+</template>

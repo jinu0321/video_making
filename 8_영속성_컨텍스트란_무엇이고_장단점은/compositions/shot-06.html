@@ -1,0 +1,94 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s06-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s06-tab b { color: #3ddc97; font-weight: 400; }
+    #s06-tab i { color: #7d8590; font-style: normal; }
+    #s06-plate {
+      position: absolute; left: 40px; top: 125px; width: 1000px; height: 860px;
+      background: #172033;
+    }
+    #s06-dia {
+      position: absolute; left: 100.0px; top: 209.0px; width: 880px; height: 692px;
+      transform: scale(1.0); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }
+    #s06-dia svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #s06-dia .fr { position: absolute; box-sizing: border-box; border: 4px dashed #8b98ad; border-radius: 18px; }
+    #s06-dia .fr.spec { border-color: #e6db74; }
+    #s06-dia .fr .lb { position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }
+    #s06-dia .fr.spec .lb { color: #e6db74; }
+    #s06-dia .nd {
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: #22304a; border: 4px solid #8b98ad; border-radius: 14px;
+    }
+    #s06-dia .nd.spec { border-style: dashed; border-color: #e6db74; }
+    #s06-dia .nd.impl { border-color: #ff6b8b; }
+    #s06-dia .nd.text, #s06-dia .nd.db { background: none; border: none; }
+    #s06-dia .nd .sub { margin-top: 6px; color: #aab4c3; }
+    #s06-dia .nd.db .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+    #s06-dia .cyl { fill: #22304a; stroke: #8b98ad; stroke-width: 4; }
+    #s06-dia .bd {
+      position: absolute; height: 45px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 30px/45px "Pretendard", sans-serif; color: #172033; background: #8b98ad;
+    }
+    #s06-dia .bd.spec { background: #e6db74; }
+    #s06-dia .bd.impl { background: #ff6b8b; }
+    #s06-dia .al { position: absolute; white-space: pre; font-size: 40px; line-height: 1.25; color: #aab4c3; }
+    #s06-dia .al.chip { padding: 0 12px; background: #172033; }
+    #s06-dia .k { color: #ff6b8b; }
+    #s06-dia .n { color: #b699ff; }
+    #s06-dia .s { color: #e6db74; }
+    #s06-dia .c { color: #8b98ad; }
+    #s06-dia .r { color: #ff4438; }
+    #s06-dia .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-06" data-width="1080" data-height="1920">
+    <div id="s06-tab" data-layout-ignore><b>❯</b> <i>cat</i> snapshot.txt</div>
+    <div id="s06-plate"></div>
+    <div id="s06-dia">
+      <div id="s06-pc" class="fr box" style="left: 0.0px; top: 0.0px; width: 880.0px; height: 256px;"><div class="lb" style="font-size: 48px;">영속성 컨텍스트</div></div>
+      <svg width="880" height="692" viewBox="0 0 880 692">
+        <line id="s06-a0-l" x1="298.381" y1="234.728" x2="370.537" y2="327.087" stroke="#8b98ad" stroke-width="5" stroke-dasharray="117.204" stroke-dashoffset="117.204" />
+        <polygon id="s06-a0-h" points="381.619,341.272 359.061,333.515 379.55,317.508" fill="#8b98ad" opacity="0" />
+        <line id="s06-a1-l" x1="581.619" y1="234.728" x2="509.463" y2="327.087" stroke="#8b98ad" stroke-width="5" stroke-dasharray="117.204" stroke-dashoffset="117.204" />
+        <polygon id="s06-a1-h" points="498.381,341.272 500.45,317.508 520.939,333.515" fill="#8b98ad" opacity="0" />
+        <line id="s06-a2-l" x1="440.0" y1="492.0" x2="440.0" y2="552.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="60.0" stroke-dashoffset="60.0" />
+        <polygon id="s06-a2-h" points="440.0,570.0 427.0,550.0 453.0,550.0" fill="#8b98ad" opacity="0" />
+      </svg>
+      <div id="s06-cur" class="nd box" style="left: 60.0px; top: 90.0px; width: 360.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">Member</div><div class="sub" style="font-size: 36px;">지금 name=lee</div></div>
+      <div id="s06-snap" class="nd box" style="left: 460.0px; top: 90.0px; width: 360.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">스냅샷</div><div class="sub" style="font-size: 34.0px;">읽을 때 name=kim</div></div>
+      <div id="s06-cmp" class="nd box" style="left: 132.0px; top: 346.0px; width: 616.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">비교</div><div class="sub" style="font-size: 36px;">커밋 직전</div></div>
+      <div id="s06-db" class="nd db" style="left: 290.0px; top: 576.0px; width: 300px; height: 116px; opacity: 0;">
+          <svg width="300" height="116" viewBox="0 0 300 116">
+            <path class="cyl" d="M2 18 V98 A148.0 16 0 0 0 298 98 V18" />
+            <ellipse class="cyl" cx="150.0" cy="18" rx="148.0" ry="16" />
+          </svg>
+          <div class="t" style="top: 34px; font-size: 54px;">MySQL</div>
+        </div>
+      <div id="s06-a2-t" class="al" style="left: 460.0px; top: 497.0px; opacity: 0;">UPDATE</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = [[1.008,"#s06-cur",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[3.821,"#s06-snap",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[8.197,"#s06-cmp",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[10.061,"#s06-db",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[8.197,"#s06-a0-l",{"attr":{"stroke-dashoffset":117.204}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[8.197,"#s06-a1-l",{"attr":{"stroke-dashoffset":117.204}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[10.061,"#s06-a2-l",{"attr":{"stroke-dashoffset":60.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[10.161,"#s06-a2-t",{"opacity":0},{"opacity":1,"duration":0.2}],[14.679,"#s06-cur",null,{"scale":1.06,"duration":0.18,"yoyo":true,"repeat":1,"ease":"power2.out"}]];
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = [[8.447,"#s06-a0-h",{"opacity":1}],[8.447,"#s06-a1-h",{"opacity":1}],[10.311,"#s06-a2-h",{"opacity":1}],[1.008,"#s06-cur",{"borderColor":"#3ddc97"}],[3.821,"#s06-cur",{"borderColor":"#8b98ad"}],[3.821,"#s06-snap",{"borderColor":"#3ddc97"}],[8.197,"#s06-snap",{"borderColor":"#8b98ad"}],[8.197,"#s06-cmp",{"borderColor":"#3ddc97"}],[10.061,"#s06-cmp",{"borderColor":"#8b98ad"}],[10.061,"#s06-db .cyl",{"attr":{"stroke":"#3ddc97"}}],[10.061,"#s06-db .cyl",{"attr":{"stroke":"#8b98ad"}}],[10.061,"#s06-a2-l",{"attr":{"stroke":"#3ddc97"}}],[10.061,"#s06-a2-h",{"attr":{"fill":"#3ddc97"}}],[10.061,"#s06-a2-t",{"color":"#3ddc97"}],[14.679,"#s06-a2-l",{"attr":{"stroke":"#8b98ad"}}],[14.679,"#s06-a2-h",{"attr":{"fill":"#8b98ad"}}],[14.679,"#s06-a2-t",{"color":"#aab4c3"}],[14.679,"#s06-cur",{"borderColor":"#3ddc97"}]];
+      for (const [t, sel, from, to] of TWEENS) {
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({}, {}, 17.062);
+      window.__timelines["shot-06"] = tl;
+    })();
+  </script>
+</template>

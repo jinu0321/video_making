@@ -1,0 +1,658 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "@Transactional": "트랜잭셔널",
+    "TransactionInterceptor": "트랜잭션인터셉터",
+    "MemberService": "멤버서비스",
+    "Spring Boot": "스프링 부트",
+    "Spring": "스프링",
+    "EntityManager": "엔티티매니저",
+    "RuntimeException": "런타임익셉션",
+    "Exception": "익셉션",
+    "Error": "에러",
+    "rollbackFor": "롤백포",
+    "joinFail": "조인페일",
+    "join": "조인",
+    "save()": "세이브",
+    "autocommit": "오토커밋",
+    "COMMIT": "커밋",
+    "ROLLBACK": "롤백",
+    "MySQL": "마이에스큐엘",
+    "JDBC": "제이디비씨",
+    "SQL": "에스큐엘",
+    "insert": "인서트",
+    "checked": "체크드",
+    "this": "디스",
+    "try": "트라이",
+    "catch": "캐치",
+    "throws": "쓰로우즈",
+    "register": "레지스터",
+    "Hibernate": "하이버네이트",
+    "EJB": "이제이비"
+  },
+  "thumbnail": {
+    "file": "MemberService.java",
+    "sub": "# 코드엔 커밋이 없는데",
+    "title": [
+      "<r>@Transactional</r>",
+      "어떻게",
+      "동작할까?"
+    ]
+  },
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강. 실행 출력 줄은 실험 로그(Spring Boot 4.1.2, Spring Framework 7.0.10, Hibernate 7.4.13.Final, HikariCP 7.0.2, Connector/J 9.7.0, MySQL 8.4.13)에서 시각·패키지 이름·줄 일부를 자르거나 줄바꿈만 한 것이다. MemberService 코드는 실험 코드에서 출력용 줄(Probe.*)과 반환값 대입을 뺀 것이다. TransactionAspectSupport.java는 Spring Framework 7.0.10 invokeWithinTransaction의 일반(명령형) 경로를 줄인 것이다(화면에 '일반 경로, 줄임' 표시). @EnableTransactionManagement(rollbackOn = RollbackOn.ALL_EXCEPTIONS)는 실험 코드와 같은 표기다(enum RollbackOn, Spring 6.2+).",
+  "shots": [
+    {
+      "file": "MemberService.java",
+      "sentences": [
+        "지난 영상의 save()처럼, join에도 @Transactional 한 줄만 붙이면 트랜잭션 안에서 실행돼요.",
+        "그런데 코드엔 시작도, 커밋도, 롤백도 없어요. 누가 하는 걸까요?"
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<k>@Transactional</k>",
+            "<k>public void</k> join(String name) {",
+            "  memberRepository.save(",
+            "      <k>new</k> Member(name));",
+            "}",
+            "<c>// 시작은? 커밋은? 롤백은?</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "run.log",
+      "sentences": [
+        "주입된 객체의 클래스를 찍어 보면, MemberService를 상속한 다른 클래스가 나와요.",
+        "Spring Boot 기본 설정에선, 이렇게 상속한 대리 객체, 프록시를 만들어 대신 넣어 줘요.",
+        "호출이 진짜 객체에 닿는 앞뒤에, 트랜잭션 일을 끼워 넣으려는 거죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 실행 중 찍은 값</c>",
+            "memberService.getClass()",
+            ": …<k>MemberService$$SpringCGLIB$$0</k>",
+            "그 부모 클래스 : …MemberService"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "프록시와 진짜 객체는 같은 객체인가?",
+            ": <n>false</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "call-path.txt",
+      "sentences": [
+        "그래서 join을 부르면 프록시가 먼저 받고, TransactionInterceptor를 거쳐서야 진짜 join이 실행돼요."
+      ],
+      "hold": 0.5,
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "caller",
+              "text": "호출하는 쪽",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "proxy",
+              "text": "프록시",
+              "sub": "MemberService$$SpringCGLIB$$0",
+              "at": "프록시가"
+            }
+          ],
+          [
+            {
+              "id": "ti",
+              "text": "TransactionInterceptor",
+              "at": "TransactionInterceptor를"
+            }
+          ],
+          [
+            {
+              "id": "real",
+              "text": "진짜 join()",
+              "sub": "MemberService",
+              "at": "진짜"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "caller",
+            "to": "proxy",
+            "label": "join()",
+            "at": "부르면"
+          },
+          {
+            "from": "proxy",
+            "to": "ti"
+          },
+          {
+            "from": "ti",
+            "to": "real"
+          }
+        ],
+        "gap": 84
+      }
+    },
+    {
+      "file": "tx-begin.txt",
+      "sentences": [
+        "TransactionInterceptor는 진짜 join을 부르기 전에, 트랜잭션 매니저에게 시작을 맡겨요.",
+        "매니저가 Hibernate를 시켜, 풀에서 연결을 빌리고 autocommit을 꺼요.",
+        "JDBC 연결은 기본으로 문장마다 바로 커밋돼서, 꺼 둬야 여러 SQL을 하나로 묶을 수 있거든요."
+      ],
+      "diagram": {
+        "gap": 96,
+        "rows": [
+          [
+            {
+              "id": "ti",
+              "text": "TransactionInterceptor"
+            }
+          ],
+          [
+            {
+              "id": "tm",
+              "text": "JpaTransactionManager",
+              "sub": "트랜잭션 매니저",
+              "at": "매니저에게"
+            }
+          ],
+          [
+            {
+              "id": "hib",
+              "text": "Hibernate",
+              "at": "Hibernate를",
+              "w": 300
+            },
+            {
+              "id": "pool",
+              "text": "HikariCP",
+              "sub": "커넥션 풀",
+              "at": "풀에서",
+              "w": 300
+            }
+          ],
+          [
+            {
+              "id": "db",
+              "text": "MySQL",
+              "kind": "db",
+              "at": "1:autocommit을",
+              "w": 300
+            },
+            null
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "ti",
+            "to": "tm",
+            "label": "시작",
+            "at": "시작을"
+          },
+          {
+            "from": "tm",
+            "to": "hib"
+          },
+          {
+            "from": "pool",
+            "to": "hib",
+            "label": "연결",
+            "at": "빌리고"
+          },
+          {
+            "from": "hib",
+            "to": "db",
+            "label": "setAutoCommit(false)",
+            "at": "1:autocommit을"
+          }
+        ],
+        "focus": [
+          [
+            "db",
+            "2:SQL을"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "thread.txt",
+      "sentences": [
+        "그리고 빌린 연결과 EntityManager를, 지금 스레드에 묶어 둬요.",
+        "같은 스레드의 데이터 접근 코드가, 인자로 안 받아도 꺼내 쓰게요.",
+        "그래서 join 안의 save()는 새로 시작하지 않고, 묶여 있는 이 트랜잭션에 합류해요."
+      ],
+      "diagram": {
+        "gap": 90,
+        "rows": [
+          [
+            {
+              "id": "thread",
+              "text": "지금 스레드",
+              "at": "스레드에",
+              "rows": [
+                [
+                  {
+                    "id": "conn",
+                    "text": "연결",
+                    "sub": "ConnectionHolder",
+                    "at": "연결과"
+                  },
+                  {
+                    "id": "em",
+                    "text": "EntityManager",
+                    "sub": "EntityManagerHolder",
+                    "at": "EntityManager를"
+                  }
+                ],
+                [
+                  {
+                    "id": "join",
+                    "text": "join()",
+                    "at": "2:join",
+                    "w": 300
+                  },
+                  {
+                    "id": "save",
+                    "text": "save()",
+                    "sub": "데이터 접근",
+                    "at": "1:데이터",
+                    "w": 300
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "em",
+            "to": "save",
+            "label": "꺼내 씀",
+            "at": "1:꺼내"
+          },
+          {
+            "from": "join",
+            "to": "save",
+            "at": "2:save()는"
+          }
+        ],
+        "focus": [
+          [
+            "save",
+            "합류해요"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "general.log",
+      "sentences": [
+        "join이 정상으로 끝나면 COMMIT을 보내고, autocommit을 다시 켠 뒤 연결을 풀에 돌려줘요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># join(\"kim\"), MySQL general log</c>",
+            "Query  SET autocommit=<n>0</n>",
+            "Query  insert into member … (<s>'kim'</s>)",
+            "Query  <k>COMMIT</k>",
+            "Query  SET autocommit=<n>1</n>",
+            "<c># 앱 로그</c>",
+            "[앱] 호출 뒤: 빌려 간 커넥션 <n>0</n>개"
+          ]
+        }
+      ],
+      "hold": 0.7
+    },
+    {
+      "file": "general.log",
+      "sentences": [
+        "save() 다음에 RuntimeException을 던지면, COMMIT 대신 ROLLBACK을 보내요.",
+        "insert는 이미 MySQL에 갔지만, 롤백으로 취소돼서 테이블엔 남지 않아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// joinFail(\"lee\"): save() 다음에</c>",
+            "<k>throw new</k> RuntimeException(<s>\"가입 실패\"</s>);"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># general log</c>",
+            "Query  insert into member … (<s>'lee'</s>)",
+            "Query  <k>ROLLBACK</k>",
+            "[앱] 호출 뒤 member 테이블: <n>0</n>행"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "TransactionAspectSupport.java",
+      "sentences": [
+        "Spring 코드로 보면, 이 흐름은 try와 catch 하나예요.",
+        "try 안에서 진짜 join을 부르고, 예외 없이 돌아오면 커밋, 예외가 나면 catch로 가요.",
+        "직접 짰다면 메서드마다 반복할 이 틀을, 프록시가 대신 감싸 주는 거죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// invokeWithinTransaction</c>",
+            "<c>// (일반 경로, 줄임)</c>",
+            "createTransactionIfNecessary(…);"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>try</k> { invocation.proceed…(); }",
+            "<k>catch</k> (Throwable ex) {",
+            "  completeTransactionAfterThrowing(…);",
+            "  <k>throw</k> ex; }",
+            "commitTransactionAfterReturning(…);"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "rollback-rule.txt",
+      "sentences": [
+        "하지만 Exception처럼 throws로 선언해야 하는 checked 예외를 던지면, 기본 규칙에선 커밋돼요.",
+        "기본 규칙은 RuntimeException과 Error 계열만 롤백하거든요.",
+        "EJB 시절 관례대로, checked 예외를 예상한 결과, 일종의 다른 반환값으로 봐요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "ex",
+              "text": "기본 규칙: 밖으로 나온 예외",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "rt",
+              "text": "RuntimeException",
+              "sub": "+ Error 계열",
+              "at": "1:RuntimeException과"
+            },
+            {
+              "id": "ck",
+              "text": "checked 예외",
+              "sub": "예: Exception",
+              "at": "0:checked"
+            }
+          ],
+          [
+            {
+              "id": "rb",
+              "text": "ROLLBACK",
+              "at": "롤백하거든요"
+            },
+            {
+              "id": "cm",
+              "text": "COMMIT",
+              "sub": "실험: 행이 남음",
+              "at": "커밋돼요",
+              "badge": "EJB 관례",
+              "badge_at": "EJB"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "ex",
+            "to": "rt"
+          },
+          {
+            "from": "ex",
+            "to": "ck"
+          },
+          {
+            "from": "rt",
+            "to": "rb"
+          },
+          {
+            "from": "ck",
+            "to": "cm"
+          }
+        ],
+        "focus": [
+          [
+            "ck",
+            "2:checked"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "rollback.txt",
+      "sentences": [
+        "checked 예외에도 롤백하려면 rollbackFor로 지정하고, Spring 6.2부터는 전역 기본값도 바꿀 수 있어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>@Transactional</k>(",
+            "    rollbackFor = Exception.<k>class</k>)",
+            "<c>// 같은 예외에 ROLLBACK, 0행</c>",
+            "<c>// Spring 6.2+ 전역 설정:</c>",
+            "@EnableTransactionManagement(",
+            "  rollbackOn =",
+            "    RollbackOn.ALL_EXCEPTIONS)"
+          ]
+        }
+      ],
+      "hold": 1.0
+    },
+    {
+      "file": "MemberService.java",
+      "sentences": [
+        "마지막으로, @Transactional이 없는 register에서, 같은 클래스의 joinFail을 그냥 부르면요?",
+        "예외가 났는데도 ROLLBACK은 없고, 행이 그대로 남아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>public void</k> register(String name) {",
+            "  joinFail(name);  <c>// this.joinFail</c>",
+            "}"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "[joinFail 본문 시작]",
+            "  this 클래스=…MemberService",
+            "  트랜잭션 활성? <n>false</n>",
+            "Query  <k>COMMIT</k>  <c># ROLLBACK 없음</c>",
+            "[앱] 호출 뒤 member 테이블: <n>1</n>행"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "self-call.txt",
+      "sentences": [
+        "가로채는 건 프록시인데, 메서드 안의 this는 프록시가 아니라 진짜 객체거든요.",
+        "그래서 joinFail의 트랜잭션은 시작조차 안 되고, save()가 자기 트랜잭션으로 바로 커밋했어요.",
+        "이럴 땐 그 메서드를 다른 클래스로 옮기고, 주입받아서 부르면 프록시를 거쳐요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "caller",
+              "text": "호출하는 쪽",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "proxy",
+              "text": "프록시",
+              "sub": "바깥 호출만 가로챔",
+              "at": "프록시인데"
+            }
+          ],
+          [
+            {
+              "id": "real",
+              "text": "진짜 객체",
+              "rows": [
+                [
+                  {
+                    "id": "reg",
+                    "text": "register()"
+                  }
+                ],
+                [
+                  {
+                    "id": "jf",
+                    "text": "joinFail()",
+                    "at": "this는"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "save",
+              "text": "save()",
+              "sub": "자기 트랜잭션",
+              "at": "1:save()가"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "caller",
+            "to": "proxy"
+          },
+          {
+            "from": "proxy",
+            "to": "reg"
+          },
+          {
+            "from": "reg",
+            "to": "jf",
+            "label": "this",
+            "at": "this는"
+          },
+          {
+            "from": "jf",
+            "to": "save",
+            "at": "1:save()가"
+          }
+        ],
+        "focus": [
+          [
+            "proxy",
+            "2:프록시를"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, @Transactional은 프록시가 메서드 호출을 try로 감싸고, 트랜잭션 매니저가 시작과 커밋, 롤백을 맡는 구조예요.",
+        "그래서 프록시를 안 거치는 this 호출과, 기본으로 커밋되는 checked 예외는 따로 챙겨야 해요."
+      ],
+      "diagram": {
+        "gap": 56,
+        "rows": [
+          [
+            {
+              "id": "call",
+              "text": "호출",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "proxy",
+              "text": "프록시",
+              "sub": "try로 감쌈",
+              "at": "0:프록시가"
+            }
+          ],
+          [
+            {
+              "id": "tm",
+              "text": "트랜잭션 매니저",
+              "sub": "시작, 커밋, 롤백",
+              "at": "매니저가"
+            },
+            {
+              "id": "real",
+              "text": "진짜 메서드",
+              "at": "메서드"
+            }
+          ],
+          [
+            {
+              "id": "care",
+              "text": "따로 챙길 것",
+              "at": 1,
+              "rows": [
+                [
+                  {
+                    "id": "self",
+                    "text": "this 호출",
+                    "sub": "프록시 안 거침",
+                    "at": "1:this"
+                  },
+                  {
+                    "id": "ck",
+                    "text": "checked 예외",
+                    "sub": "기본은 COMMIT",
+                    "at": "1:checked"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "call",
+            "to": "proxy"
+          },
+          {
+            "from": "proxy",
+            "to": "tm"
+          },
+          {
+            "from": "proxy",
+            "to": "real"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s13-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s13-tab b { color: #3ddc97; font-weight: 400; }
+    #s13-tab i { color: #7d8590; font-style: normal; }
+    #s13-plate {
+      position: absolute; left: 40px; top: 125px; width: 1000px; height: 860px;
+      background: #172033;
+    }
+    #s13-dia {
+      position: absolute; left: 100.0px; top: 198.0px; width: 880px; height: 714px;
+      transform: scale(1.0); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }
+    #s13-dia svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #s13-dia .fr { position: absolute; box-sizing: border-box; border: 4px dashed #8b98ad; border-radius: 18px; }
+    #s13-dia .fr.spec { border-color: #e6db74; }
+    #s13-dia .fr .lb { position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }
+    #s13-dia .fr.spec .lb { color: #e6db74; }
+    #s13-dia .nd {
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: #22304a; border: 4px solid #8b98ad; border-radius: 14px;
+    }
+    #s13-dia .nd.spec { border-style: dashed; border-color: #e6db74; }
+    #s13-dia .nd.impl { border-color: #ff6b8b; }
+    #s13-dia .nd.text, #s13-dia .nd.db { background: none; border: none; }
+    #s13-dia .nd .sub { margin-top: 6px; color: #aab4c3; }
+    #s13-dia .nd.db .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+    #s13-dia .cyl { fill: #22304a; stroke: #8b98ad; stroke-width: 4; }
+    #s13-dia .bd {
+      position: absolute; height: 45px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 30px/45px "Pretendard", sans-serif; color: #172033; background: #8b98ad;
+    }
+    #s13-dia .bd.spec { background: #e6db74; }
+    #s13-dia .bd.impl { background: #ff6b8b; }
+    #s13-dia .al { position: absolute; white-space: pre; font-size: 40px; line-height: 1.25; color: #aab4c3; }
+    #s13-dia .al.chip { padding: 0 12px; background: #172033; }
+    #s13-dia .k { color: #ff6b8b; }
+    #s13-dia .n { color: #b699ff; }
+    #s13-dia .s { color: #e6db74; }
+    #s13-dia .c { color: #8b98ad; }
+    #s13-dia .r { color: #ff4438; }
+    #s13-dia .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-13" data-width="1080" data-height="1920">
+    <div id="s13-tab" data-layout-ignore><b>❯</b> <i>cat</i> pairs.txt</div>
+    <div id="s13-plate"></div>
+    <div id="s13-dia">
+      
+      <svg width="880" height="714" viewBox="0 0 880 714">
+        
+      </svg>
+      <div id="s13-i0" class="nd text" style="left: 0.0px; top: 0.0px; width: 420.0px; height: 64px;"><div class="t" style="font-size: 54px;"><span class="s">표준</span></div></div>
+      <div id="s13-i1" class="nd text" style="left: 460.0px; top: 0.0px; width: 420.0px; height: 64px;"><div class="t" style="font-size: 54px;"><span class="k">구현체</span></div></div>
+      <div id="s13-jpa" class="nd spec" style="left: 0.0px; top: 94.0px; width: 420.0px; height: 100px;"><div class="t" style="font-size: 54px;">JPA</div></div>
+      <div id="s13-hib" class="nd impl" style="left: 460.0px; top: 94.0px; width: 420.0px; height: 100px;"><div class="t" style="font-size: 54px;">Hibernate</div></div>
+      <div id="s13-jdbc" class="nd spec" style="left: 0.0px; top: 224.0px; width: 420.0px; height: 100px;"><div class="t" style="font-size: 54px;">JDBC</div></div>
+      <div id="s13-drv" class="nd impl" style="left: 460.0px; top: 224.0px; width: 420.0px; height: 100px;"><div class="t" style="font-size: 54px;">MySQL Driver</div></div>
+      <div id="s13-servlet" class="nd spec" style="left: 0.0px; top: 354.0px; width: 420.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">Servlet</div></div>
+      <div id="s13-tomcat" class="nd impl" style="left: 460.0px; top: 354.0px; width: 420.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">Tomcat</div></div>
+      <div id="s13-ds" class="nd spec" style="left: 0.0px; top: 484.0px; width: 420.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">DataSource</div></div>
+      <div id="s13-hikari" class="nd impl" style="left: 460.0px; top: 484.0px; width: 420.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">HikariCP</div></div>
+      <div id="s13-slf4j" class="nd spec" style="left: 0.0px; top: 614.0px; width: 420.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">SLF4J</div></div>
+      <div id="s13-logback" class="nd impl" style="left: 460.0px; top: 614.0px; width: 420.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">Logback</div></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = [[0.706,"#s13-servlet",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[0.06,"#s13-tomcat",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[3.39,"#s13-ds",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[3.66,"#s13-hikari",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[3.9,"#s13-slf4j",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[4.15,"#s13-logback",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[5.672,"#s13-jpa",null,{"scale":1.06,"duration":0.18,"yoyo":true,"repeat":1,"ease":"power2.out"}],[6.89,"#s13-hib",null,{"scale":1.06,"duration":0.18,"yoyo":true,"repeat":1,"ease":"power2.out"}]];
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = [[0.06,"#s13-tomcat",{"borderColor":"#3ddc97"}],[0.706,"#s13-tomcat",{"borderColor":"#ff6b8b"}],[0.706,"#s13-servlet",{"borderColor":"#3ddc97"}],[3.39,"#s13-servlet",{"borderColor":"#e6db74"}],[3.39,"#s13-ds",{"borderColor":"#3ddc97"}],[3.66,"#s13-ds",{"borderColor":"#e6db74"}],[3.66,"#s13-hikari",{"borderColor":"#3ddc97"}],[3.9,"#s13-hikari",{"borderColor":"#ff6b8b"}],[3.9,"#s13-slf4j",{"borderColor":"#3ddc97"}],[4.15,"#s13-slf4j",{"borderColor":"#e6db74"}],[4.15,"#s13-logback",{"borderColor":"#3ddc97"}],[5.672,"#s13-logback",{"borderColor":"#ff6b8b"}],[5.672,"#s13-jpa",{"borderColor":"#3ddc97"}],[6.89,"#s13-jpa",{"borderColor":"#e6db74"}],[6.89,"#s13-hib",{"borderColor":"#3ddc97"}]];
+      for (const [t, sel, from, to] of TWEENS) {
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({}, {}, 9.868);
+      window.__timelines["shot-13"] = tl;
+    })();
+  </script>
+</template>

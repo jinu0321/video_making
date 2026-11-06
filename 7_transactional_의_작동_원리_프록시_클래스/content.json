@@ -1,0 +1,608 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "@Transactional": "트랜잭셔널",
+    "@PostConstruct": "포스트컨스트럭트",
+    "TransactionInterceptor": "트랜잭션인터셉터",
+    "NullPointerException": "널포인터익셉션",
+    "BeanPostProcessor": "빈포스트프로세서",
+    "memberRepository": "멤버리포지토리",
+    "package-private": "패키지프라이빗",
+    "MemberService": "멤버서비스",
+    "PlainService": "플레인서비스",
+    "Spring": "스프링",
+    "Objenesis": "오브제네시스",
+    "intercept": "인터셉트",
+    "protected": "프로텍티드",
+    "private": "프라이빗",
+    "CGLIB": "씨지립",
+    "final": "파이널",
+    "join": "조인",
+    "this": "디스",
+    "jar": "자",
+    "null": "널",
+    "@Cacheable": "캐셔블"
+  },
+  "thumbnail": {
+    "file": "run.log",
+    "sub": "# jar에도 없는 그 클래스",
+    "title": [
+      "<r>@Transactional</r>",
+      "프록시 클래스",
+      "정체는?"
+    ]
+  },
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강. 실행 출력 줄은 z_임시/프록시_실험/logs 의 실험 로그(Spring Boot 4.1.2, Spring Framework 7.0.10, Hibernate 7.4.13.Final, HikariCP 7.0.2, Connector/J 9.7.0, MySQL 8.4.13, Java 25.0.4.1)에서 시각·로그 레벨 뒤 로거 이름·패키지·줄 일부를 자르거나(…로 표시) 줄바꿈·공백 줄이기만 한 것이다. 줄 순서는 바꾸지 않았다. # 주석 줄은 내가 단 설명이다. 1번 run.log = run1_default.log L168-169 + jar_grep_MemberService.txt, 3번 startup.log = run1 L26·L28·L166-167, 7번 overrides.log = run1 L277·L279·L280·L281·L282('덮어씀?' 표에서 callPrivate·init 줄 뺌, 공백만 줄임), 9번 run.log = run5_default_log_level.log L30(WARN) + run1 L337-340([finalJoin 본문]). 6번 proxy-join.java는 덤프한 MemberService$$SpringCGLIB$$0.class를 javap -c 로 본 join 바이트코드(logs/javap_MemberService_proxy.txt L276-303)를 Java 모양으로 줄인 것이다(화면 첫 줄에 '줄임' 표시. 콜백이 null일 때의 분기(BIND 단계와 super.join)와 예외 표는 뺌, 마지막 줄 주석으로 표시). 다이어그램의 상자·라벨 근거는 z_임시/프록시_실험/사실표.md.",
+  "shots": [
+    {
+      "file": "run.log",
+      "sentences": [
+        "지난 영상에서 봤듯이, 주입된 MemberService는 사실 이 프록시 클래스예요.",
+        "그런데 빌드한 jar 파일을 뒤져 보면, 이 클래스는 어디에도 없어요.",
+        "누가, 언제 만들어서 내 필드에 넣은 걸까요?"
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<c># 실행 로그 (줄임)</c>",
+            "memberService 필드",
+            "  = <k>MemberService$$SpringCGLIB$$0</k>…"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "$ jar tf px.jar | grep MemberService",
+            "…/MemberService.class",
+            "<c># 프록시 클래스 파일은 없음</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "bean-lifecycle.txt",
+      "sentences": [
+        "Spring은 빈을 만들 때, 생성자로 객체를 만들고 @PostConstruct 같은 초기화를 불러요.",
+        "초기화가 끝나면, 그 빈을 BeanPostProcessor들에게 차례로 넘겨요.",
+        "BeanPostProcessor는 받은 빈을 그대로 돌려줘도 되고, 다른 객체로 바꿔 돌려줘도 돼요.",
+        "컨테이너는 마지막에 돌려받은 객체를 빈으로 등록하고, 그 객체를 주입해요."
+      ],
+      "diagram": {
+        "gap": 84,
+        "rows": [
+          [
+            {
+              "id": "ctor",
+              "text": "생성자",
+              "sub": "객체 생성",
+              "at": "생성자로"
+            }
+          ],
+          [
+            {
+              "id": "init",
+              "text": "@PostConstruct",
+              "sub": "초기화",
+              "at": "@PostConstruct"
+            }
+          ],
+          [
+            {
+              "id": "bpp",
+              "text": "BeanPostProcessor들",
+              "sub": "초기화 후 단계",
+              "at": "1:BeanPostProcessor들에게"
+            }
+          ],
+          [
+            {
+              "id": "ctr",
+              "text": "컨테이너",
+              "sub": "빈으로 등록",
+              "at": "컨테이너는"
+            }
+          ],
+          [
+            {
+              "id": "field",
+              "text": "내 필드",
+              "sub": "주입",
+              "at": "주입해요"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "ctor",
+            "to": "init"
+          },
+          {
+            "from": "init",
+            "to": "bpp"
+          },
+          {
+            "from": "bpp",
+            "to": "ctr",
+            "label": "돌려준 객체",
+            "at": "돌려받은"
+          },
+          {
+            "from": "ctr",
+            "to": "field"
+          }
+        ],
+        "focus": [
+          [
+            "bpp",
+            "2:바꿔"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "startup.log",
+      "sentences": [
+        "실제 로그를 보면, 초기화 때 this는 생성자가 만든 MemberService 객체예요.",
+        "그런데 컨테이너에 등록된 빈은, 다른 클래스의 다른 객체로 바뀌어 있어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[생성자] … MemberService@<n>178ebac3</n>",
+            "[@PostConstruct] this",
+            "  = MemberService@<n>178ebac3</n>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "컨테이너에 등록된 빈 …",
+            "  = <k>MemberService$$SpringCGLIB$$0</k>",
+            "    @<n>57806346</n>"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "auto-proxy.txt",
+      "sentences": [
+        "이 바꿔치기를 하는 게, 자동 프록시 생성기라는 BeanPostProcessor예요.",
+        "클래스나 메서드에 @Transactional이 있으면, 그 빈을 프록시로 감싸서 돌려줘요.",
+        "@Transactional도, @Cacheable 같은 기능도 없는 PlainService는 그대로 돌려줬고요.",
+        "이 프록시 클래스는 CGLIB이라는 라이브러리가 실행 중에 메모리에서 만들어서, jar엔 없었던 거예요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "ms",
+              "text": "MemberService",
+              "sub": "@Transactional 있음",
+              "at": "1:그"
+            },
+            {
+              "id": "ps",
+              "text": "PlainService",
+              "sub": "부가 기능 없음",
+              "at": "PlainService는"
+            }
+          ],
+          [
+            {
+              "id": "apc",
+              "text": "자동 프록시 생성기",
+              "sub": "BeanPostProcessor",
+              "kind": "impl",
+              "at": "생성기라는"
+            }
+          ],
+          [
+            {
+              "id": "px",
+              "text": "프록시",
+              "sub": "…$$SpringCGLIB$$0",
+              "at": "1:프록시로"
+            },
+            {
+              "id": "pl",
+              "text": "PlainService",
+              "sub": "그대로",
+              "at": "그대로"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "ms",
+            "to": "apc"
+          },
+          {
+            "from": "ps",
+            "to": "apc"
+          },
+          {
+            "from": "apc",
+            "to": "px"
+          },
+          {
+            "from": "apc",
+            "to": "pl"
+          }
+        ],
+        "focus": [
+          [
+            "px",
+            "3:CGLIB이라는"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "proxy-object.txt",
+      "sentences": [
+        "프록시 객체는 기본으로, Objenesis라는 도구로 생성자를 부르지 않고 만들어요.",
+        "덕분에 생성자는 진짜 객체를 만들 때, 한 번만 돌아요.",
+        "대신 프록시 객체의 memberRepository는 null이고, 콜백 필드에 인터셉터가 들어 있어요."
+      ],
+      "diagram": {
+        "gap": 56,
+        "rows": [
+          [
+            {
+              "id": "obj",
+              "text": "Objenesis",
+              "sub": "생성자 없이 생성",
+              "at": "Objenesis라는"
+            }
+          ],
+          [
+            {
+              "id": "pxo",
+              "text": "프록시 객체",
+              "at": "0:프록시",
+              "rows": [
+                [
+                  {
+                    "id": "pr",
+                    "text": "null",
+                    "sub": "memberRepository",
+                    "at": "2:memberRepository는"
+                  },
+                  {
+                    "id": "cb",
+                    "text": "인터셉터",
+                    "sub": "CGLIB$CALLBACK_0",
+                    "at": "2:콜백"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "tgo",
+              "text": "진짜 객체",
+              "at": "1:진짜",
+              "rows": [
+                [
+                  {
+                    "id": "tr",
+                    "text": "$Proxy102",
+                    "sub": "memberRepository",
+                    "at": "1:진짜"
+                  },
+                  {
+                    "id": "ct",
+                    "text": "1번",
+                    "sub": "생성자 실행",
+                    "at": "1:한"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "obj",
+            "to": "pxo"
+          }
+        ]
+      }
+    },
+    {
+      "file": "proxy-join.java",
+      "sentences": [
+        "프록시가 덮어쓴 join의 바이트코드를 보면, 콜백의 intercept로 호출을 넘겨요.",
+        "이 콜백이 TransactionInterceptor를 거쳐, 진짜 객체의 join을 불러요.",
+        "프록시는 이미 완성된 진짜 빈을 감싸서 만든 거라, 필드가 채워진 그 객체에 일을 맡기는 거죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// 프록시의 join, javap 결과를 줄임</c>",
+            "<k>public final void</k> join(String n) {",
+            "  cb = CGLIB$CALLBACK_0;",
+            "  cb.intercept(<k>this</k>, …);",
+            "}",
+            "<c>// cb가 null일 때의 분기는 뺌</c>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "overrides.log",
+      "sentences": [
+        "그러니 프록시가 가로챌 수 있는 건, 하위 클래스가 덮어쓴 메서드뿐이에요.",
+        "실제로 덮어쓴 메서드를 찍어 보면, final과 private 메서드만 빠져 있어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># MemberService 메서드 (일부)</c>",
+            "public final finalJoin 덮어씀? <k>false</k>",
+            "public join 덮어씀? <n>true</n>",
+            "packageJoin 덮어씀? <n>true</n>",
+            "private privateJoin 덮어씀? <k>false</k>",
+            "protected protectedJoin 덮어씀? <n>true</n>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "final-call.txt",
+      "sentences": [
+        "final 메서드는 덮어쓴 게 없으니, 프록시에 대고 불러도 부모의 코드가 프록시 객체 위에서 그대로 돌아요.",
+        "인터셉터를 안 거치니 트랜잭션은 없고, 여기선 비어 있는 memberRepository를 써서 NullPointerException이 나요."
+      ],
+      "diagram": {
+        "gap": 84,
+        "rows": [
+          [
+            {
+              "id": "call",
+              "text": "finalJoin(\"lee\") 호출",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "pxo",
+              "text": "프록시 객체",
+              "sub": "덮어쓴 finalJoin 없음",
+              "at": "0:덮어쓴"
+            }
+          ],
+          [
+            {
+              "id": "code",
+              "text": "MemberService의 코드",
+              "sub": "this = 프록시 객체, 트랜잭션 없음",
+              "at": "0:코드가"
+            }
+          ],
+          [
+            {
+              "id": "npe",
+              "text": "NullPointerException",
+              "sub": "필드를 쓰면",
+              "at": "NullPointerException이"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "call",
+            "to": "pxo"
+          },
+          {
+            "from": "pxo",
+            "to": "code",
+            "label": "가로채지 않음",
+            "at": "0:그대로"
+          },
+          {
+            "from": "code",
+            "to": "npe"
+          }
+        ],
+        "focus": [
+          [
+            "code",
+            "1:트랜잭션은"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "run.log",
+      "sentences": [
+        "실제로 돌려 보면, 시작할 때 경고 로그 한 줄만 남기고 앱은 그대로 떠요.",
+        "그러니 하위 클래스 프록시가 되는 빈에선, 메서드에 final을 붙이지 않아야 해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "WARN … : Public final method",
+            " [… finalJoin(…)] cannot get proxied …",
+            "[finalJoin 본문]",
+            "  this = …$$SpringCGLIB$$0@<n>57806346</n>",
+            "  트랜잭션 활성? <k>false</k>",
+            "  memberRepository 필드 = <k>null</k>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "visibility.txt",
+      "sentences": [
+        "private 메서드도 덮어쓸 수 없어서 가로채지 못하는데, 이땐 경고조차 없어요.",
+        "반대로 protected와, 같은 패키지의 package-private은 덮어쓸 수 있어요.",
+        "그래서 Spring 6.0부터는, 클래스 기반 프록시에서 이 메서드에도 트랜잭션이 걸려요."
+      ],
+      "diagram": {
+        "gap": 48,
+        "rows": [
+          [
+            {
+              "id": "fi",
+              "text": "public final",
+              "sub": "못 덮어씀",
+              "w": 400
+            },
+            {
+              "id": "fi2",
+              "text": "적용 안 됨",
+              "sub": "WARN 한 줄",
+              "w": 360
+            }
+          ],
+          [
+            {
+              "id": "pv",
+              "text": "private",
+              "sub": "못 덮어씀",
+              "w": 400,
+              "at": "0:private"
+            },
+            {
+              "id": "pv2",
+              "text": "적용 안 됨",
+              "sub": "경고도 없음",
+              "w": 360,
+              "at": "0:가로채지"
+            }
+          ],
+          [
+            {
+              "id": "pt",
+              "text": "protected",
+              "sub": "덮어씀",
+              "w": 400,
+              "at": "1:protected와"
+            },
+            {
+              "id": "pt2",
+              "text": "트랜잭션 적용",
+              "sub": "6.0부터",
+              "w": 360,
+              "at": "2:트랜잭션이"
+            }
+          ],
+          [
+            {
+              "id": "pk",
+              "text": "package-private",
+              "sub": "같은 패키지면 덮어씀",
+              "w": 400,
+              "at": "1:package-private은"
+            },
+            {
+              "id": "pk2",
+              "text": "트랜잭션 적용",
+              "sub": "6.0부터",
+              "w": 360,
+              "at": "2:트랜잭션이"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "fi",
+            "to": "fi2"
+          },
+          {
+            "from": "pv",
+            "to": "pv2"
+          },
+          {
+            "from": "pt",
+            "to": "pt2"
+          },
+          {
+            "from": "pk",
+            "to": "pk2"
+          }
+        ],
+        "focus": [
+          [
+            "pv2",
+            "경고조차"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, 프록시 클래스는 빈 초기화가 끝난 뒤, BeanPostProcessor가 CGLIB으로 만든 하위 클래스예요.",
+        "덮어쓴 메서드로만 호출을 가로채니까, final과 private 메서드엔 트랜잭션이 걸리지 않아요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "bean",
+              "text": "초기화 끝난 빈",
+              "sub": "MemberService",
+              "at": "0:초기화가"
+            }
+          ],
+          [
+            {
+              "id": "bpp",
+              "text": "BeanPostProcessor",
+              "sub": "자동 프록시 생성기",
+              "kind": "impl",
+              "at": "BeanPostProcessor가"
+            }
+          ],
+          [
+            {
+              "id": "sub",
+              "text": "하위 클래스 프록시",
+              "at": "0:하위",
+              "rows": [
+                [
+                  {
+                    "id": "ov",
+                    "text": "덮어쓴 메서드",
+                    "sub": "가로챔",
+                    "at": "1:덮어쓴"
+                  },
+                  {
+                    "id": "no",
+                    "text": "final·private",
+                    "sub": "못 가로챔",
+                    "at": "1:final과"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "bean",
+            "to": "bpp"
+          },
+          {
+            "from": "bpp",
+            "to": "sub"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,571 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "@RequiredArgsConstructor": "리콰이어드아그스컨스트럭터",
+    "@AllArgsConstructor": "올아그스컨스트럭터",
+    "@NoArgsConstructor": "노아그스컨스트럭터",
+    "NullPointerException": "널포인터익셉션",
+    "@Builder.Default": "빌더디폴트",
+    "memberRepository": "멤버리포지토리",
+    "MemberService": "멤버서비스",
+    "@Autowired": "오토와이어드",
+    "@Builder": "빌더",
+    "protected": "프로텍티드",
+    "Lombok": "롬복",
+    "Spring": "스프링",
+    "public": "퍼블릭",
+    "String": "스트링",
+    "Member": "멤버",
+    "final": "파이널",
+    "Java": "자바",
+    "null": "널",
+    "tags": "태그스",
+    "JPA": "제이피에이",
+    "new": "뉴",
+    "DB": "디비",
+    "Hibernate": "하이버네이트"
+  },
+  "thumbnail": {
+    "file": "MemberService.java",
+    "sub": "# Lombok NoArgs · RequiredArgs · AllArgs",
+    "title": [
+      "<r>생성자</r>와",
+      "<r>@Builder</r>,",
+      "언제 뭘 쓸까?"
+    ]
+  },
+  "shots": [
+    {
+      "file": "MemberService.java",
+      "sentences": [
+        "이 MemberService엔, @Autowired도 생성자도 없어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<k>@Service</k>",
+            "<k>@RequiredArgsConstructor</k>",
+            "<k>public class</k> MemberService {",
+            "  <k>private final</k> MemberRepository",
+            "          memberRepository;",
+            "}"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "run.log",
+      "sentences": [
+        "그런데 실행해 보면, memberRepository가 채워져 있어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># Spring Boot 4.1.2 실행 결과</c>",
+            "memberRepository =",
+            "  com.example.demo.",
+            "  <n>MemberRepository@7fcff1b9</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "MemberService.java",
+      "sentences": [
+        "Lombok의 @RequiredArgsConstructor가, 컴파일할 때 이 생성자를 만들어 줬거든요.",
+        "초기값이 없는 final 필드를, 인자로 받는 생성자예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>public</k> MemberService(",
+            "    <k>final</k> MemberRepository",
+            "          memberRepository) {",
+            "  <k>this</k>.memberRepository =",
+            "      memberRepository;",
+            "}  <c>// Lombok이 만든 생성자</c>"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "inject.txt",
+      "sentences": [
+        "Spring은 생성자가 하나뿐이면, @Autowired 없이도 그 생성자로 주입해요."
+      ],
+      "diagram": {
+        "gap": 110,
+        "rows": [
+          [
+            {
+              "id": "repo",
+              "text": "MemberRepository",
+              "sub": "Spring이 만든 객체"
+            }
+          ],
+          [
+            {
+              "id": "ctor",
+              "text": "MemberService(…)",
+              "sub": "생성자가 딱 하나",
+              "at": "생성자가",
+              "badge": "@Autowired 없음",
+              "badge_at": "@Autowired"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "repo",
+            "to": "ctor",
+            "label": "인자로 넣기",
+            "at": "주입해요"
+          }
+        ]
+      }
+    },
+    {
+      "file": "why.txt",
+      "sentences": [
+        "Spring 문서도 생성자 주입을 권해요. final이라, 한 번 들어간 memberRepository가 바뀌지 않고,",
+        "생성자에서 다 받아야 객체가 생기니, Spring이 만든 객체는 다 채워진 채로 나와요.",
+        "테스트에선 Spring 없이도, new로 만들면서 필요한 걸 넣을 수 있고요."
+      ],
+      "diagram": {
+        "gap": 56,
+        "rows": [
+          [
+            {
+              "id": "h",
+              "text": "생성자 주입을 권하는 이유",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "r1",
+              "text": "<k>final</k> 필드",
+              "sub": "한 번 넣으면 안 바뀜",
+              "at": "0:final이라"
+            }
+          ],
+          [
+            {
+              "id": "r2",
+              "text": "생성자에서 다 받기",
+              "sub": "Spring이 만든 객체는 다 채워짐",
+              "at": "1:생성자에서"
+            }
+          ],
+          [
+            {
+              "id": "r3",
+              "text": "new MemberService(…)",
+              "sub": "Spring 없이 테스트",
+              "at": "2:new로"
+            }
+          ]
+        ],
+        "arrows": []
+      }
+    },
+    {
+      "file": "MemberService.java",
+      "sentences": [
+        "단, final을 빠뜨리면, 그 필드는 생성자에서 빠져요.",
+        "Spring은 그 필드가 빠진 생성자로 객체를 만들고, 앱도 멀쩡히 떠요.",
+        "하지만 필드는 null이라, 부르는 순간 NullPointerException이 나요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// final을 빠뜨림</c>",
+            "<k>private</k> MemberRepository",
+            "        memberRepository;"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c>// 만들어진 생성자: MemberService()</c>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<k>NullPointerException</k>: … because",
+            "  <s>\"this.memberRepository\"</s> is <n>null</n>"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "Member.java",
+      "sentences": [
+        "JPA 엔티티엔, 인자 없는 생성자를 만드는 @NoArgsConstructor를 붙여요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>@Entity</k>",
+            "<k>@NoArgsConstructor</k>(",
+            "    access = AccessLevel.<n>PROTECTED</n>)",
+            "<k>public class</k> Member {",
+            "  <c>// id, name, email + 생성자</c>",
+            "}"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "find.log",
+      "sentences": [
+        "Hibernate 같은 JPA 구현체는, DB에서 읽은 행을 객체로 만들 때 이 생성자를 부르거든요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># protected Member()에 출력 추가</c>",
+            "select … from member m1_0",
+            "  where m1_0.id=?",
+            "[JPA] <k>protected Member() 호출됨</k>",
+            "[조회] name=<s>kim</s>"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "find.log",
+      "sentences": [
+        "그런데 생성자를 하나라도 만들면, Java는 인자 없는 기본 생성자를 자동으로 만들어 주지 않아요.",
+        "그러면 저장은 되는데, DB에서 읽는 순간 에러가 나요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># Member(name, email)만 있을 때</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "insert into member (email,name) …",
+            "select … where m1_0.id=?",
+            "<k>No default constructor for entity</k>",
+            "  <s>'com.example.demo.Member'</s>"
+          ]
+        }
+      ],
+      "hold": 0.7
+    },
+    {
+      "file": "MemberFactory.java",
+      "sentences": [
+        "JPA 명세는 이 생성자를 public이나 protected로 두라고 해요.",
+        "protected로 두면, 다른 패키지 코드가 아무 값도 없는 Member를 new로 만드는 걸, 컴파일 단계에서 막아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// JPA 3.2: public 또는 protected</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>package</k> com.example.demo.other;",
+            "<k>return new</k> Member();",
+            "<c># 컴파일 에러</c>",
+            "Member() has <k>protected</k> access"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "Member.java",
+      "sentences": [
+        "@AllArgsConstructor는 모든 필드를, 선언한 순서대로 인자로 받아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>@AllArgsConstructor</k>",
+            "<k>public class</k> Member {",
+            "  <k>private</k> String name;",
+            "  <k>private</k> String email;",
+            "}",
+            "<c>// 생성자: Member(name, email)</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "Main.java",
+      "sentences": [
+        "그런데 같은 타입 필드 순서만 바꿔도, 에러 없이 값이 뒤바뀌어요.",
+        "둘 다 String이라, 컴파일러는 순서가 바뀐 걸 알 수 없거든요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// 필드 순서: email, name</c>",
+            "<k>new</k> Member(<s>\"kim\"</s>,",
+            "    <s>\"kim@example.com\"</s>);",
+            "<c># 실행 결과</c>",
+            "name=<s>kim@example.com</s>, email=<s>kim</s>"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "Main.java",
+      "sentences": [
+        "@Builder는 값마다 이름을 붙여 넣어서, 필드 순서를 바꿔도 결과가 그대로예요.",
+        "인자가 많아도, 어떤 값이 어디로 가는지 바로 읽히고요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "Member.builder()",
+            "    .name(<s>\"kim\"</s>)",
+            "    .email(<s>\"kim@example.com\"</s>)",
+            "    .build();",
+            "<c># 필드 순서를 바꿔도</c>",
+            "name=<s>kim</s>, email=<s>kim@example.com</s>"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "Member.java",
+      "sentences": [
+        "대신 @Builder엔 대표적인 함정이 둘 있어요. 첫째, 필드에 써 둔 초기값을 무시해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// @Builder를 붙인 클래스</c>",
+            "<k>private</k> List<String> tags",
+            "    = <k>new</k> ArrayList<>();",
+            "<c># 컴파일 경고</c>",
+            "@Builder will ignore the",
+            "initializing expression entirely."
+          ]
+        }
+      ],
+      "hold": 0.6
+    },
+    {
+      "file": "build.txt",
+      "sentences": [
+        "빌더는 넣지 않은 tags를 null로 넘기고, 생성자가 그 null로 덮어쓰거든요."
+      ],
+      "diagram": {
+        "gap": 80,
+        "rows": [
+          [
+            {
+              "id": "b",
+              "text": "builder().name(\"kim\")",
+              "sub": "tags는 안 넣음"
+            }
+          ],
+          [
+            {
+              "id": "bd",
+              "text": "build()",
+              "sub": "생성자를 부름",
+              "at": "넘기고"
+            }
+          ],
+          [
+            {
+              "id": "c",
+              "text": "생성자",
+              "sub": "this.tags = tags (null)",
+              "at": "생성자가"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "b",
+            "to": "bd"
+          },
+          {
+            "from": "bd",
+            "to": "c",
+            "label": "tags = null",
+            "at": "넘기고"
+          }
+        ],
+        "focus": [
+          [
+            "c",
+            "덮어쓰거든요"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "Main.java",
+      "sentences": [
+        "그래서 tags는 null이고, 초기값을 살리려면 @Builder.Default를 붙여요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "Member.builder().name(<s>\"kim\"</s>).build()",
+            "<c># 그냥 @Builder</c>",
+            "tags=<n>null</n>",
+            "<c># @Builder.Default를 붙이면</c>",
+            "tags=<n>[]</n>"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "Main.java",
+      "sentences": [
+        "둘째, 꼭 필요한 값을 빠뜨려도 컴파일이 되고, 그 값은 null이나 0이 돼요.",
+        "생성자였다면 인자 수가 안 맞아서, 바로 컴파일 에러가 났을 거예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// email 빠뜨림: 컴파일 OK</c>",
+            "Member.builder().name(<s>\"kim\"</s>)",
+            "    .build();",
+            "name=<s>kim</s>, email=<n>null</n>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<k>new</k> Member(<s>\"kim\"</s>);  <c>// 컴파일 에러</c>",
+            "required: String,String"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "choose.txt",
+      "sentences": [
+        "그래서 꼭 필요한 값만 있으면 생성자로 받고, 선택 값이 많은 객체엔 빌더를 쓰는 게 좋아요."
+      ],
+      "diagram": {
+        "gap": 90,
+        "rows": [
+          [
+            {
+              "id": "req",
+              "text": "꼭 필요한 값만",
+              "kind": "text",
+              "at": "꼭"
+            },
+            {
+              "id": "opt",
+              "text": "선택 값이 많음",
+              "kind": "text",
+              "at": "선택"
+            }
+          ],
+          [
+            {
+              "id": "ctor",
+              "text": "생성자",
+              "sub": "빠뜨리면 컴파일 에러",
+              "at": "생성자로"
+            },
+            {
+              "id": "bld",
+              "text": "<k>@Builder</k>",
+              "sub": "이름으로 골라 넣기",
+              "at": "빌더를"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "req",
+            "to": "ctor"
+          },
+          {
+            "from": "opt",
+            "to": "bld"
+          }
+        ]
+      }
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, 주입받는 클래스엔 final 필드와 @RequiredArgsConstructor, JPA 엔티티엔 protected @NoArgsConstructor예요.",
+        "값이 많은 객체엔 @Builder를 쓰고, 초기값엔 @Builder.Default를 붙여요.",
+        "@AllArgsConstructor는 필드 순서를 조심하고요."
+      ],
+      "diagram": {
+        "gap": 40,
+        "rows": [
+          [
+            {
+              "id": "di",
+              "text": "<k>@RequiredArgsConstructor</k>",
+              "sub": "주입받는 클래스 · final 필드",
+              "at": "0:주입받는"
+            }
+          ],
+          [
+            {
+              "id": "jpa",
+              "text": "<k>@NoArgsConstructor</k>",
+              "sub": "JPA 엔티티 · protected",
+              "at": "0:JPA"
+            }
+          ],
+          [
+            {
+              "id": "bld",
+              "text": "<k>@Builder</k>",
+              "sub": "값이 많은 객체 · 초기값엔 @Builder.Default",
+              "at": "1:값이"
+            }
+          ],
+          [
+            {
+              "id": "all",
+              "text": "<k>@AllArgsConstructor</k>",
+              "sub": "필드 순서 = 인자 순서, 조심",
+              "at": "2:@AllArgsConstructor는"
+            }
+          ]
+        ],
+        "arrows": []
+      }
+    }
+  ]
+}

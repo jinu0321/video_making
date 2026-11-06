@@ -1,0 +1,209 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    .cg { position: absolute; left: 0; top: 1000px; width: 1080px; height: 520px; }
+    /* the panel stays on for the whole video; only the caption groups come and go */
+    .panel {
+      position: absolute; left: 0; top: 1000px; width: 1080px; height: 520px;
+      background: #080a10; border-top: 2px solid #21262d;
+    }
+    .cg .txt {
+      position: absolute; left: 110px; right: 110px; top: 0; bottom: 0;
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap; align-content: center;
+      text-align: center; word-break: keep-all; overflow: visible;
+      font: 700 48px/1.7 "Pretendard", sans-serif; letter-spacing: -0.01em; color: #ffffff;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.85);
+    }
+    .cg .w { margin: 0 0.18em; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div class="panel"></div>
+    <div id="cg-00" class="cg clip" data-start="0.0" data-duration="1.828" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-00-0">지난</span> <span class="w" id="cw-00-1">영상의</span> <span class="w" id="cw-00-2">save()처럼,</span></div>
+    </div>
+    <div id="cg-01" class="cg clip" data-start="1.828" data-duration="4.033" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-01-0">join에도</span> <span class="w" id="cw-01-1">@Transactional</span> <span class="w" id="cw-01-2">한</span> <span class="w" id="cw-01-3">줄만</span> <span class="w" id="cw-01-4">붙이면</span> <span class="w" id="cw-01-5">트랜잭션</span> <span class="w" id="cw-01-6">안에서</span> <span class="w" id="cw-01-7">실행돼요.</span></div>
+    </div>
+    <div id="cg-02" class="cg clip" data-start="6.141" data-duration="6.309" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-02-0">그런데</span> <span class="w" id="cw-02-1">코드엔</span> <span class="w" id="cw-02-2">시작도,</span> <span class="w" id="cw-02-3">커밋도,</span> <span class="w" id="cw-02-4">롤백도</span> <span class="w" id="cw-02-5">없어요.</span> <span class="w" id="cw-02-6">누가</span> <span class="w" id="cw-02-7">하는</span> <span class="w" id="cw-02-8">걸까요?</span></div>
+    </div>
+    <div id="cg-03" class="cg clip" data-start="12.83" data-duration="2.156" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-03-0">주입된</span> <span class="w" id="cw-03-1">객체의</span> <span class="w" id="cw-03-2">클래스를</span> <span class="w" id="cw-03-3">찍어</span> <span class="w" id="cw-03-4">보면,</span></div>
+    </div>
+    <div id="cg-04" class="cg clip" data-start="14.986" data-duration="2.939" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-04-0">MemberService를</span> <span class="w" id="cw-04-1">상속한</span> <span class="w" id="cw-04-2">다른</span> <span class="w" id="cw-04-3">클래스가</span> <span class="w" id="cw-04-4">나와요.</span></div>
+    </div>
+    <div id="cg-05" class="cg clip" data-start="18.205" data-duration="1.886" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-05-0">Spring</span> <span class="w" id="cw-05-1">Boot</span> <span class="w" id="cw-05-2">기본</span> <span class="w" id="cw-05-3">설정에선,</span></div>
+    </div>
+    <div id="cg-06" class="cg clip" data-start="20.091" data-duration="4.023" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-06-0">이렇게</span> <span class="w" id="cw-06-1">상속한</span> <span class="w" id="cw-06-2">대리</span> <span class="w" id="cw-06-3">객체,</span> <span class="w" id="cw-06-4">프록시를</span> <span class="w" id="cw-06-5">만들어</span> <span class="w" id="cw-06-6">대신</span> <span class="w" id="cw-06-7">넣어</span> <span class="w" id="cw-06-8">줘요.</span></div>
+    </div>
+    <div id="cg-07" class="cg clip" data-start="24.394" data-duration="4.533" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-07-0">호출이</span> <span class="w" id="cw-07-1">진짜</span> <span class="w" id="cw-07-2">객체에</span> <span class="w" id="cw-07-3">닿는</span> <span class="w" id="cw-07-4">앞뒤에,</span> <span class="w" id="cw-07-5">트랜잭션</span> <span class="w" id="cw-07-6">일을</span> <span class="w" id="cw-07-7">끼워</span> <span class="w" id="cw-07-8">넣으려는</span> <span class="w" id="cw-07-9">거죠.</span></div>
+    </div>
+    <div id="cg-08" class="cg clip" data-start="29.307" data-duration="2.604" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-08-0">그래서</span> <span class="w" id="cw-08-1">join을</span> <span class="w" id="cw-08-2">부르면</span> <span class="w" id="cw-08-3">프록시가</span> <span class="w" id="cw-08-4">먼저</span> <span class="w" id="cw-08-5">받고,</span></div>
+    </div>
+    <div id="cg-09" class="cg clip" data-start="31.911" data-duration="3.554" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-09-0">TransactionInterceptor를</span> <span class="w" id="cw-09-1">거쳐서야</span> <span class="w" id="cw-09-2">진짜</span> <span class="w" id="cw-09-3">join이</span> <span class="w" id="cw-09-4">실행돼요.</span></div>
+    </div>
+    <div id="cg-10" class="cg clip" data-start="36.345" data-duration="2.948" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-10-0">TransactionInterceptor는</span> <span class="w" id="cw-10-1">진짜</span> <span class="w" id="cw-10-2">join을</span> <span class="w" id="cw-10-3">부르기</span> <span class="w" id="cw-10-4">전에,</span></div>
+    </div>
+    <div id="cg-11" class="cg clip" data-start="39.293" data-duration="2.607" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-11-0">트랜잭션</span> <span class="w" id="cw-11-1">매니저에게</span> <span class="w" id="cw-11-2">시작을</span> <span class="w" id="cw-11-3">맡겨요.</span></div>
+    </div>
+    <div id="cg-12" class="cg clip" data-start="42.18" data-duration="1.927" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-12-0">매니저가</span> <span class="w" id="cw-12-1">Hibernate를</span> <span class="w" id="cw-12-2">시켜,</span></div>
+    </div>
+    <div id="cg-13" class="cg clip" data-start="44.107" data-duration="2.804" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-13-0">풀에서</span> <span class="w" id="cw-13-1">연결을</span> <span class="w" id="cw-13-2">빌리고</span> <span class="w" id="cw-13-3">autocommit을</span> <span class="w" id="cw-13-4">꺼요.</span></div>
+    </div>
+    <div id="cg-14" class="cg clip" data-start="47.191" data-duration="3.333" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-14-0">JDBC</span> <span class="w" id="cw-14-1">연결은</span> <span class="w" id="cw-14-2">기본으로</span> <span class="w" id="cw-14-3">문장마다</span> <span class="w" id="cw-14-4">바로</span> <span class="w" id="cw-14-5">커밋돼서,</span></div>
+    </div>
+    <div id="cg-15" class="cg clip" data-start="50.524" data-duration="3.002" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-15-0">꺼</span> <span class="w" id="cw-15-1">둬야</span> <span class="w" id="cw-15-2">여러</span> <span class="w" id="cw-15-3">SQL을</span> <span class="w" id="cw-15-4">하나로</span> <span class="w" id="cw-15-5">묶을</span> <span class="w" id="cw-15-6">수</span> <span class="w" id="cw-15-7">있거든요.</span></div>
+    </div>
+    <div id="cg-16" class="cg clip" data-start="53.906" data-duration="2.198" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-16-0">그리고</span> <span class="w" id="cw-16-1">빌린</span> <span class="w" id="cw-16-2">연결과</span> <span class="w" id="cw-16-3">EntityManager를,</span></div>
+    </div>
+    <div id="cg-17" class="cg clip" data-start="56.104" data-duration="1.794" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-17-0">지금</span> <span class="w" id="cw-17-1">스레드에</span> <span class="w" id="cw-17-2">묶어</span> <span class="w" id="cw-17-3">둬요.</span></div>
+    </div>
+    <div id="cg-18" class="cg clip" data-start="58.178" data-duration="4.252" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-18-0">같은</span> <span class="w" id="cw-18-1">스레드의</span> <span class="w" id="cw-18-2">데이터</span> <span class="w" id="cw-18-3">접근</span> <span class="w" id="cw-18-4">코드가,</span> <span class="w" id="cw-18-5">인자로</span> <span class="w" id="cw-18-6">안</span> <span class="w" id="cw-18-7">받아도</span> <span class="w" id="cw-18-8">꺼내</span> <span class="w" id="cw-18-9">쓰게요.</span></div>
+    </div>
+    <div id="cg-19" class="cg clip" data-start="62.71" data-duration="2.885" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-19-0">그래서</span> <span class="w" id="cw-19-1">join</span> <span class="w" id="cw-19-2">안의</span> <span class="w" id="cw-19-3">save()는</span> <span class="w" id="cw-19-4">새로</span> <span class="w" id="cw-19-5">시작하지</span> <span class="w" id="cw-19-6">않고,</span></div>
+    </div>
+    <div id="cg-20" class="cg clip" data-start="65.595" data-duration="2.482" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-20-0">묶여</span> <span class="w" id="cw-20-1">있는</span> <span class="w" id="cw-20-2">이</span> <span class="w" id="cw-20-3">트랜잭션에</span> <span class="w" id="cw-20-4">합류해요.</span></div>
+    </div>
+    <div id="cg-21" class="cg clip" data-start="68.457" data-duration="2.437" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-21-0">join이</span> <span class="w" id="cw-21-1">정상으로</span> <span class="w" id="cw-21-2">끝나면</span> <span class="w" id="cw-21-3">COMMIT을</span> <span class="w" id="cw-21-4">보내고,</span></div>
+    </div>
+    <div id="cg-22" class="cg clip" data-start="70.894" data-duration="2.908" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-22-0">autocommit을</span> <span class="w" id="cw-22-1">다시</span> <span class="w" id="cw-22-2">켠</span> <span class="w" id="cw-22-3">뒤</span> <span class="w" id="cw-22-4">연결을</span> <span class="w" id="cw-22-5">풀에</span> <span class="w" id="cw-22-6">돌려줘요.</span></div>
+    </div>
+    <div id="cg-23" class="cg clip" data-start="74.882" data-duration="2.532" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-23-0">save()</span> <span class="w" id="cw-23-1">다음에</span> <span class="w" id="cw-23-2">RuntimeException을</span> <span class="w" id="cw-23-3">던지면,</span></div>
+    </div>
+    <div id="cg-24" class="cg clip" data-start="77.414" data-duration="2.075" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-24-0">COMMIT</span> <span class="w" id="cw-24-1">대신</span> <span class="w" id="cw-24-2">ROLLBACK을</span> <span class="w" id="cw-24-3">보내요.</span></div>
+    </div>
+    <div id="cg-25" class="cg clip" data-start="79.769" data-duration="2.125" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-25-0">insert는</span> <span class="w" id="cw-25-1">이미</span> <span class="w" id="cw-25-2">MySQL에</span> <span class="w" id="cw-25-3">갔지만,</span></div>
+    </div>
+    <div id="cg-26" class="cg clip" data-start="81.894" data-duration="2.773" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-26-0">롤백으로</span> <span class="w" id="cw-26-1">취소돼서</span> <span class="w" id="cw-26-2">테이블엔</span> <span class="w" id="cw-26-3">남지</span> <span class="w" id="cw-26-4">않아요.</span></div>
+    </div>
+    <div id="cg-27" class="cg clip" data-start="85.047" data-duration="3.887" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-27-0">Spring</span> <span class="w" id="cw-27-1">코드로</span> <span class="w" id="cw-27-2">보면,</span> <span class="w" id="cw-27-3">이</span> <span class="w" id="cw-27-4">흐름은</span> <span class="w" id="cw-27-5">try와</span> <span class="w" id="cw-27-6">catch</span> <span class="w" id="cw-27-7">하나예요.</span></div>
+    </div>
+    <div id="cg-28" class="cg clip" data-start="89.214" data-duration="2.136" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-28-0">try</span> <span class="w" id="cw-28-1">안에서</span> <span class="w" id="cw-28-2">진짜</span> <span class="w" id="cw-28-3">join을</span> <span class="w" id="cw-28-4">부르고,</span></div>
+    </div>
+    <div id="cg-29" class="cg clip" data-start="91.35" data-duration="3.783" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-29-0">예외</span> <span class="w" id="cw-29-1">없이</span> <span class="w" id="cw-29-2">돌아오면</span> <span class="w" id="cw-29-3">커밋,</span> <span class="w" id="cw-29-4">예외가</span> <span class="w" id="cw-29-5">나면</span> <span class="w" id="cw-29-6">catch로</span> <span class="w" id="cw-29-7">가요.</span></div>
+    </div>
+    <div id="cg-30" class="cg clip" data-start="95.413" data-duration="2.646" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-30-0">직접</span> <span class="w" id="cw-30-1">짰다면</span> <span class="w" id="cw-30-2">메서드마다</span> <span class="w" id="cw-30-3">반복할</span> <span class="w" id="cw-30-4">이</span> <span class="w" id="cw-30-5">틀을,</span></div>
+    </div>
+    <div id="cg-31" class="cg clip" data-start="98.059" data-duration="2.179" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-31-0">프록시가</span> <span class="w" id="cw-31-1">대신</span> <span class="w" id="cw-31-2">감싸</span> <span class="w" id="cw-31-3">주는</span> <span class="w" id="cw-31-4">거죠.</span></div>
+    </div>
+    <div id="cg-32" class="cg clip" data-start="100.618" data-duration="3.677" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-32-0">하지만</span> <span class="w" id="cw-32-1">Exception처럼</span> <span class="w" id="cw-32-2">throws로</span> <span class="w" id="cw-32-3">선언해야</span> <span class="w" id="cw-32-4">하는</span> <span class="w" id="cw-32-5">checked</span> <span class="w" id="cw-32-6">예외를</span> <span class="w" id="cw-32-7">던지면,</span></div>
+    </div>
+    <div id="cg-33" class="cg clip" data-start="104.295" data-duration="2.012" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-33-0">기본</span> <span class="w" id="cw-33-1">규칙에선</span> <span class="w" id="cw-33-2">커밋돼요.</span></div>
+    </div>
+    <div id="cg-34" class="cg clip" data-start="106.587" data-duration="3.825" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-34-0">기본</span> <span class="w" id="cw-34-1">규칙은</span> <span class="w" id="cw-34-2">RuntimeException과</span> <span class="w" id="cw-34-3">Error</span> <span class="w" id="cw-34-4">계열만</span> <span class="w" id="cw-34-5">롤백하거든요.</span></div>
+    </div>
+    <div id="cg-35" class="cg clip" data-start="110.692" data-duration="3.542" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-35-0">EJB</span> <span class="w" id="cw-35-1">시절</span> <span class="w" id="cw-35-2">관례대로,</span> <span class="w" id="cw-35-3">checked</span> <span class="w" id="cw-35-4">예외를</span> <span class="w" id="cw-35-5">예상한</span> <span class="w" id="cw-35-6">결과,</span></div>
+    </div>
+    <div id="cg-36" class="cg clip" data-start="114.234" data-duration="2.148" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-36-0">일종의</span> <span class="w" id="cw-36-1">다른</span> <span class="w" id="cw-36-2">반환값으로</span> <span class="w" id="cw-36-3">봐요.</span></div>
+    </div>
+    <div id="cg-37" class="cg clip" data-start="116.762" data-duration="3.094" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-37-0">checked</span> <span class="w" id="cw-37-1">예외에도</span> <span class="w" id="cw-37-2">롤백하려면</span> <span class="w" id="cw-37-3">rollbackFor로</span> <span class="w" id="cw-37-4">지정하고,</span></div>
+    </div>
+    <div id="cg-38" class="cg clip" data-start="119.856" data-duration="3.575" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-38-0">Spring</span> <span class="w" id="cw-38-1">6.2부터는</span> <span class="w" id="cw-38-2">전역</span> <span class="w" id="cw-38-3">기본값도</span> <span class="w" id="cw-38-4">바꿀</span> <span class="w" id="cw-38-5">수</span> <span class="w" id="cw-38-6">있어요.</span></div>
+    </div>
+    <div id="cg-39" class="cg clip" data-start="124.811" data-duration="3.073" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-39-0">마지막으로,</span> <span class="w" id="cw-39-1">@Transactional이</span> <span class="w" id="cw-39-2">없는</span> <span class="w" id="cw-39-3">register에서,</span></div>
+    </div>
+    <div id="cg-40" class="cg clip" data-start="127.884" data-duration="2.741" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-40-0">같은</span> <span class="w" id="cw-40-1">클래스의</span> <span class="w" id="cw-40-2">joinFail을</span> <span class="w" id="cw-40-3">그냥</span> <span class="w" id="cw-40-4">부르면요?</span></div>
+    </div>
+    <div id="cg-41" class="cg clip" data-start="130.905" data-duration="3.732" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-41-0">예외가</span> <span class="w" id="cw-41-1">났는데도</span> <span class="w" id="cw-41-2">ROLLBACK은</span> <span class="w" id="cw-41-3">없고,</span> <span class="w" id="cw-41-4">행이</span> <span class="w" id="cw-41-5">그대로</span> <span class="w" id="cw-41-6">남아요.</span></div>
+    </div>
+    <div id="cg-42" class="cg clip" data-start="135.517" data-duration="1.812" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-42-0">가로채는</span> <span class="w" id="cw-42-1">건</span> <span class="w" id="cw-42-2">프록시인데,</span></div>
+    </div>
+    <div id="cg-43" class="cg clip" data-start="137.329" data-duration="3.398" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-43-0">메서드</span> <span class="w" id="cw-43-1">안의</span> <span class="w" id="cw-43-2">this는</span> <span class="w" id="cw-43-3">프록시가</span> <span class="w" id="cw-43-4">아니라</span> <span class="w" id="cw-43-5">진짜</span> <span class="w" id="cw-43-6">객체거든요.</span></div>
+    </div>
+    <div id="cg-44" class="cg clip" data-start="141.007" data-duration="2.823" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-44-0">그래서</span> <span class="w" id="cw-44-1">joinFail의</span> <span class="w" id="cw-44-2">트랜잭션은</span> <span class="w" id="cw-44-3">시작조차</span> <span class="w" id="cw-44-4">안</span> <span class="w" id="cw-44-5">되고,</span></div>
+    </div>
+    <div id="cg-45" class="cg clip" data-start="143.83" data-duration="2.981" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-45-0">save()가</span> <span class="w" id="cw-45-1">자기</span> <span class="w" id="cw-45-2">트랜잭션으로</span> <span class="w" id="cw-45-3">바로</span> <span class="w" id="cw-45-4">커밋했어요.</span></div>
+    </div>
+    <div id="cg-46" class="cg clip" data-start="147.091" data-duration="2.719" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-46-0">이럴</span> <span class="w" id="cw-46-1">땐</span> <span class="w" id="cw-46-2">그</span> <span class="w" id="cw-46-3">메서드를</span> <span class="w" id="cw-46-4">다른</span> <span class="w" id="cw-46-5">클래스로</span> <span class="w" id="cw-46-6">옮기고,</span></div>
+    </div>
+    <div id="cg-47" class="cg clip" data-start="149.81" data-duration="2.564" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-47-0">주입받아서</span> <span class="w" id="cw-47-1">부르면</span> <span class="w" id="cw-47-2">프록시를</span> <span class="w" id="cw-47-3">거쳐요.</span></div>
+    </div>
+    <div id="cg-48" class="cg clip" data-start="152.754" data-duration="0.99" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-48-0">정리하면,</span></div>
+    </div>
+    <div id="cg-49" class="cg clip" data-start="153.744" data-duration="3.198" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-49-0">@Transactional은</span> <span class="w" id="cw-49-1">프록시가</span> <span class="w" id="cw-49-2">메서드</span> <span class="w" id="cw-49-3">호출을</span> <span class="w" id="cw-49-4">try로</span> <span class="w" id="cw-49-5">감싸고,</span></div>
+    </div>
+    <div id="cg-50" class="cg clip" data-start="156.942" data-duration="3.887" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-50-0">트랜잭션</span> <span class="w" id="cw-50-1">매니저가</span> <span class="w" id="cw-50-2">시작과</span> <span class="w" id="cw-50-3">커밋,</span> <span class="w" id="cw-50-4">롤백을</span> <span class="w" id="cw-50-5">맡는</span> <span class="w" id="cw-50-6">구조예요.</span></div>
+    </div>
+    <div id="cg-51" class="cg clip" data-start="161.11" data-duration="2.645" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-51-0">그래서</span> <span class="w" id="cw-51-1">프록시를</span> <span class="w" id="cw-51-2">안</span> <span class="w" id="cw-51-3">거치는</span> <span class="w" id="cw-51-4">this</span> <span class="w" id="cw-51-5">호출과,</span></div>
+    </div>
+    <div id="cg-52" class="cg clip" data-start="163.755" data-duration="4.693" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-52-0">기본으로</span> <span class="w" id="cw-52-1">커밋되는</span> <span class="w" id="cw-52-2">checked</span> <span class="w" id="cw-52-3">예외는</span> <span class="w" id="cw-52-4">따로</span> <span class="w" id="cw-52-5">챙겨야</span> <span class="w" id="cw-52-6">해요.</span></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      const NOW = "#3ddc97", DONE = "#96989e";
+      // [word id, time it is spoken, time the next word starts (null = last of its group), heartbeat length]
+      const WORDS = [["cw-00-0",0.21,0.689,0.42],["cw-00-1",0.689,1.075,0.386],["cw-00-2",1.075,null,0.42],["cw-01-0",1.908,2.46,0.42],["cw-01-1",2.46,3.054,0.42],["cw-01-2",3.054,3.2,0.146],["cw-01-3",3.2,3.47,0.27],["cw-01-4",3.47,4.043,0.42],["cw-01-5",4.043,4.668,0.42],["cw-01-6",4.668,4.939,0.271],["cw-01-7",4.939,null,0.42],["cw-02-0",6.221,6.773,0.42],["cw-02-1",6.773,7.19,0.417],["cw-02-2",7.19,7.919,0.42],["cw-02-3",7.919,8.815,0.42],["cw-02-4",8.815,9.471,0.42],["cw-02-5",9.471,10.986,0.42],["cw-02-6",10.986,11.392,0.406],["cw-02-7",11.392,11.569,0.177],["cw-02-8",11.569,null,0.42],["cw-03-0",12.91,13.493,0.42],["cw-03-1",13.493,13.868,0.375],["cw-03-2",13.868,14.326,0.42],["cw-03-3",14.326,14.493,0.167],["cw-03-4",14.493,null,0.42],["cw-04-0",15.066,15.962,0.42],["cw-04-1",15.962,16.43,0.42],["cw-04-2",16.43,16.712,0.282],["cw-04-3",16.712,17.149,0.42],["cw-04-4",17.149,null,0.42],["cw-05-0",18.285,18.806,0.42],["cw-05-1",18.806,19.035,0.229],["cw-05-2",19.035,19.317,0.282],["cw-05-3",19.317,null,0.42],["cw-06-0",20.171,20.587,0.416],["cw-06-1",20.587,21.025,0.42],["cw-06-2",21.025,21.254,0.229],["cw-06-3",21.254,21.942,0.42],["cw-06-4",21.942,22.567,0.42],["cw-06-5",22.567,22.879,0.312],["cw-06-6",22.879,23.171,0.292],["cw-06-7",23.171,23.4,0.229],["cw-06-8",23.4,null,0.42],["cw-07-0",24.474,25.005,0.42],["cw-07-1",25.005,25.338,0.333],["cw-07-2",25.338,25.734,0.396],["cw-07-3",25.734,26.067,0.333],["cw-07-4",26.067,26.765,0.42],["cw-07-5",26.765,27.442,0.42],["cw-07-6",27.442,27.672,0.23],["cw-07-7",27.672,27.89,0.218],["cw-07-8",27.89,28.317,0.42],["cw-07-9",28.317,null,0.42],["cw-08-0",29.387,29.866,0.42],["cw-08-1",29.866,30.272,0.406],["cw-08-2",30.272,30.637,0.365],["cw-08-3",30.637,31.085,0.42],["cw-08-4",31.085,31.335,0.25],["cw-08-5",31.335,null,0.42],["cw-09-0",31.991,33.21,0.42],["cw-09-1",33.21,33.814,0.42],["cw-09-2",33.814,34.158,0.344],["cw-09-3",34.158,34.533,0.375],["cw-09-4",34.533,null,0.42],["cw-10-0",36.425,37.873,0.42],["cw-10-1",37.873,38.207,0.334],["cw-10-2",38.207,38.582,0.375],["cw-10-3",38.582,38.873,0.291],["cw-10-4",38.873,null,0.386],["cw-11-0",39.373,40.05,0.42],["cw-11-1",40.05,40.675,0.42],["cw-11-2",40.675,41.04,0.365],["cw-11-3",41.04,null,0.42],["cw-12-0",42.26,42.853,0.42],["cw-12-1",42.853,43.582,0.42],["cw-12-2",43.582,null,0.42],["cw-13-0",44.187,44.749,0.42],["cw-13-1",44.749,45.145,0.396],["cw-13-2",45.145,45.593,0.42],["cw-13-3",45.593,46.218,0.42],["cw-13-4",46.218,null,0.42],["cw-14-0",47.271,48.031,0.42],["cw-14-1",48.031,48.458,0.42],["cw-14-2",48.458,48.937,0.42],["cw-14-3",48.937,49.49,0.42],["cw-14-4",49.49,49.74,0.25],["cw-14-5",49.74,null,0.42],["cw-15-0",50.604,50.885,0.281],["cw-15-1",50.885,51.167,0.282],["cw-15-2",51.167,51.51,0.343],["cw-15-3",51.51,52.031,0.42],["cw-15-4",52.031,52.333,0.302],["cw-15-5",52.333,52.635,0.302],["cw-15-6",52.635,52.729,0.094],["cw-15-7",52.729,null,0.42],["cw-16-0",53.986,54.424,0.42],["cw-16-1",54.424,54.757,0.333],["cw-16-2",54.757,55.174,0.417],["cw-16-3",55.174,null,0.42],["cw-17-0",56.184,56.58,0.396],["cw-17-1",56.58,56.976,0.396],["cw-17-2",56.976,57.257,0.281],["cw-17-3",57.257,null,0.42],["cw-18-0",58.258,58.727,0.42],["cw-18-1",58.727,59.143,0.416],["cw-18-2",59.143,59.477,0.334],["cw-18-3",59.477,59.81,0.333],["cw-18-4",59.81,60.456,0.42],["cw-18-5",60.456,60.914,0.42],["cw-18-6",60.914,61.07,0.156],["cw-18-7",61.07,61.414,0.344],["cw-18-8",61.414,61.664,0.25],["cw-18-9",61.664,null,0.42],["cw-19-0",62.79,63.269,0.42],["cw-19-1",63.269,63.592,0.323],["cw-19-2",63.592,63.769,0.177],["cw-19-3",63.769,64.311,0.42],["cw-19-4",64.311,64.561,0.25],["cw-19-5",64.561,65.019,0.42],["cw-19-6",65.019,null,0.42],["cw-20-0",65.675,66.092,0.417],["cw-20-1",66.092,66.415,0.323],["cw-20-2",66.415,66.54,0.125],["cw-20-3",66.54,67.175,0.42],["cw-20-4",67.175,null,0.42],["cw-21-0",68.537,69.078,0.42],["cw-21-1",69.078,69.578,0.42],["cw-21-2",69.578,69.974,0.396],["cw-21-3",69.974,70.328,0.354],["cw-21-4",70.328,null,0.42],["cw-22-0",70.974,71.755,0.42],["cw-22-1",71.755,72.026,0.271],["cw-22-2",72.026,72.224,0.198],["cw-22-3",72.224,72.422,0.198],["cw-22-4",72.422,72.797,0.375],["cw-22-5",72.797,73.016,0.219],["cw-22-6",73.016,null,0.42],["cw-23-0",74.962,75.514,0.42],["cw-23-1",75.514,75.889,0.375],["cw-23-2",75.889,76.785,0.42],["cw-23-3",76.785,null,0.42],["cw-24-0",77.494,77.921,0.42],["cw-24-1",77.921,78.223,0.302],["cw-24-2",78.223,78.66,0.42],["cw-24-3",78.66,null,0.42],["cw-25-0",79.849,80.547,0.42],["cw-25-1",80.547,80.745,0.198],["cw-25-2",80.745,81.317,0.42],["cw-25-3",81.317,null,0.42],["cw-26-0",81.974,82.588,0.42],["cw-26-1",82.588,83.161,0.42],["cw-26-2",83.161,83.62,0.42],["cw-26-3",83.62,83.922,0.302],["cw-26-4",83.922,null,0.42],["cw-27-0",85.127,85.668,0.42],["cw-27-1",85.668,85.981,0.313],["cw-27-2",85.981,86.575,0.42],["cw-27-3",86.575,86.825,0.25],["cw-27-4",86.825,87.272,0.42],["cw-27-5",87.272,87.804,0.42],["cw-27-6",87.804,88.075,0.271],["cw-27-7",88.075,null,0.42],["cw-28-0",89.294,89.752,0.42],["cw-28-1",89.752,90.023,0.271],["cw-28-2",90.023,90.388,0.365],["cw-28-3",90.388,90.773,0.385],["cw-28-4",90.773,null,0.42],["cw-29-0",91.43,91.888,0.42],["cw-29-1",91.888,92.117,0.229],["cw-29-2",92.117,92.638,0.42],["cw-29-3",92.638,93.315,0.42],["cw-29-4",93.315,93.794,0.42],["cw-29-5",93.794,94.075,0.281],["cw-29-6",94.075,94.419,0.344],["cw-29-7",94.419,null,0.42],["cw-30-0",95.493,95.972,0.42],["cw-30-1",95.972,96.368,0.396],["cw-30-2",96.368,96.951,0.42],["cw-30-3",96.951,97.462,0.42],["cw-30-4",97.462,97.587,0.125],["cw-30-5",97.587,null,0.42],["cw-31-0",98.139,98.722,0.42],["cw-31-1",98.722,99.076,0.354],["cw-31-2",99.076,99.41,0.334],["cw-31-3",99.41,99.597,0.187],["cw-31-4",99.597,null,0.42],["cw-32-0",100.698,101.208,0.42],["cw-32-1",101.208,101.875,0.42],["cw-32-2",101.875,102.354,0.42],["cw-32-3",102.354,102.708,0.354],["cw-32-4",102.708,102.948,0.24],["cw-32-5",102.948,103.312,0.364],["cw-32-6",103.312,103.656,0.344],["cw-32-7",103.656,null,0.42],["cw-33-0",104.375,104.781,0.406],["cw-33-1",104.781,105.354,0.42],["cw-33-2",105.354,null,0.42],["cw-34-0",106.667,107.126,0.42],["cw-34-1",107.126,107.636,0.42],["cw-34-2",107.636,108.688,0.42],["cw-34-3",108.688,108.876,0.188],["cw-34-4",108.876,109.272,0.396],["cw-34-5",109.272,null,0.42],["cw-35-0",110.772,111.387,0.42],["cw-35-1",111.387,111.679,0.292],["cw-35-2",111.679,112.387,0.42],["cw-35-3",112.387,112.856,0.42],["cw-35-4",112.856,113.262,0.406],["cw-35-5",113.262,113.585,0.323],["cw-35-6",113.585,null,0.42],["cw-36-0",114.314,114.762,0.42],["cw-36-1",114.762,115.064,0.302],["cw-36-2",115.064,115.679,0.42],["cw-36-3",115.679,null,0.42],["cw-37-0",116.842,117.384,0.42],["cw-37-1",117.384,117.904,0.42],["cw-37-2",117.904,118.582,0.42],["cw-37-3",118.582,119.123,0.42],["cw-37-4",119.123,null,0.42],["cw-38-0",119.936,120.488,0.42],["cw-38-1",120.488,121.332,0.42],["cw-38-2",121.332,121.644,0.312],["cw-38-3",121.644,122.186,0.42],["cw-38-4",122.186,122.509,0.323],["cw-38-5",122.509,122.602,0.093],["cw-38-6",122.602,null,0.42],["cw-39-0",124.891,125.818,0.42],["cw-39-1",125.818,126.609,0.42],["cw-39-2",126.609,126.901,0.292],["cw-39-3",126.901,null,0.42],["cw-40-0",127.964,128.432,0.42],["cw-40-1",128.432,128.912,0.42],["cw-40-2",128.912,129.495,0.42],["cw-40-3",129.495,129.787,0.292],["cw-40-4",129.787,null,0.42],["cw-41-0",130.985,131.537,0.42],["cw-41-1",131.537,132.048,0.42],["cw-41-2",132.048,132.475,0.42],["cw-41-3",132.475,133.069,0.42],["cw-41-4",133.069,133.464,0.395],["cw-41-5",133.464,133.787,0.323],["cw-41-6",133.787,null,0.42],["cw-42-0",135.597,136.253,0.42],["cw-42-1",136.253,136.44,0.187],["cw-42-2",136.44,null,0.42],["cw-43-0",137.409,137.94,0.42],["cw-43-1",137.94,138.117,0.177],["cw-43-2",138.117,138.565,0.42],["cw-43-3",138.565,139.044,0.42],["cw-43-4",139.044,139.367,0.323],["cw-43-5",139.367,139.722,0.355],["cw-43-6",139.722,null,0.42],["cw-44-0",141.087,141.535,0.42],["cw-44-1",141.535,142.129,0.42],["cw-44-2",142.129,142.712,0.42],["cw-44-3",142.712,143.202,0.42],["cw-44-4",143.202,143.306,0.104],["cw-44-5",143.306,null,0.42],["cw-45-0",143.91,144.535,0.42],["cw-45-1",144.535,144.795,0.26],["cw-45-2",144.795,145.462,0.42],["cw-45-3",145.462,145.754,0.292],["cw-45-4",145.754,null,0.42],["cw-46-0",147.171,147.557,0.386],["cw-46-1",147.557,147.796,0.239],["cw-46-2",147.796,148.036,0.24],["cw-46-3",148.036,148.494,0.42],["cw-46-4",148.494,148.775,0.281],["cw-46-5",148.775,149.213,0.42],["cw-46-6",149.213,null,0.42],["cw-47-0",149.89,150.65,0.42],["cw-47-1",150.65,151.025,0.375],["cw-47-2",151.025,151.484,0.42],["cw-47-3",151.484,null,0.42],["cw-48-0",152.834,null,0.42],["cw-49-0",153.824,154.689,0.42],["cw-49-1",154.689,155.178,0.42],["cw-49-2",155.178,155.522,0.344],["cw-49-3",155.522,155.887,0.365],["cw-49-4",155.887,156.251,0.364],["cw-49-5",156.251,null,0.42],["cw-50-0",157.022,157.657,0.42],["cw-50-1",157.657,158.137,0.42],["cw-50-2",158.137,158.637,0.42],["cw-50-3",158.637,159.23,0.42],["cw-50-4",159.23,159.741,0.42],["cw-50-5",159.741,159.98,0.239],["cw-50-6",159.98,null,0.42],["cw-51-0",161.19,161.669,0.42],["cw-51-1",161.669,162.169,0.42],["cw-51-2",162.169,162.283,0.114],["cw-51-3",162.283,162.679,0.396],["cw-51-4",162.679,162.96,0.281],["cw-51-5",162.96,null,0.42],["cw-52-0",163.835,164.346,0.42],["cw-52-1",164.346,164.835,0.42],["cw-52-2",164.835,165.179,0.344],["cw-52-3",165.179,165.523,0.344],["cw-52-4",165.523,165.794,0.271],["cw-52-5",165.794,166.137,0.343],["cw-52-6",166.137,null,0.42]];
+      for (const [id, on, off, beat] of WORDS) {
+        const el = document.getElementById(id);
+        tl.set(el, { color: NOW }, on);
+        if (off !== null) tl.set(el, { color: DONE }, off);
+        // heartbeat: two beats (lub-dub) when the word lasts long enough, one beat otherwise
+        if (beat >= 0.3) {
+          tl.to(el, { scale: 1.1, duration: beat * 0.2, ease: "power2.out" }, on)
+            .to(el, { scale: 1, duration: beat * 0.25, ease: "power1.in" }, ">")
+            .to(el, { scale: 1.05, duration: beat * 0.17, ease: "power2.out" }, ">")
+            .to(el, { scale: 1, duration: beat * 0.38, ease: "power1.inOut" }, ">");
+        } else {
+          tl.to(el, { scale: 1.08, duration: beat * 0.4, ease: "power2.out" }, on)
+            .to(el, { scale: 1, duration: beat * 0.6, ease: "power1.in" }, ">");
+        }
+      }
+      tl.set({}, {}, 168.447);
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

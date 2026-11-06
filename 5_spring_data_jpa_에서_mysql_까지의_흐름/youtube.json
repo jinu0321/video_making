@@ -1,0 +1,21 @@
+{
+  "title": "Spring Data JPA save() 한 줄, MySQL까지 뭘 거쳐 갈까?",
+  "description": "save() 한 줄은 MySQL까지 무엇을 거쳐 가고, 왜 이렇게 칸이 나뉘어 있나요?\n\n- Spring Data JPA가 repository 구현(SimpleJpaRepository)을 대신 만든다. save()는 새 엔티티면 EntityManager.persist, 아니면 merge를 부른다\n- JPA(EntityManager)는 인터페이스라 실행할 코드가 없다. 실제 호출 스택에 jakarta.persistence 줄은 0개이고, 일은 Hibernate(SessionImpl)가 한다\n- Hibernate는 SQL을 만들고 값 자리는 ?로 비운다. id가 IDENTITY라 이 예에선 persist 안에서 바로 insert가 나가지만, 보통은 커밋할 때 나간다\n- JDBC도 Java에 들어 있는 인터페이스이고 구현은 DB마다 드라이버가 한다. 그래서 Hibernate는 MySQL 드라이버 클래스를 모른다. DB를 바꿀 땐 드라이버와 접속 주소를 바꾸고, SQL은 Hibernate의 dialect가 맞춘다\n- 그림에 없는 칸: HikariCP(커넥션 풀). 새 연결은 비싸서 미리 열어 둔 연결을 빌려주고, 드라이버 연결을 한 겹 감싸 close()를 반납으로 바꾼다\n- MySQL 드라이버 기본값에선 ?를 값으로 채운 완성된 SQL 문자열이 간다. 채울 때 특수문자를 이스케이프해서 SQL 인젝션을 막는다\n- save()만 따로 부르면 MySQL이 받는 SQL은 4개(SET autocommit=0, insert, COMMIT, SET autocommit=1). 서비스 트랜잭션 안이면 SET과 COMMIT은 한 번만 나간다\n\n#SpringDataJPA #JPA #Hibernate #JDBC #MySQL",
+  "tags": [
+    "Spring Data JPA",
+    "JPA",
+    "Hibernate",
+    "JDBC",
+    "MySQL",
+    "HikariCP",
+    "EntityManager",
+    "Spring Boot",
+    "커넥션 풀",
+    "백엔드"
+  ],
+  "videoId": "VoF6-lo-maI",
+  "url": "https://youtube.com/shorts/VoF6-lo-maI",
+  "privacy": "public",
+  "publishAt": null,
+  "uploadedAt": "2026-10-30T09:25:06+00:00"
+}

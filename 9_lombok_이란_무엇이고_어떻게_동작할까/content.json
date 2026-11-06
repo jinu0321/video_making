@@ -1,0 +1,512 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "annotation processor": "어노테이션 프로세서",
+    "annotationProcessor": "어노테이션프로세서",
+    "FilerException": "파일러익셉션",
+    "Member.class": "멤버클래스",
+    "compileOnly": "컴파일온리",
+    "Zwitserloot": "즈비처로트",
+    "JavaBeans": "자바빈즈",
+    "@Getter": "게터",
+    "@Setter": "세터",
+    "getName": "겟네임",
+    "setName": "셋네임",
+    "getter": "게터",
+    "setter": "세터",
+    "UNKNOWN": "언노운",
+    "Spilker": "스필커",
+    "Reinier": "레이니어",
+    "private": "프라이빗",
+    "public": "퍼블릭",
+    "1.18.30": "일점십팔점삼십",
+    "equals": "이퀄즈",
+    "Lombok": "롬복",
+    "Member": "멤버",
+    "Gradle": "그레이들",
+    "Spring": "스프링",
+    "email": "이메일",
+    "javac": "자바씨",
+    "Java": "자바",
+    "Roel": "룰",
+    "JDK": "제이디케이",
+    "AST": "에이에스티",
+    "IDE": "아이디이",
+    "jar": "자",
+    "@EqualsAndHashCode": "이퀄즈앤해시코드"
+  },
+  "thumbnail": {
+    "file": "Member.java",
+    "sub": "# 메서드 0줄인데 getName()이 된다",
+    "title": [
+      "<r>Lombok</r>이란?",
+      "어떻게",
+      "동작할까?"
+    ]
+  },
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강. 실행 출력 줄은 실험 로그에서 자르거나 줄바꿈만 한 것이다. javac 실험은 JDK 25.0.4.1(Temurin, maven:3.9-eclipse-temurin-25)과 JDK 21.0.13(eclipse-temurin:21-jdk), 실행은 eclipse-temurin:25-jre(25.0.4.1), Gradle 실험은 gradle:9.8.2-jdk25(JDK 25.0.5)이다. Lombok은 1.18.48(Spring Boot 4.1.2 BOM), 옛 버전 실험만 1.18.30. '…'는 자른 자리, # 주석 줄은 내가 단 설명이다. 근거는 REVIEW.md의 '쓴 사실과 출처'.",
+  "shots": [
+    {
+      "file": "Member.java",
+      "sentences": [
+        "@Getter와 @Setter만 붙은 Member 클래스예요. 메서드는 한 줄도 없어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<k>@Getter @Setter</k>",
+            "<k>public class</k> Member {",
+            "    <k>private</k> Long id;",
+            "    <k>private</k> String name;",
+            "    <k>private</k> String email;",
+            "}"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "Main.java",
+      "sentences": [
+        "그런데 setName과 getName을 부르면, 컴파일도 되고 실행도 돼요.",
+        "소스에 없는 이 메서드는, 어디서 왔을까요?"
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "Member member = <k>new</k> Member();",
+            "member.setName(<s>\"kim\"</s>);",
+            "System.out.println(member.getName());",
+            "<c># 실행 결과</c>",
+            "kim"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "javap -p Member",
+      "sentences": [
+        "컴파일된 Member.class를 열어 보면, getter와 setter가 진짜로 들어 있어요.",
+        "Lombok은 이렇게 어노테이션을 보고, 반복되는 코드를 컴파일할 때 대신 써 주는 라이브러리예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 컴파일된 Member.class 안</c>",
+            "<k>public</k> java.lang.String getName();",
+            "<k>public void</k> setName(java.lang.String);",
+            "<c>… getId, getEmail, setId, setEmail</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "delombok",
+      "sentences": [
+        "Lombok이 만든 코드를 소스로 풀어 보면, 6줄이 29줄이 돼요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># delombok -f pretty, 빈 줄 포함</c>",
+            "<c># 6줄 → 29줄</c>",
+            "<k>public</k> String getName() {",
+            "    <k>return this</k>.name;",
+            "}",
+            "<c>… 메서드 5개 더</c>"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "javabeans.txt",
+      "sentences": [
+        "Java에선 필드를 private으로 감추고, getName과 setName 같은 메서드로 읽고 써요.",
+        "필드를 public으로 열어 두면, 그 구현에 묶여서 나중에 바꾸기 어려워지거든요.",
+        "이 이름 규칙이 JavaBeans 관례인데, Spring도 이 이름으로 값을 넣고 꺼내요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "f",
+              "text": "private String name",
+              "sub": "밖에서 직접 못 씀",
+              "at": "private으로"
+            }
+          ],
+          [
+            {
+              "id": "g",
+              "text": "getName()",
+              "sub": "읽기",
+              "at": "getName과"
+            },
+            {
+              "id": "s",
+              "text": "setName()",
+              "sub": "쓰기",
+              "at": "setName"
+            }
+          ],
+          [
+            {
+              "id": "sp",
+              "text": "Spring",
+              "sub": "이 이름으로 값을 넣고 꺼냄",
+              "at": "Spring도"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "g",
+            "to": "f"
+          },
+          {
+            "from": "s",
+            "to": "f"
+          },
+          {
+            "from": "sp",
+            "to": "g"
+          },
+          {
+            "from": "sp",
+            "to": "s"
+          }
+        ],
+        "focus": [
+          [
+            "f",
+            "1:public으로"
+          ],
+          [
+            "g",
+            "2:이름"
+          ],
+          [
+            "s",
+            "2:규칙이"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "HandMember.java",
+      "sentences": [
+        "IDE로 자동 생성해도 되지만, 만든 코드가 소스에 남아서 사람이 관리해야 해요.",
+        "예를 들어 두 객체가 같은지 보는 equals를 만든 뒤, email 필드를 추가했어요.",
+        "equals 고치는 걸 잊으면, email만 다른 두 회원이 같다고 나와요.",
+        "@EqualsAndHashCode를 붙이면, 컴파일할 때마다 다시 만들어서 email까지 비교해요."
+      ],
+      "blocks": [
+        {
+          "at": 1,
+          "lines": [
+            "<c>// email 추가 전에 만든 equals</c>",
+            "<k>return</k> Objects.equals(id, that.id)",
+            "    && Objects.equals(name, that.name);"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<c># email만 다른 두 회원 비교</c>",
+            "손으로 쓴 equals: <n>true</n>"
+          ]
+        },
+        {
+          "at": 3,
+          "lines": [
+            "@EqualsAndHashCode equals: <n>false</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "history.txt",
+      "sentences": [
+        "Lombok은 Reinier Zwitserloot와 Roel Spilker가, 2009년부터 만들어 온 오픈소스예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># GitHub 첫 커밋</c>",
+            "<n>2009-06-08</n> Initial commit.",
+            "  Reinier Zwitserloot",
+            "<c># projectlombok.org/credits</c>",
+            "Regular contributors:",
+            "Reinier Zwitserloot, Roel Spilker"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "javac.txt",
+      "sentences": [
+        "먼저 javac가 소스를 읽어서, 코드 구조를 나무 모양의 추상 구문 트리, AST로 정리해요.",
+        "그다음 javac가 annotation processor라는 처리기를 부르는데, Lombok이 바로 이 처리기예요.",
+        "Lombok은 트리에서 @Getter를 찾아, getName 같은 메서드를 끼워 넣어요.",
+        "마지막으로 javac가, 바뀐 트리로 Member.class를 만들어요."
+      ],
+      "diagram": {
+        "gap": 60,
+        "rows": [
+          [
+            {
+              "id": "src",
+              "text": "Member.java",
+              "sub": "메서드 0개"
+            }
+          ],
+          [
+            {
+              "id": "ast",
+              "text": "AST",
+              "sub": "추상 구문 트리: class, 필드 3개",
+              "at": "AST"
+            }
+          ],
+          [
+            {
+              "id": "ast2",
+              "text": "AST + getName() …",
+              "kind": "impl",
+              "sub": "메서드 6개가 붙은 트리",
+              "at": "끼워"
+            }
+          ],
+          [
+            {
+              "id": "cls",
+              "text": "Member.class",
+              "sub": "getName() 들어 있음",
+              "at": "3:Member.class를"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "src",
+            "to": "ast",
+            "label": "1. javac",
+            "at": "읽어서"
+          },
+          {
+            "from": "ast",
+            "to": "ast2",
+            "label": "2. Lombok",
+            "at": "2:@Getter를"
+          },
+          {
+            "from": "ast2",
+            "to": "cls",
+            "label": "3. javac",
+            "at": "바뀐"
+          }
+        ]
+      }
+    },
+    {
+      "file": "processor.txt",
+      "sentences": [
+        "그런데 annotation processor가 표준 API로 코드를 더하는 방법은, 새 파일을 만드는 거예요.",
+        "실제로 이미 있는 Member를 다시 만들려 하면, FilerException이 나요.",
+        "Lombok은 이 길 대신, 공식 API가 아닌 javac 내부 클래스로 Member의 트리를 직접 고쳐요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "std",
+              "text": "표준 API",
+              "kind": "spec",
+              "sub": "Filer",
+              "at": "표준"
+            },
+            {
+              "id": "lb",
+              "text": "<r>Lombok</r>",
+              "kind": "impl",
+              "at": "2:Lombok은"
+            }
+          ],
+          [
+            {
+              "id": "new",
+              "text": "새 파일",
+              "sub": "MemberHelper: 성공",
+              "at": "새"
+            },
+            {
+              "id": "jc",
+              "text": "javac 내부",
+              "sub": "공식 API 아님",
+              "at": "공식"
+            }
+          ],
+          [
+            {
+              "id": "old",
+              "text": "기존 Member",
+              "sub": "FilerException",
+              "at": "FilerException"
+            },
+            {
+              "id": "edit",
+              "text": "트리 직접 수정",
+              "sub": "메서드 추가",
+              "at": "고쳐요"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "std",
+            "to": "new"
+          },
+          {
+            "from": "lb",
+            "to": "jc"
+          },
+          {
+            "from": "jc",
+            "to": "edit"
+          }
+        ]
+      }
+    },
+    {
+      "file": "run.log",
+      "sentences": [
+        "메서드는 이미 클래스 파일에 들어 있어서, 실행할 땐 Lombok이 필요 없어요.",
+        "Lombok jar가 없는 곳에서도 잘 돌고, getter의 바이트코드도 손으로 쓴 것과 같아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># Lombok jar가 없는 JRE에서</c>",
+            "$ java -cp out Main",
+            "kim"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 손으로 쓴 Member와 javap -c 비교</c>",
+            "$ diff lombok.javap hand.javap",
+            "<c># 출력 없음: 메서드 바이트코드 같음</c>"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "build.gradle",
+      "sentences": [
+        "그래서 Gradle에선 compileOnly로, 컴파일할 때만 넣어요.",
+        "annotationProcessor 줄은 javac가 Lombok을 처리기로 돌리게 해서, 빼면 getter가 안 생겨요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "dependencies {",
+            "  compileOnly <s>'org.projectlombok:lombok'</s>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "  annotationProcessor <s>'org.projectlombok:lombok'</s>",
+            "}",
+            "<c># annotationProcessor 줄을 빼면</c>",
+            "error: cannot find symbol"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "javac.log",
+      "sentences": [
+        "대신 JDK 21에서 잘 되던 Lombok 1.18.30을, JDK 25에서 쓰면 컴파일이 실패해요.",
+        "javac 안에 있던 UNKNOWN이라는 값이 JDK 24에서 지워졌는데, 옛 Lombok이 그 값을 찾았거든요.",
+        "javac 내부는 예고 없이 바뀔 수 있어서, JDK를 올릴 땐 그 JDK를 지원하는 Lombok인지 확인해야 해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># Lombok 1.18.30, JDK 21: 성공</c>",
+            "<c># 같은 코드, JDK 25:</c>",
+            "An annotation processor threw",
+            " an uncaught exception."
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "…NoSuchFieldException:",
+            " …TypeTag :: <n>UNKNOWN</n>"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, Lombok은 컴파일할 때 javac의 구문 트리에 반복 메서드를 넣어 주는 도구예요.",
+        "그래서 실행할 땐 필요 없지만, 컴파일러 내부에 기대서 JDK를 올릴 땐 Lombok 지원 버전을 확인해야 해요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "lb",
+              "text": "<r>Lombok</r>",
+              "sub": "컴파일 때 AST에 메서드 추가",
+              "at": "Lombok은"
+            }
+          ],
+          [
+            {
+              "id": "run",
+              "text": "실행",
+              "sub": "Lombok 없이 돎",
+              "at": "1:실행할"
+            },
+            {
+              "id": "jdk",
+              "text": "JDK 업그레이드",
+              "kind": "impl",
+              "sub": "Lombok 지원 버전 확인",
+              "at": "1:JDK를"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "lb",
+            "to": "run"
+          },
+          {
+            "from": "lb",
+            "to": "jdk"
+          }
+        ]
+      }
+    }
+  ]
+}

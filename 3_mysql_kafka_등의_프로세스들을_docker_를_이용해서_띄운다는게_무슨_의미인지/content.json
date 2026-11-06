@@ -1,0 +1,385 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "MySQL": "마이에스큐엘",
+    "Kafka": "카프카",
+    "Redis": "레디스",
+    "nginx": "엔진엑스",
+    "Docker Desktop": "도커 데스크톱",
+    "docker run": "도커 런",
+    "Docker": "도커",
+    "Java": "자바",
+    "VM": "브이엠",
+    "OS": "오에스",
+    "IP": "아이피",
+    "namespace": "네임스페이스",
+    "cgroup": "씨그룹",
+    "Exited": "엑시티드",
+    "libssl": "립에스에스엘",
+    "-p": "피"
+  },
+  "thumbnail": {
+    "file": "docker run",
+    "sub": "# 설치 안 했는데 왜 뜰까?",
+    "title": [
+      "<r>Docker</r>로",
+      "띄운다는 건",
+      "무슨 뜻?"
+    ]
+  },
+  "question": "MySQL, Kafka, Redis, nginx 같은 프로그램을 Docker로 띄운다는 건, 내 컴퓨터에서 실제로 무엇을 실행한다는 뜻일까?",
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강 · 그 외 흰색",
+  "shots": [
+    {
+      "file": "quickstart.md",
+      "sentences": [
+        "MySQL, Kafka, Redis 같은 프로그램은 설치 대신, 이런 한 줄로 띄우곤 해요.",
+        "설치도 안 했는데 띄운다는 건, 내 컴퓨터에서 실제로 뭘 실행한다는 뜻일까요?"
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "$ <k>docker run</k> ... mysql:<n>8.4</n>",
+            "$ <k>docker run</k> ... apache/kafka:<n>4.4.0</n>",
+            "$ <k>docker run</k> ... redis:<n>8.8</n>",
+            "$ <k>docker run</k> ... nginx:<n>1.30</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "run.txt",
+      "sentences": [
+        "프로그램을 실행한다는 건, 디스크의 실행 파일을 읽어 프로세스를 만드는 거예요.",
+        "그런데 실행 파일 혼자선 못 돌아요. nginx는 libssl 같은 라이브러리가, Kafka는 Java가 있어야 하죠.",
+        "설치란, 이런 파일들을 내 컴퓨터에 깔아 두는 일이에요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 실행 파일</c>",
+            "/usr/sbin/nginx"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 그게 기대는 파일 (ldd)</c>",
+            "libssl.so.<n>3</n>, libc.so.<n>6</n>, …",
+            "<c># Kafka 공식 안내</c>",
+            "Java <n>17</n> 이상 먼저 설치"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "image.txt",
+      "sentences": [
+        "Docker 이미지는, 프로그램과 그게 기대는 파일을, 리눅스 기본 파일까지 통째로 묶은 거예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># apache/kafka:4.4.0 안</c>",
+            "/opt/kafka         <c># Kafka</c>",
+            "/opt/java/openjdk  <c># Java 25</c>",
+            "/bin /lib /etc     <c># 리눅스 기본</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "os-release",
+      "sentences": [
+        "그래서 컨테이너 안을 보면, 이미지마다 다른 리눅스가 들어 있어요.",
+        "필요한 파일이 이미지에 다 있으니, 내 컴퓨터엔 따로 깔 게 없는 거죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 컨테이너 안 /etc/os-release</c>",
+            "mysql  Oracle Linux <n>9.8</n>",
+            "kafka  Alpine Linux <n>3.24</n>",
+            "redis  Debian <n>13</n>",
+            "nginx  Debian <n>13</n>"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "docker run",
+      "sentences": [
+        "docker run은, 이 파일들 위에 컨테이너만의 쓰기 칸을 얹고, 그 위에서 프로세스 하나를 실행해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[ 쓰기 칸 ]      <c># 컨테이너마다</c>",
+            "[ 이미지 파일 ]  <c># 읽기 전용</c>",
+            "→ 프로세스 하나 실행"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "pid1.txt",
+      "sentences": [
+        {
+          "text": "이 프로세스가 컨테이너예요. 안에서 보면 1번 프로세스가, 각자 그 프로그램이죠.",
+          "say": "이 프로세스가 컨테이너예요. 안에서 보면 일번 프로세스가, 각자 그 프로그램이죠."
+        }
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 안에서 cat /proc/1/comm</c>",
+            "mysql  mysqld",
+            "kafka  java",
+            "redis  redis-server",
+            "nginx  nginx"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "docker ps",
+      "sentences": [
+        "그래서 그 프로세스가 끝나면, 컨테이너도 끝나요.",
+        "Redis에 종료 명령을 보내면, 컨테이너 상태가 곧바로 Exited로 바뀌어요.",
+        "컨테이너는 따로 켜 둔 컴퓨터가 아니라, 그 프로세스 자체니까요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "cache  Up <n>9</n> seconds"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "$ <k>docker exec</k> cache redis-cli shutdown",
+            "cache  Exited (<n>0</n>) <n>1</n> second ago"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vm.txt",
+      "sentences": [
+        "가상 머신은 OS를 통째로 하나 더 부팅하지만, 컨테이너는 보통 프로세스예요.",
+        "대신 커널이 이 프로세스에게 보이는 범위를 따로 잘라 줘요. 이걸 namespace라고 해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 가상 머신</c>",
+            "OS를 통째로 하나 더 부팅",
+            "<c># 컨테이너</c>",
+            "보통 프로세스 + namespace"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 따로 보이는 것</c>",
+            "PID, 파일, 네트워크, 호스트 이름"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "pid.txt",
+      "sentences": [
+        {
+          "text": "nginx는 안에서 보면 1번인데, 밖에서 보면 4829번이에요.",
+          "say": "엔진엑스는 안에서 보면 일번인데, 밖에서 보면 사천팔백이십구번이에요."
+        },
+        "파일은 이미지 것만 보이고, 네트워크도 컨테이너마다 IP를 따로 받아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># web 안</c>",
+            "$ cat /proc/<n>1</n>/comm",
+            "nginx",
+            "<c># 밖: docker top web</c>",
+            "PID <n>4829</n>  nginx: master"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># IP 172.17.0.x</c>",
+            "db <n>.2</n>  kafka <n>.3</n>  cache <n>.4</n>  web <n>.5</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "cgroup",
+      "sentences": [
+        "보이는 범위와 별개로, 쓸 수 있는 양도 나눌 수 있어요. 이건 cgroup이 맡아요.",
+        {
+          "text": "메모리를 512MB로 정해 띄우면, 커널이 그 프로세스의 메모리 상한을 512MB로 걸어 둬요.",
+          "say": "메모리를 오백십이메가로 정해 띄우면, 커널이 그 프로세스의 메모리 상한을 오백십이메가로 걸어 둬요."
+        }
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "$ cat /sys/fs/cgroup/memory.max",
+            "max  <c># -m 없이</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<n>536870912</n>  <c># -m 512m = 512MB</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "uname.txt",
+      "sentences": [
+        "그리고 커널은 하나예요. 네 컨테이너 모두 같은 커널 위에서 돌아요.",
+        "맥과 윈도우에선, Docker Desktop이 띄운 리눅스 VM의 커널이죠."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 안에서 uname -r</c>",
+            "mysql  <n>7.0.14</n>-linuxkit",
+            "kafka  <n>7.0.14</n>-linuxkit",
+            "redis  <n>7.0.14</n>-linuxkit",
+            "nginx  <n>7.0.14</n>-linuxkit"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 맥 자신은 Darwin 25.5.0</c>",
+            "<c># 앞의 PID 4829도 이 VM 안 번호</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "time.txt",
+      "sentences": [
+        {
+          "text": "OS 부팅이 없으니, 컨테이너를 만들고 지우는 데 0.2초도 안 걸렸어요.",
+          "say": "오에스 부팅이 없으니, 컨테이너를 만들고 지우는 데 영점이초도 안 걸렸어요."
+        }
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 이 맥에서 5번 잰 시간</c>",
+            "컨테이너 생성→삭제  <n>0.14</n>–<n>0.19</n>초"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "docker run",
+      "sentences": [
+        "네트워크가 따로라서, -p 없이 띄운 Redis는 내 컴퓨터에서 접속이 안 돼요.",
+        {
+          "text": "-p로 이으면, 내 컴퓨터 8080번으로 온 연결이 nginx의 80번으로 넘어가요.",
+          "say": "피로 이으면, 내 컴퓨터 팔공팔공번으로 온 연결이 엔진엑스의 팔십번으로 넘어가요."
+        }
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># -p 없이 띄운 Redis</c>",
+            "localhost:<n>6379</n> → 연결 실패"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "$ <k>docker run</k> -p <n>8080</n>:<n>80</n> nginx",
+            "$ curl localhost:<n>8080</n>",
+            "<title>Welcome to nginx!</title>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "docker diff",
+      "sentences": [
+        "파일도 마찬가지예요. 안에서 쓴 파일은 기본적으로 그 컨테이너의 쓰기 칸에 들어가요.",
+        "그래서 컨테이너를 지우면 같이 사라져요. 남겨야 할 데이터는 볼륨으로 컨테이너 밖에 둬요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "$ <k>docker diff</k> web",
+            "A /tmp/note.txt  <c># 쓰기 칸에 추가</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># web을 지우고 새로 띄우면</c>",
+            "cat: /tmp/note.txt: No such file",
+            "-v 이름:경로  <c># 컨테이너 밖에 두기</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, Docker로 띄운다는 건, 이미지의 파일로 프로세스 하나를 칸막이 안에서 실행하는 거예요.",
+        "보이는 범위는 namespace가, 쓸 양은 cgroup이 나누고, 커널은 다 같이 써요.",
+        "그래서 설치 없이 바로 뜨는 대신, 포트와 남길 파일은 밖으로 이어 줘야 해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[정리] <r>docker run</r>",
+            "= 이미지 파일로 프로세스 하나"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "+ namespace: 보이는 범위",
+            "+ cgroup: 쓸 수 있는 양",
+            "+ 커널은 공유"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "- 포트는 -p, 남길 파일은 -v"
+          ]
+        }
+      ]
+    }
+  ]
+}

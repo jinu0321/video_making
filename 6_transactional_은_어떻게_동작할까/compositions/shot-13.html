@@ -1,0 +1,89 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s13-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s13-tab b { color: #3ddc97; font-weight: 400; }
+    #s13-tab i { color: #7d8590; font-style: normal; }
+    #s13-plate {
+      position: absolute; left: 40px; top: 125px; width: 1000px; height: 860px;
+      background: #172033;
+    }
+    #s13-dia {
+      position: absolute; left: 100.0px; top: 171.0px; width: 880px; height: 768px;
+      transform: scale(1.0); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }
+    #s13-dia svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #s13-dia .fr { position: absolute; box-sizing: border-box; border: 4px dashed #8b98ad; border-radius: 18px; }
+    #s13-dia .fr.spec { border-color: #e6db74; }
+    #s13-dia .fr .lb { position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }
+    #s13-dia .fr.spec .lb { color: #e6db74; }
+    #s13-dia .nd {
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: #22304a; border: 4px solid #8b98ad; border-radius: 14px;
+    }
+    #s13-dia .nd.spec { border-style: dashed; border-color: #e6db74; }
+    #s13-dia .nd.impl { border-color: #ff6b8b; }
+    #s13-dia .nd.text, #s13-dia .nd.db { background: none; border: none; }
+    #s13-dia .nd .sub { margin-top: 6px; color: #aab4c3; }
+    #s13-dia .nd.db .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+    #s13-dia .cyl { fill: #22304a; stroke: #8b98ad; stroke-width: 4; }
+    #s13-dia .bd {
+      position: absolute; height: 45px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 30px/45px "Pretendard", sans-serif; color: #172033; background: #8b98ad;
+    }
+    #s13-dia .bd.spec { background: #e6db74; }
+    #s13-dia .bd.impl { background: #ff6b8b; }
+    #s13-dia .al { position: absolute; white-space: pre; font-size: 40px; line-height: 1.25; color: #aab4c3; }
+    #s13-dia .al.chip { padding: 0 12px; background: #172033; }
+    #s13-dia .k { color: #ff6b8b; }
+    #s13-dia .n { color: #b699ff; }
+    #s13-dia .s { color: #e6db74; }
+    #s13-dia .c { color: #8b98ad; }
+    #s13-dia .r { color: #ff4438; }
+    #s13-dia .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-13" data-width="1080" data-height="1920">
+    <div id="s13-tab" data-layout-ignore><b>❯</b> <i>cat</i> summary.md</div>
+    <div id="s13-plate"></div>
+    <div id="s13-dia">
+      <div id="s13-care" class="fr box" style="left: 0.0px; top: 512.0px; width: 880.0px; height: 256px; opacity: 0;"><div class="lb" style="font-size: 48px;">따로 챙길 것</div></div>
+      <svg width="880" height="768" viewBox="0 0 880 768">
+        <line id="s13-a0-l" x1="440.0" y1="70.0" x2="440.0" y2="96.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="26.0" stroke-dashoffset="26.0" />
+        <polygon id="s13-a0-h" points="440.0,114.0 427.0,94.0 453.0,94.0" fill="#8b98ad" opacity="0" />
+        <line id="s13-a1-l" x1="353.29" y1="263.892" x2="310.41" y2="300.433" stroke="#8b98ad" stroke-width="5" stroke-dasharray="56.339" stroke-dashoffset="56.339" />
+        <polygon id="s13-a1-h" points="296.71,312.108 303.5,289.242 320.364,309.031" fill="#8b98ad" opacity="0" />
+        <line id="s13-a2-l" x1="526.71" y1="263.892" x2="593.06" y2="320.433" stroke="#8b98ad" stroke-width="5" stroke-dasharray="87.174" stroke-dashoffset="87.174" />
+        <polygon id="s13-a2-h" points="606.76,332.108 583.105,329.031 599.969,309.242" fill="#8b98ad" opacity="0" />
+      </svg>
+      <div id="s13-call" class="nd text" style="left: 0.0px; top: 0.0px; width: 880.0px; height: 64px;"><div class="t" style="font-size: 54px;">호출</div></div>
+      <div id="s13-proxy" class="nd box" style="left: 132.0px; top: 120.0px; width: 616.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">프록시</div><div class="sub" style="font-size: 36px;">try로 감쌈</div></div>
+      <div id="s13-tm" class="nd box" style="left: 0.0px; top: 316.0px; width: 420.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 44.3px;">트랜잭션 매니저</div><div class="sub" style="font-size: 36px;">시작, 커밋, 롤백</div></div>
+      <div id="s13-real" class="nd box" style="left: 460.0px; top: 336.0px; width: 420.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">진짜 메서드</div></div>
+      <div id="s13-self" class="nd box" style="left: 60.0px; top: 602.0px; width: 360.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">this 호출</div><div class="sub" style="font-size: 36px;">프록시 안 거침</div></div>
+      <div id="s13-ck" class="nd box" style="left: 460.0px; top: 602.0px; width: 360.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 45.3px;">checked 예외</div><div class="sub" style="font-size: 36px;">기본은 COMMIT</div></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = [[1.915,"#s13-proxy",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[4.883,"#s13-tm",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[2.404,"#s13-real",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[8.406,"#s13-care",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[9.905,"#s13-self",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[12.061,"#s13-ck",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[1.915,"#s13-a0-l",{"attr":{"stroke-dashoffset":26.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[4.883,"#s13-a1-l",{"attr":{"stroke-dashoffset":56.339}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[2.404,"#s13-a2-l",{"attr":{"stroke-dashoffset":87.174}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}]];
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = [[2.165,"#s13-a0-h",{"opacity":1}],[5.133,"#s13-a1-h",{"opacity":1}],[2.654,"#s13-a2-h",{"opacity":1}],[1.915,"#s13-proxy",{"borderColor":"#3ddc97"}],[2.404,"#s13-proxy",{"borderColor":"#8b98ad"}],[2.404,"#s13-real",{"borderColor":"#3ddc97"}],[4.883,"#s13-real",{"borderColor":"#8b98ad"}],[4.883,"#s13-tm",{"borderColor":"#3ddc97"}],[8.406,"#s13-tm",{"borderColor":"#8b98ad"}],[8.406,"#s13-care",{"borderColor":"#3ddc97"}],[9.905,"#s13-care",{"borderColor":"#8b98ad"}],[9.905,"#s13-self",{"borderColor":"#3ddc97"}],[12.061,"#s13-self",{"borderColor":"#8b98ad"}],[12.061,"#s13-ck",{"borderColor":"#3ddc97"}]];
+      for (const [t, sel, from, to] of TWEENS) {
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({}, {}, 15.673);
+      window.__timelines["shot-13"] = tl;
+    })();
+  </script>
+</template>

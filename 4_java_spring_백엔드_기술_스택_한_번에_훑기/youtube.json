@@ -1,0 +1,21 @@
+{
+  "title": "Java Spring 백엔드, 뒤에 뭐가 쌓여 있을까? 기술 스택 한 번에 훑기",
+  "description": "\"Java Spring 백엔드\"라고 하면, 요청 하나가 어떤 기술들을 지나가고 각각 무슨 일을 할까요? 깊게 들어가지 않고 전체를 한 번 훑는 영상입니다.\n\n- 언어: Java든 Kotlin이든 JVM이 읽는 바이트코드로 컴파일된다. 그래서 섞어 써도 된다\n- 빌드: Gradle이 라이브러리를 받아 jar 하나로 묶는다\n- Spring: 객체를 직접 new 하지 않아도 만들어서 넣어 준다(Bean, DI)\n- Spring Boot: starter 하나로 라이브러리와 기본 설정을 가져오고, Tomcat이 jar 안에 들어 있다\n- 웹: Tomcat이 받고, 필터를 지나, DispatcherServlet이 컨트롤러로 넘긴다. 응답은 Jackson이 JSON으로 바꾼다\n- 데이터: Spring Data JPA, JPQL, 그리고 JPA(표준) - Hibernate(구현체) - JDBC(표준) - MySQL 드라이버(구현체)\n- 커넥션 풀: 연결은 맺는 데 오래 걸려서 HikariCP가 미리 열어 둔 연결을 빌려 쓴다\n- @Transactional: Spring이 트랜잭션을 열고 커밋하고, 예외가 나면 롤백한다\n- 표준과 구현체: 코드는 표준에만 기대니까 구현체를 바꿔도 코드는 거의 그대로다\n- S3: 파일은 S3에, DB엔 위치(키)만. Presigned URL로 브라우저가 바로 올려서 서버가 큰 파일을 나르지 않는다\n- 보안과 운영: Spring Security 필터에서 토큰 확인, GitHub Actions와 Docker로 배포, RDS와 ElastiCache에 백업과 장애 대비를 맡기고, Actuator와 Prometheus, Grafana로 지표를 본다\n\n#Spring #SpringBoot #Java #JPA #백엔드",
+  "tags": [
+    "Java",
+    "Spring",
+    "Spring Boot",
+    "JPA",
+    "Hibernate",
+    "JDBC",
+    "MySQL",
+    "AWS S3",
+    "백엔드",
+    "기술 스택"
+  ],
+  "videoId": "9DEdulFTaf8",
+  "url": "https://youtube.com/shorts/9DEdulFTaf8",
+  "privacy": "public",
+  "publishAt": null,
+  "uploadedAt": "2026-10-30T08:42:36+00:00"
+}

@@ -1,0 +1,83 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s03-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s03-tab b { color: #3ddc97; font-weight: 400; }
+    #s03-tab i { color: #7d8590; font-style: normal; }
+    #s03-plate {
+      position: absolute; left: 40px; top: 125px; width: 1000px; height: 860px;
+      background: #172033;
+    }
+    #s03-dia {
+      position: absolute; left: 100.0px; top: 197.0px; width: 880px; height: 716px;
+      transform: scale(1.0); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }
+    #s03-dia svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #s03-dia .fr { position: absolute; box-sizing: border-box; border: 4px dashed #8b98ad; border-radius: 18px; }
+    #s03-dia .fr.spec { border-color: #e6db74; }
+    #s03-dia .fr .lb { position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }
+    #s03-dia .fr.spec .lb { color: #e6db74; }
+    #s03-dia .nd {
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: #22304a; border: 4px solid #8b98ad; border-radius: 14px;
+    }
+    #s03-dia .nd.spec { border-style: dashed; border-color: #e6db74; }
+    #s03-dia .nd.impl { border-color: #ff6b8b; }
+    #s03-dia .nd.text, #s03-dia .nd.db { background: none; border: none; }
+    #s03-dia .nd .sub { margin-top: 6px; color: #aab4c3; }
+    #s03-dia .nd.db .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+    #s03-dia .cyl { fill: #22304a; stroke: #8b98ad; stroke-width: 4; }
+    #s03-dia .bd {
+      position: absolute; height: 45px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 30px/45px "Pretendard", sans-serif; color: #172033; background: #8b98ad;
+    }
+    #s03-dia .bd.spec { background: #e6db74; }
+    #s03-dia .bd.impl { background: #ff6b8b; }
+    #s03-dia .al { position: absolute; white-space: pre; font-size: 40px; line-height: 1.25; color: #aab4c3; }
+    #s03-dia .al.chip { padding: 0 12px; background: #172033; }
+    #s03-dia .k { color: #ff6b8b; }
+    #s03-dia .n { color: #b699ff; }
+    #s03-dia .s { color: #e6db74; }
+    #s03-dia .c { color: #8b98ad; }
+    #s03-dia .r { color: #ff4438; }
+    #s03-dia .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-03" data-width="1080" data-height="1920">
+    <div id="s03-tab" data-layout-ignore><b>❯</b> <i>cat</i> Data.java</div>
+    <div id="s03-plate"></div>
+    <div id="s03-dia">
+      <div id="s03-data" class="fr box" style="left: 0.0px; top: 0.0px; width: 880.0px; height: 716px;"><div class="lb" style="font-size: 48px;"><span class="r">@Data</span></div></div>
+      <svg width="880" height="716" viewBox="0 0 880 716">
+        
+      </svg>
+      <div id="s03-g" class="nd box" style="left: 60.0px; top: 90.0px; width: 360.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">@Getter</div><div class="sub" style="font-size: 36px;">모든 필드</div></div>
+      <div id="s03-s" class="nd box" style="left: 460.0px; top: 90.0px; width: 360.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">@Setter</div><div class="sub" style="font-size: 36px;">final 아닌 필드</div></div>
+      <div id="s03-ts" class="nd box" style="left: 72.0px; top: 270.0px; width: 736.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">@ToString</div></div>
+      <div id="s03-eh" class="nd box" style="left: 72.0px; top: 410.0px; width: 736.0px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">@EqualsAndHashCode</div></div>
+      <div id="s03-rc" class="nd box" style="left: 72.0px; top: 550.0px; width: 736.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">@RequiredArgsConstructor</div><div class="sub" style="font-size: 36px;">초기값 없는 final·@NonNull 필드</div></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = [[3.977,"#s03-g",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[5.633,"#s03-s",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[8.29,"#s03-ts",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[9.29,"#s03-eh",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[11.884,"#s03-rc",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}]];
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = [[3.977,"#s03-g",{"borderColor":"#3ddc97"}],[5.633,"#s03-g",{"borderColor":"#8b98ad"}],[5.633,"#s03-s",{"borderColor":"#3ddc97"}],[8.29,"#s03-s",{"borderColor":"#8b98ad"}],[8.29,"#s03-ts",{"borderColor":"#3ddc97"}],[9.29,"#s03-ts",{"borderColor":"#8b98ad"}],[9.29,"#s03-eh",{"borderColor":"#3ddc97"}],[11.884,"#s03-eh",{"borderColor":"#8b98ad"}],[11.884,"#s03-rc",{"borderColor":"#3ddc97"}]];
+      for (const [t, sel, from, to] of TWEENS) {
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({}, {}, 13.684);
+      window.__timelines["shot-03"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,80 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s16-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s16-tab b { color: #3ddc97; font-weight: 400; }
+    #s16-tab i { color: #7d8590; font-style: normal; }
+    #s16-stage {
+      position: absolute; left: 0; top: 105px; width: 1080px; height: 895px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #s16-plate {
+      position: absolute; left: 40px; top: calc(50% - 500px); width: 1000px; height: 1000px;
+      background: #172033;
+    }
+    #s16-box {
+      position: relative; text-align: left;
+      font-family: "D2Coding", monospace; font-size: 120px; line-height: 1.17; color: #ffffff;
+    }
+    #s16-box .ln, #s16-box .ch { display: none; }
+    #s16-box .ln { white-space: pre; }
+    #s16-box .ln.p { display: block; }
+    #s16-box .ch.p { display: inline; }
+    #s16-box .u[data-c="1"]::after { content: "\258c"; color: #3ddc97; }
+    #s16-box .k { color: #ff6b8b; }
+    #s16-box .n { color: #b699ff; }
+    #s16-box .s { color: #e6db74; }
+    #s16-box .c { color: #8b98ad; }
+    #s16-box .r { color: #ff4438; }
+    #s16-box .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-16" data-width="1080" data-height="1920">
+    <div id="s16-tab" data-layout-ignore><b>❯</b> <i>cat</i> Main.java</div>
+    <div id="s16-stage">
+      <div id="s16-plate"></div>
+      <div id="s16-box">
+        <div class="ln"><span class="u lead"></span><span class="u ch w">M</span><span class="u ch w">e</span><span class="u ch w">m</span><span class="u ch w">b</span><span class="u ch w">e</span><span class="u ch w">r</span><span class="u ch w">.</span><span class="u ch w">b</span><span class="u ch w">u</span><span class="u ch w">i</span><span class="u ch w">l</span><span class="u ch w">d</span><span class="u ch w">e</span><span class="u ch w">r</span><span class="u ch w">(</span><span class="u ch w">)</span><span class="u ch w">.</span><span class="u ch w">n</span><span class="u ch w">a</span><span class="u ch w">m</span><span class="u ch w">e</span><span class="u ch w">(</span><span class="u ch s">&quot;</span><span class="u ch s">k</span><span class="u ch s">i</span><span class="u ch s">m</span><span class="u ch s">&quot;</span><span class="u ch w">)</span><span class="u ch w">.</span><span class="u ch w">b</span><span class="u ch w">u</span><span class="u ch w">i</span><span class="u ch w">l</span><span class="u ch w">d</span><span class="u ch w">(</span><span class="u ch w">)</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch c">#</span><span class="u ch c"> </span><span class="u ch c">그</span><span class="u ch c">냥</span><span class="u ch c"> </span><span class="u ch c">@</span><span class="u ch c">B</span><span class="u ch c">u</span><span class="u ch c">i</span><span class="u ch c">l</span><span class="u ch c">d</span><span class="u ch c">e</span><span class="u ch c">r</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w">t</span><span class="u ch w">a</span><span class="u ch w">g</span><span class="u ch w">s</span><span class="u ch w">=</span><span class="u ch n">n</span><span class="u ch n">u</span><span class="u ch n">l</span><span class="u ch n">l</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch c">#</span><span class="u ch c"> </span><span class="u ch c">@</span><span class="u ch c">B</span><span class="u ch c">u</span><span class="u ch c">i</span><span class="u ch c">l</span><span class="u ch c">d</span><span class="u ch c">e</span><span class="u ch c">r</span><span class="u ch c">.</span><span class="u ch c">D</span><span class="u ch c">e</span><span class="u ch c">f</span><span class="u ch c">a</span><span class="u ch c">u</span><span class="u ch c">l</span><span class="u ch c">t</span><span class="u ch c">를</span><span class="u ch c"> </span><span class="u ch c">붙</span><span class="u ch c">이</span><span class="u ch c">면</span></div>
+        <div class="ln"><span class="u lead"></span><span class="u ch w">t</span><span class="u ch w">a</span><span class="u ch w">g</span><span class="u ch w">s</span><span class="u ch w">=</span><span class="u ch n">[</span><span class="u ch n">]</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      const box = document.getElementById("s16-box");
+      const plate = document.getElementById("s16-plate");
+      const units = box.querySelectorAll(".u");
+      // [time, unit index, text scale, plate scaleY (0 = unchanged), tween duration]
+      const STEPS = [[0.0,0,0,0,0.046],[0.046,1,0,0,0.046],[0.092,2,0,0,0.046],[0.137,3,0,0,0.046],[0.183,4,0,0,0.046],[0.229,5,0,0,0.046],[0.275,6,0,0,0.046],[0.321,7,0,0,0.046],[0.366,8,1.6742,0.5485,0.046],[0.412,9,1.5067,0.4936,0.046],[0.458,10,1.37,0.4488,0.046],[0.504,11,1.2558,0.4114,0.046],[0.55,12,1.1592,0.3797,0.046],[0.595,13,1.0758,0.3524,0.046],[0.641,14,1.0042,0.329,0.046],[0.687,15,0.9417,0.3085,0.046],[0.733,16,0.8867,0.2905,0.046],[0.779,17,0.8367,0.2741,0.046],[0.824,18,0.7933,0.2599,0.046],[0.87,19,0.7533,0.2468,0.046],[0.916,20,0.7175,0.2351,0.046],[0.962,21,0.685,0.2244,0.046],[1.008,22,0.655,0.2146,0.046],[1.053,23,0.6275,0.2056,0.046],[1.099,24,0.6025,0.1974,0.046],[1.145,25,0.5792,0.1897,0.046],[1.191,26,0.5583,0.1829,0.046],[1.237,27,0.5383,0.1764,0.046],[1.282,28,0.5192,0.1701,0.046],[1.328,29,0.5025,0.1646,0.046],[1.374,30,0.4858,0.1592,0.046],[1.42,31,0.4708,0.1542,0.046],[1.466,32,0.4567,0.1496,0.046],[1.511,33,0.4433,0.1452,0.046],[1.557,34,0.4308,0.1411,0.046],[1.603,35,0.4183,0.137,0.046],[1.649,36,0.4075,0.1335,0.046],[1.695,37,0.4183,0.1958,0.046],[1.74,38,0,0,0.046],[1.786,39,0,0,0.046],[1.832,40,0,0,0.046],[1.878,41,0,0,0.046],[1.924,42,0,0,0.046],[1.969,43,0,0,0.046],[2.015,44,0,0,0.046],[2.061,45,0,0,0.046],[2.107,46,0,0,0.046],[2.152,47,0,0,0.046],[2.198,48,0,0,0.046],[2.244,49,0,0,0.046],[2.29,50,0,0,0.046],[2.336,51,0.4183,0.2545,0.046],[2.381,52,0,0,0.046],[2.427,53,0,0,0.046],[2.473,54,0,0,0.046],[2.519,55,0,0,0.046],[2.565,56,0,0,0.046],[2.61,57,0,0,0.046],[2.656,58,0,0,0.046],[2.702,59,0,0,0.046],[2.748,60,0,0,0.046],[2.794,61,0.4183,0.3132,0.046],[2.839,62,0,0,0.046],[2.885,63,0,0,0.046],[2.931,64,0,0,0.046],[2.977,65,0,0,0.046],[3.023,66,0,0,0.046],[3.068,67,0,0,0.046],[3.114,68,0,0,0.046],[3.16,69,0,0,0.046],[3.206,70,0,0,0.046],[3.252,71,0,0,0.046],[3.297,72,0,0,0.046],[3.343,73,0,0,0.046],[3.389,74,0,0,0.046],[3.435,75,0,0,0.046],[3.481,76,0,0,0.046],[3.526,77,0,0,0.046],[3.572,78,0,0,0.046],[3.618,79,0,0,0.046],[3.664,80,0,0,0.046],[3.71,81,0,0,0.046],[3.755,82,0,0,0.046],[3.801,83,0,0,0.046],[3.847,84,0,0,0.046],[3.893,85,0.4183,0.372,0.046],[3.939,86,0,0,0.046],[3.984,87,0,0,0.046],[4.03,88,0,0,0.046],[4.076,89,0,0,0.046],[4.122,90,0,0,0.046],[4.168,91,0,0,0.046],[4.213,92,0,0,0.046]];
+      tl.set(box, { scale: 1.8333 }, 0);
+      tl.set(plate, { scaleY: 0.6006 }, 0);
+      // [time, unit index]: cursor leaves when a block finishes typing
+      const OFFS = [[4.609,92]];
+      let prev = null;
+      for (const [t, i, sc, by, d] of STEPS) {
+        const u = units[i];
+        if (u.classList.contains("lead")) tl.set(u.parentNode, { display: "block" }, t);
+        else tl.set(u, { display: "inline" }, t);
+        if (prev) tl.set(prev, { attr: { "data-c": "0" } }, t);
+        tl.set(u, { attr: { "data-c": "1" } }, t);
+        if (sc) {
+          tl.to(box, { scale: sc, duration: d, ease: "power2.out" }, t);
+          tl.to(plate, { scaleY: by, duration: d, ease: "power2.out" }, t);
+        }
+        prev = u;
+      }
+      for (const [t, i] of OFFS) tl.set(units[i], { attr: { "data-c": "0" } }, t);
+      tl.set({}, {}, 5.323);
+      window.__timelines["shot-16"] = tl;
+    })();
+  </script>
+</template>

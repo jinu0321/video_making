@@ -1,0 +1,1140 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "Spring Data JPA": "스프링 데이터 제이피에이",
+    "Spring Security": "스프링 시큐리티",
+    "Spring Boot": "스프링 부트",
+    "Spring": "스프링",
+    "Java": "자바",
+    "Kotlin": "코틀린",
+    "JVM": "제이브이엠",
+    "Gradle": "그레이들",
+    "jar": "자르",
+    "new": "뉴",
+    "Bean": "빈",
+    "DI": "디아이",
+    "starter": "스타터",
+    "Tomcat": "톰캣",
+    "HTTP": "에이치티티피",
+    "DispatcherServlet": "디스패처서블릿",
+    "Servlet": "서블릿",
+    "Jackson": "잭슨",
+    "JSON": "제이슨",
+    "JPQL": "제이피큐엘",
+    "JPA": "제이피에이",
+    "Hibernate": "하이버네이트",
+    "JDBC": "제이디비씨",
+    "MySQL": "마이에스큐엘",
+    "SQL": "에스큐엘",
+    "DB": "디비",
+    "HikariCP": "히카리씨피",
+    "@Transactional": "트랜잭셔널",
+    "S3": "에스쓰리",
+    "Presigned URL": "프리사인드 유알엘",
+    "URL": "유알엘",
+    "AWS SDK": "에이더블유에스 에스디케이",
+    "AWS": "에이더블유에스",
+    "GitHub Actions": "깃허브 액션스",
+    "Docker": "도커",
+    "ECS": "이씨에스",
+    "EC2": "이씨투",
+    "ALB": "에이엘비",
+    "RDS": "알디에스",
+    "ElastiCache": "일래스티캐시",
+    "Actuator": "액추에이터",
+    "Prometheus": "프로메테우스",
+    "Grafana": "그라파나"
+  },
+  "thumbnail": {
+    "file": "stack.txt",
+    "sub": "# 요청 하나가 지나가는 길",
+    "title": [
+      "<r>Spring</r> 백엔드,",
+      "뒤에 뭐가",
+      "쌓여 있나?"
+    ]
+  },
+  "question": "'Java Spring 백엔드'라고 하면, 요청 하나가 어떤 기술들을 지나가고, 각각 무슨 일을 하나요? (넓게 훑기 편)",
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강 · 그 외 흰색",
+  "shots": [
+    {
+      "file": "job-posting.md",
+      "sentences": [
+        "채용 공고마다 나오는 Java Spring 백엔드, 그 뒤엔 꽤 많은 게 쌓여 있어요.",
+        "깊게 들어가진 않고, 전체를 한 번 쭉 훑어보는 게 목적이에요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<c># 흔한 채용 공고 (예시)</c>",
+            "[백엔드 개발자]",
+            "Java, Kotlin, <r>Spring Boot</r>",
+            "JPA, MySQL, AWS"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "map.md",
+      "sentences": [
+        "요청이 지나가는 길을 따라, 여섯 층을 차례로 볼게요."
+      ],
+      "diagram": {
+        "gap": 40,
+        "rows": [
+          [
+            {
+              "id": "lang",
+              "text": "언어와 런타임",
+              "at": "+0.1"
+            }
+          ],
+          [
+            {
+              "id": "spring",
+              "text": "<r>Spring</r>, <r>Spring Boot</r>",
+              "at": "+0.45"
+            }
+          ],
+          [
+            {
+              "id": "web",
+              "text": "웹: 요청 받기",
+              "at": "+0.8"
+            }
+          ],
+          [
+            {
+              "id": "data",
+              "text": "데이터: MySQL",
+              "at": "+1.15"
+            }
+          ],
+          [
+            {
+              "id": "file",
+              "text": "파일: S3",
+              "at": "+1.5"
+            }
+          ],
+          [
+            {
+              "id": "ops",
+              "text": "보안, 배포, 운영",
+              "at": "+1.85"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "lang",
+            "to": "spring"
+          },
+          {
+            "from": "spring",
+            "to": "web"
+          },
+          {
+            "from": "web",
+            "to": "data"
+          },
+          {
+            "from": "data",
+            "to": "file"
+          },
+          {
+            "from": "file",
+            "to": "ops"
+          }
+        ]
+      },
+      "hold": 0.5
+    },
+    {
+      "file": "build.txt",
+      "sentences": [
+        "Java로 쓰든 Kotlin으로 쓰든, JVM이 읽는 바이트코드로 컴파일돼요.",
+        "그래서 둘을 한 프로젝트에 섞어 써도 돼요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "proj",
+              "text": "한 프로젝트",
+              "at": "1:프로젝트",
+              "rows": [
+                [
+                  {
+                    "id": "java",
+                    "text": "App.java",
+                    "at": "Java",
+                    "sub": "Java"
+                  },
+                  {
+                    "id": "kt",
+                    "text": "App.kt",
+                    "at": "Kotlin",
+                    "sub": "Kotlin"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "cls",
+              "text": ".class",
+              "at": "바이트코드",
+              "sub": "바이트코드"
+            }
+          ],
+          [
+            {
+              "id": "jvm",
+              "text": "JVM",
+              "at": "JVM",
+              "sub": "읽고 실행"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "java",
+            "to": "cls"
+          },
+          {
+            "from": "kt",
+            "to": "cls"
+          },
+          {
+            "from": "cls",
+            "to": "jvm"
+          }
+        ]
+      }
+    },
+    {
+      "file": "gradlew bootJar",
+      "sentences": [
+        "빌드는 Gradle이, 라이브러리를 받아 jar 하나로 묶어 줘요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "$ ./gradlew <k>bootJar</k>",
+            "<c># 라이브러리 받기, 컴파일, 묶기</c>",
+            "build/libs/<n>app.jar</n>",
+            "$ <k>java -jar</k> app.jar"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "ItemService.java",
+      "sentences": [
+        "Spring은 객체를 직접 new 하지 않아도, 만들어서 필요한 곳에 넣어 줘요.",
+        "이 객체가 Bean, 넣어 주는 게 DI, 의존성 주입이에요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>@Service</k>",
+            "<k>@RequiredArgsConstructor</k>",
+            "<k>public class</k> ItemService {",
+            "  <k>private final</k> ItemRepository repo;",
+            "}"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c>// Spring이 만든 Bean을 주입(DI)</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "build.gradle",
+      "sentences": [
+        "Spring Boot는 starter 하나로, 라이브러리와 기본 설정을 같이 가져와요.",
+        "웹 서버 Tomcat도 jar 안에 들어 있어서, 따로 설치하지 않아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// Boot 3 기준</c>",
+            "<s>spring-boot-starter-data-jpa</s>",
+            "  → Hibernate + HikariCP",
+            "<s>spring-boot-starter-web</s>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "  → Spring MVC + Tomcat",
+            "<c>// java -jar 로 서버째 실행</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "request.log",
+      "sentences": [
+        "요청은 먼저 Tomcat이 받아요.",
+        "로그인 검사 같은 필터를 지나면, DispatcherServlet이 맞는 컨트롤러로 넘겨요."
+      ],
+      "diagram": {
+        "gap": 56,
+        "rows": [
+          [
+            {
+              "id": "req",
+              "text": "GET /items/<n>42</n>",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "tomcat",
+              "text": "Tomcat",
+              "at": "Tomcat",
+              "sub": "HTTP 받기"
+            }
+          ],
+          [
+            {
+              "id": "filter",
+              "text": "Filter",
+              "at": "1:로그인",
+              "sub": "보안 검사"
+            }
+          ],
+          [
+            {
+              "id": "ds",
+              "text": "DispatcherServlet",
+              "at": "DispatcherServlet",
+              "sub": "길 찾기"
+            }
+          ],
+          [
+            {
+              "id": "ctl",
+              "text": "@RestController",
+              "at": "컨트롤러로",
+              "sub": "내 코드"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "req",
+            "to": "tomcat"
+          },
+          {
+            "from": "tomcat",
+            "to": "filter"
+          },
+          {
+            "from": "filter",
+            "to": "ds"
+          },
+          {
+            "from": "ds",
+            "to": "ctl"
+          }
+        ]
+      }
+    },
+    {
+      "file": "ItemController.java",
+      "sentences": [
+        "컨트롤러는 서비스에 일을 넘기고, 서비스는 리포지토리로 DB를 다뤄요.",
+        "돌려준 객체는 Jackson이 JSON으로 바꿔 줘요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "json",
+              "text": "{<s>\"id\"</s>:<n>42</n>,<s>\"name\"</s>:<s>\"키보드\"</s>}",
+              "at": "JSON",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "ctl",
+              "text": "ItemController",
+              "at": "컨트롤러는"
+            }
+          ],
+          [
+            {
+              "id": "svc",
+              "text": "ItemService",
+              "at": "서비스에"
+            }
+          ],
+          [
+            {
+              "id": "repo",
+              "text": "ItemRepository",
+              "at": "리포지토리로"
+            }
+          ],
+          [
+            {
+              "id": "db",
+              "text": "MySQL",
+              "at": "DB를",
+              "kind": "db"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "ctl",
+            "to": "svc"
+          },
+          {
+            "from": "svc",
+            "to": "repo"
+          },
+          {
+            "from": "repo",
+            "to": "db"
+          },
+          {
+            "from": "ctl",
+            "to": "json",
+            "label": "Jackson",
+            "at": "Jackson"
+          }
+        ],
+        "focus": [
+          [
+            "ctl",
+            "돌려준"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "ItemRepository.java",
+      "sentences": [
+        "Spring Data JPA는 인터페이스만 만들면, 구현이 알아서 생겨요.",
+        "메서드 이름을 보고 쿼리를 만들어 주거든요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>interface</k> ItemRepository",
+            "  <k>extends</k> JpaRepository<Item, Long> {",
+            "  List<Item> findByName(String n);",
+            "}"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c>// → SELECT ... WHERE name = ?</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ItemRepository.java",
+      "sentences": [
+        "복잡한 조회는 JPQL로 쓰는데, 테이블이 아니라 엔티티 클래스를 대상으로 해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>@Query</k>(<s>\"SELECT i FROM Item i \"</s> +",
+            "       <s>\"WHERE i.price > :min\"</s>)",
+            "List<Item> expensive(<k>int</k> min);",
+            "<c>// Item: 테이블 말고 엔티티</c>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "flow.txt",
+      "sentences": [
+        "JPA는 표준 규칙이고, 실제 일은 구현체인 Hibernate가 해요.",
+        "Hibernate가 만든 SQL을 JDBC로 보내면, MySQL 드라이버가 DB와 통신해요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "sdj",
+              "text": "Spring Data JPA"
+            }
+          ],
+          [
+            {
+              "id": "jpa",
+              "text": "JPA",
+              "at": "JPA는",
+              "kind": "spec",
+              "badge": "표준",
+              "badge_at": "표준",
+              "rows": [
+                [
+                  {
+                    "id": "hib",
+                    "text": "Hibernate",
+                    "at": "구현체인",
+                    "kind": "impl",
+                    "badge": "구현체"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "jdbc",
+              "text": "JDBC",
+              "at": "JDBC",
+              "kind": "spec",
+              "badge": "표준",
+              "rows": [
+                [
+                  {
+                    "id": "drv",
+                    "text": "MySQL Driver",
+                    "at": "1:MySQL",
+                    "kind": "impl",
+                    "badge": "구현체"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "db",
+              "text": "MySQL",
+              "at": "DB와",
+              "kind": "db"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "sdj",
+            "to": "jpa"
+          },
+          {
+            "from": "hib",
+            "to": "jdbc",
+            "label": "SQL",
+            "at": "SQL을"
+          },
+          {
+            "from": "jdbc",
+            "to": "db"
+          }
+        ],
+        "focus": [
+          [
+            "hib",
+            "1:Hibernate"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "application.yml",
+      "sentences": [
+        "연결은 맺는 데 오래 걸려서, HikariCP가 미리 열어 둔 연결을 빌려 써요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>spring</k>:",
+            "  <k>datasource</k>:",
+            "    <k>hikari</k>:",
+            "      <k>maximum-pool-size</k>: <n>10</n>  <c># 기본값</c>",
+            "<c># 연결을 미리 열어 두고 빌려 쓰기</c>"
+          ]
+        }
+      ],
+      "hold": 0.5
+    },
+    {
+      "file": "pairs.txt",
+      "sentences": [
+        "Tomcat도 Servlet 표준의 구현체예요. 이런 짝이 아주 많아요.",
+        "코드는 표준에만 기대니까, 구현체를 바꿔도 코드는 거의 그대로예요."
+      ],
+      "diagram": {
+        "gap": 30,
+        "rows": [
+          [
+            {
+              "text": "<s>표준</s>",
+              "kind": "text"
+            },
+            {
+              "text": "<k>구현체</k>",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "jpa",
+              "text": "JPA",
+              "kind": "spec"
+            },
+            {
+              "id": "hib",
+              "text": "Hibernate",
+              "kind": "impl"
+            }
+          ],
+          [
+            {
+              "id": "jdbc",
+              "text": "JDBC",
+              "kind": "spec"
+            },
+            {
+              "id": "drv",
+              "text": "MySQL Driver",
+              "kind": "impl"
+            }
+          ],
+          [
+            {
+              "id": "servlet",
+              "text": "Servlet",
+              "at": "Servlet",
+              "kind": "spec"
+            },
+            {
+              "id": "tomcat",
+              "text": "Tomcat",
+              "at": "Tomcat도",
+              "kind": "impl"
+            }
+          ],
+          [
+            {
+              "id": "ds",
+              "text": "DataSource",
+              "at": "짝이",
+              "kind": "spec"
+            },
+            {
+              "id": "hikari",
+              "text": "HikariCP",
+              "at": "아주",
+              "kind": "impl"
+            }
+          ],
+          [
+            {
+              "id": "slf4j",
+              "text": "SLF4J",
+              "at": "많아요",
+              "kind": "spec"
+            },
+            {
+              "id": "logback",
+              "text": "Logback",
+              "at": "+4.15",
+              "kind": "impl"
+            }
+          ]
+        ],
+        "focus": [
+          [
+            "jpa",
+            "표준에만"
+          ],
+          [
+            "hib",
+            "구현체를"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "ItemService.java",
+      "sentences": [
+        "@Transactional을 붙이면, Spring이 트랜잭션을 열고 커밋해 줘요.",
+        "중간에 예외가 터지면, 전부 롤백하고요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>@Transactional</k>",
+            "<k>public void</k> buy(Long id) {",
+            "  stockRepo.decrease(id);",
+            "  orderRepo.save(<k>new</k> Order(id));",
+            "}"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c>// RuntimeException → 둘 다 롤백</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "upload.md",
+      "sentences": [
+        "파일은 DB가 무거워지지 않게 S3에 두고, DB엔 위치인 키만 적어요.",
+        "업로드는 Presigned URL로 브라우저가 S3에 바로 올려서, 서버가 큰 파일을 나르지 않아요."
+      ],
+      "diagram": {
+        "gap": 90,
+        "rows": [
+          [
+            {
+              "id": "browser",
+              "text": "브라우저",
+              "at": "업로드는",
+              "w": 300
+            },
+            {
+              "id": "s3",
+              "text": "S3",
+              "at": "S3에",
+              "sub": "파일",
+              "w": 300
+            }
+          ],
+          [
+            {
+              "id": "server",
+              "text": "서버",
+              "sub": "Spring Boot",
+              "w": 300
+            },
+            null
+          ],
+          [
+            {
+              "id": "db",
+              "text": "MySQL",
+              "at": "DB가",
+              "kind": "db"
+            },
+            null
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "server",
+            "to": "db",
+            "label": "image_key",
+            "at": "키만"
+          },
+          {
+            "from": "server",
+            "to": "browser",
+            "label": "Presigned URL",
+            "at": "Presigned"
+          },
+          {
+            "from": "browser",
+            "to": "s3",
+            "label": "파일",
+            "at": "1:S3에"
+          }
+        ],
+        "focus": [
+          [
+            "server",
+            "1:서버가"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "request.log",
+      "sentences": [
+        "로그인은 Spring Security가, 컨트롤러에 닿기 전 필터에서 토큰을 확인해요."
+      ],
+      "diagram": {
+        "gap": 56,
+        "rows": [
+          [
+            {
+              "id": "req",
+              "text": "요청 + 토큰",
+              "sub": "Authorization: Bearer eyJ…"
+            }
+          ],
+          [
+            {
+              "id": "tomcat",
+              "text": "Tomcat"
+            }
+          ],
+          [
+            {
+              "id": "sec",
+              "text": "Spring Security",
+              "at": "Spring",
+              "sub": "Filter: 토큰(JWT) 확인"
+            }
+          ],
+          [
+            {
+              "id": "ds",
+              "text": "DispatcherServlet"
+            }
+          ],
+          [
+            {
+              "id": "ctl",
+              "text": "@RestController"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "req",
+            "to": "tomcat"
+          },
+          {
+            "from": "tomcat",
+            "to": "sec"
+          },
+          {
+            "from": "sec",
+            "to": "ds"
+          },
+          {
+            "from": "ds",
+            "to": "ctl"
+          }
+        ],
+        "focus": [
+          [
+            "ctl",
+            "컨트롤러에"
+          ],
+          [
+            "sec",
+            "필터에서"
+          ]
+        ]
+      },
+      "hold": 0.5
+    },
+    {
+      "file": "deploy.yml",
+      "sentences": [
+        "배포는 GitHub Actions가 테스트하고, Docker 이미지로 묶어요.",
+        "그 이미지를 ECS나 EC2에서 띄우고, 앞에선 ALB가 요청을 나눠요."
+      ],
+      "diagram": {
+        "gap": 52,
+        "rows": [
+          [
+            {
+              "id": "push",
+              "text": "$ git push",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "gha",
+              "text": "GitHub Actions",
+              "at": "GitHub",
+              "sub": "테스트, 빌드"
+            }
+          ],
+          [
+            {
+              "id": "img",
+              "text": "Docker 이미지",
+              "at": "Docker",
+              "sub": "ECR에 저장"
+            }
+          ],
+          [
+            {
+              "id": "ecs",
+              "text": "ECS, EC2",
+              "at": "ECS",
+              "rows": [
+                [
+                  {
+                    "id": "app1",
+                    "text": "서버 1",
+                    "at": "EC2"
+                  },
+                  {
+                    "id": "app2",
+                    "text": "서버 2",
+                    "at": "띄우고"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "alb",
+              "text": "ALB",
+              "at": "ALB",
+              "sub": "요청 분배"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "push",
+            "to": "gha"
+          },
+          {
+            "from": "gha",
+            "to": "img"
+          },
+          {
+            "from": "img",
+            "to": "ecs"
+          },
+          {
+            "from": "alb",
+            "to": "app1"
+          },
+          {
+            "from": "alb",
+            "to": "app2"
+          }
+        ]
+      }
+    },
+    {
+      "file": "aws.txt",
+      "sentences": [
+        "DB는 RDS, 캐시는 ElastiCache를 써서, 백업과 장애 대비를 AWS에 맡겨요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "app",
+              "text": "Spring Boot 앱"
+            }
+          ],
+          [
+            {
+              "id": "aws",
+              "text": "AWS",
+              "badge": "백업 · 장애 대비",
+              "badge_at": "백업과",
+              "rows": [
+                [
+                  {
+                    "id": "rds",
+                    "text": "RDS",
+                    "at": "RDS",
+                    "sub": "MySQL"
+                  },
+                  {
+                    "id": "ec",
+                    "text": "ElastiCache",
+                    "at": "ElastiCache",
+                    "sub": "Redis"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "app",
+            "to": "rds"
+          },
+          {
+            "from": "app",
+            "to": "ec"
+          }
+        ],
+        "focus": [
+          [
+            "aws",
+            "AWS에"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "curl",
+      "sentences": [
+        "운영 중엔 Actuator로 상태를 보고, Prometheus와 Grafana로 지표를 봐요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "app",
+              "text": "Spring Boot 앱",
+              "rows": [
+                [
+                  {
+                    "id": "act",
+                    "text": "Actuator",
+                    "at": "Actuator",
+                    "sub": "/actuator/health → UP"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "prom",
+              "text": "Prometheus",
+              "at": "Prometheus",
+              "sub": "지표 수집"
+            }
+          ],
+          [
+            {
+              "id": "graf",
+              "text": "Grafana",
+              "at": "Grafana",
+              "sub": "대시보드"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "act",
+            "to": "prom"
+          },
+          {
+            "from": "prom",
+            "to": "graf"
+          }
+        ]
+      },
+      "hold": 0.5
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, Spring Boot가 Tomcat으로 요청을 받아, JPA와 JDBC로 MySQL에, AWS SDK로 S3에 닿아요.",
+        "이름은 많아도, 상당수는 표준과 구현체의 짝이에요.",
+        "정말 넓은 Java 백엔드 세상이네요. 공부할 게 많아서 행복해요."
+      ],
+      "diagram": {
+        "rows": [
+          [
+            {
+              "id": "req",
+              "text": "요청",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "boot",
+              "text": "Spring Boot",
+              "at": "Spring",
+              "rows": [
+                [
+                  {
+                    "id": "tomcat",
+                    "text": "Tomcat",
+                    "at": "Tomcat"
+                  }
+                ],
+                [
+                  {
+                    "id": "app",
+                    "text": "Controller, Service",
+                    "at": "요청을"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "sdk",
+              "text": "AWS SDK",
+              "at": "AWS"
+            },
+            {
+              "id": "jpa",
+              "text": "JPA, JDBC",
+              "at": "JPA와",
+              "kind": "spec",
+              "badge": "표준 + 구현체",
+              "badge_at": "1:표준과"
+            }
+          ],
+          [
+            {
+              "id": "s3",
+              "text": "S3",
+              "at": "S3",
+              "kind": "db"
+            },
+            {
+              "id": "mysql",
+              "text": "MySQL",
+              "at": "MySQL",
+              "kind": "db"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "req",
+            "to": "tomcat"
+          },
+          {
+            "from": "tomcat",
+            "to": "app"
+          },
+          {
+            "from": "app",
+            "to": "jpa"
+          },
+          {
+            "from": "jpa",
+            "to": "mysql"
+          },
+          {
+            "from": "app",
+            "to": "sdk"
+          },
+          {
+            "from": "sdk",
+            "to": "s3"
+          }
+        ]
+      }
+    }
+  ]
+}

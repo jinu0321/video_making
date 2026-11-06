@@ -4,9 +4,11 @@
 
 Writes index.html, compositions/chrome.html, compositions/shot-NN.html and
 compositions/captions.html. Re-run after changing content.json or the narration.
+A shot shows either typed `blocks` (code box) or a `diagram` (boxes and arrows).
 """
 import html
 import json
+import math
 import re
 from pathlib import Path
 
@@ -28,6 +30,20 @@ TYPE_FRACTION = 0.8     # a block finishes typing within this share of its windo
 
 COLORS = {"k": "#ff6b8b", "n": "#b699ff", "s": "#e6db74", "c": "#8b98ad", "r": "#ff4438", "w": "#ffffff"}
 ACCENT = "#3ddc97"       # mint, only for what is live: progress, prompt, cursor, word being read
+
+# Diagram shots: laid out at natural size in a DIA_W-wide space, scaled down to fit the plate if taller than DIA_H.
+DIA_TOP, DIA_BOTTOM = 125, 985     # the plate
+DIA_W, DIA_H = 880, 810
+NODE_H, NODE_H_SUB, TEXT_H, DB_H = 100, 140, 64, 116
+NODE_FS, SUB_FS, FRAME_FS, ARROW_FS, BADGE_FS = 54, 36, 48, 40, 30
+DIA_FS_WARN = 40         # box text smaller than this (after scaling) is hard to read on a phone
+NODE_PAD = 44            # text padding inside a box, each side
+ROW_GAP, COL_GAP = 64, 40
+FRAME_TOP, FRAME_BOTTOM, FRAME_SIDE = 90, 26, 60
+LONE_MIN = 0.7           # boxes alone in their row share one width, at least this share of the column
+DB_MIN_W, DB_RY = 300, 16
+EDGE, EDGE_TEXT, BOX_BG = "#8b98ad", "#aab4c3", "#22304a"
+BORDER = {"box": EDGE, "spec": COLORS["s"], "impl": COLORS["k"]}   # spec = standard (dashed), impl = implementation
 
 CAP_MAX_CHARS = 38       # longer sentences are split at a comma or period
 CAP_LEAD, CAP_TAIL, CAP_MERGE_GAP = 0.08, 0.12, 0.25
@@ -216,6 +232,305 @@ def build_shot(n, shot, t_shot, t_start, t_end):
 """
 
 
+def plain(src):
+    return "".join(seg for _, seg in parse_line(src))
+
+
+def markup(src):
+    return "".join(html.escape(seg) if cls == "w" else f'<span class="{cls}">{html.escape(seg)}</span>'
+                   for cls, seg in parse_line(src))
+
+
+def fit(src, fs, room):
+    """Largest size <= fs at which src fits in room px (a D2Coding half-width cell is 0.5 em)."""
+    c = cells(plain(src))
+    return round(min(fs, room / (0.5 * c)), 1) if c else fs
+
+
+def need_w(nd):
+    return max(cells(plain(nd["text"])) * 0.5 * NODE_FS, cells(plain(nd.get("sub", ""))) * 0.5 * SUB_FS) + 2 * NODE_PAD
+
+
+def item_h(nd, cw, gap):
+    if "rows" in nd:
+        return FRAME_TOP + measure(nd["rows"], cw - 2 * FRAME_SIDE, gap) + FRAME_BOTTOM
+    if nd.get("kind") in ("text", "db"):
+        return TEXT_H if nd["kind"] == "text" else DB_H
+    return NODE_H_SUB if nd.get("sub") else NODE_H
+
+
+def measure(rows, width, gap):
+    total = 0
+    for i, row in enumerate(rows):
+        cw = (width - (len(row) - 1) * COL_GAP) / len(row)
+        total += (gap if i else 0) + max(item_h(nd, cw, gap) for nd in row if nd)
+    return total
+
+
+def place(rows, x0, y0, width, gap, out):
+    """Append (node, x, y, w, h) for each item of rows; a frame comes before what it contains.
+    A row splits the width into equal columns (null = empty column)."""
+    lone = [r[0] for r in rows if len(r) == 1 and "rows" not in r[0] and r[0].get("kind", "box") in BORDER]
+    lone_w = min(width, max([LONE_MIN * width] + [need_w(nd) for nd in lone]))
+    y = y0
+    for row in rows:
+        cw = (width - (len(row) - 1) * COL_GAP) / len(row)
+        row_h = max(item_h(nd, cw, gap) for nd in row if nd)
+        for j, nd in enumerate(row):
+            if not nd:
+                continue
+            kind, h = nd.get("kind", "box"), item_h(nd, cw, gap)
+            if "w" in nd:
+                w = min(nd["w"], cw)
+            elif kind == "db":
+                w = min(cw, max(DB_MIN_W, need_w(nd)))
+            elif len(row) == 1 and kind in BORDER and "rows" not in nd:
+                w = lone_w
+            else:
+                w = cw
+            x, top = x0 + j * (cw + COL_GAP) + (cw - w) / 2, y + (row_h - h) / 2
+            out.append((nd, x, top, w, h))
+            if "rows" in nd:
+                place(nd["rows"], x + FRAME_SIDE, top + FRAME_TOP, w - 2 * FRAME_SIDE, gap, out)
+        y += row_h + gap
+
+
+def cue(at, t_shot, t_start, sid):
+    """Shot-local time for `at`. None = there from the start, int = when that sentence starts,
+    "+1.5" = seconds into the shot, "word" or "1:word" = when the first spoken word starting
+    with `word` begins (in sentence 1 only)."""
+    if at is None:
+        return None
+    sents = t_shot["sentences"]
+    if isinstance(at, int):
+        return 0.0 if at == 0 else r3(sents[at]["start"] - t_start + 0.05)
+    if at.startswith("+"):
+        return float(at[1:])
+    m = re.fullmatch(r"(\d+):(.+)", at)
+    word = m.group(2) if m else at
+    for s in ([sents[int(m.group(1))]] if m else sents):
+        for w in s["words"]:
+            if w["text"].startswith(word):
+                return r3(max(0.0, w["start"] - t_start))
+    raise SystemExit(f"{sid}: no spoken word starts with {at!r}")
+
+
+def arrow_geo(a, b):
+    """Straight arrow between the borders of rects a and b: line end, tip, head polygon."""
+    (ax, ay, aw, ah), (bx, by, bw, bh) = a, b
+    acx, acy, bcx, bcy = ax + aw / 2, ay + ah / 2, bx + bw / 2, by + bh / 2
+    dist = math.hypot(bcx - acx, bcy - acy)
+    ux, uy = (bcx - acx) / dist, (bcy - acy) / dist
+
+    def reach(w, h):
+        return min(w / 2 / abs(ux) if ux else 1e9, h / 2 / abs(uy) if uy else 1e9) + 6
+
+    x1, y1 = acx + ux * reach(aw, ah), acy + uy * reach(aw, ah)
+    x2, y2 = bcx - ux * reach(bw, bh), bcy - uy * reach(bw, bh)
+    head = [(x2, y2), (x2 - ux * 20 - uy * 13, y2 - uy * 20 + ux * 13), (x2 - ux * 20 + uy * 13, y2 - uy * 20 - ux * 13)]
+    return (x1, y1, x2 - ux * 18, y2 - uy * 18), head, (ux, uy)
+
+
+def build_diagram(n, shot, t_shot, t_start, t_end):
+    sid, p = f"shot-{n:02d}", f"s{n:02d}"
+    dur = t_end - t_start
+    d = shot["diagram"]
+    gap = d.get("gap", ROW_GAP)
+    items = []
+    place(d["rows"], 0, 0, DIA_W, gap, items)
+    nat_h = measure(d["rows"], DIA_W, gap)
+    s = min(1.0, DIA_H / nat_h)
+
+    tweens, sets, live = [], [], []    # tweens: [t, selector, from (null = to-tween), to]; live: (t, key)
+    paint = {}                         # key -> [(selector, property, normal colour)] for the mint highlight
+    frames, nodes, badges, labels, svg = [], [], [], [], []
+    rect, t_of = {}, {}
+    min_fs = 999
+    appear = ({"opacity": 0, "scale": 0.94}, {"opacity": 1, "scale": 1, "duration": 0.3, "ease": "power2.out"})
+
+    for k, (nd, x, y, w, h) in enumerate(items):
+        key = nd.get("id", f"i{k}")
+        el, kind = f"{p}-{key}", nd.get("kind", "box")
+        t = cue(nd.get("at"), t_shot, t_start, sid)
+        rect[key], t_of[key] = (x, y, w, h), t
+        hidden = " opacity: 0;" if t is not None else ""
+        box = f"left: {r3(x)}px; top: {r3(y)}px; width: {r3(w)}px; height: {r3(h)}px;{hidden}"
+        if "rows" in nd:
+            style = "spec" if kind == "spec" else "box"
+            fs = fit(nd["text"], FRAME_FS, w * 0.6)
+            frames.append(f'<div id="{el}" class="fr {style}" style="{box}">'
+                          f'<div class="lb" style="font-size: {fs}px;">{markup(nd["text"])}</div></div>')
+            paint[key] = [(f"#{el}", "border", BORDER[style])]
+        elif kind == "db":
+            fs = fit(nd["text"], NODE_FS, w - 2 * NODE_PAD)
+            rx, by = w / 2 - 2, h - DB_RY - 2
+            nodes.append(f'''<div id="{el}" class="nd db" style="{box}">
+          <svg width="{r3(w)}" height="{h}" viewBox="0 0 {r3(w)} {h}">
+            <path class="cyl" d="M2 {DB_RY + 2} V{by} A{r3(rx)} {DB_RY} 0 0 0 {r3(w - 2)} {by} V{DB_RY + 2}" />
+            <ellipse class="cyl" cx="{r3(w / 2)}" cy="{DB_RY + 2}" rx="{r3(rx)}" ry="{DB_RY}" />
+          </svg>
+          <div class="t" style="top: {2 * DB_RY + 2}px; font-size: {fs}px;">{markup(nd["text"])}</div>
+        </div>''')
+            paint[key] = [(f"#{el} .cyl", "stroke", EDGE)]
+        else:
+            fs = fit(nd["text"], NODE_FS, w - 2 * NODE_PAD)
+            sub = (f'<div class="sub" style="font-size: {fit(nd["sub"], SUB_FS, w - 2 * NODE_PAD)}px;">'
+                   f'{markup(nd["sub"])}</div>') if nd.get("sub") else ""
+            nodes.append(f'<div id="{el}" class="nd {kind}" style="{box}">'
+                         f'<div class="t" style="font-size: {fs}px;">{markup(nd["text"])}</div>{sub}</div>')
+            if kind in BORDER:
+                paint[key] = [(f"#{el}", "border", BORDER[kind])]
+        min_fs = min(min_fs, fs * s)
+        if t is not None:
+            tweens.append([t, f"#{el}", *appear])
+            if key in paint:
+                live.append((t, key))
+        if nd.get("badge"):
+            bt = cue(nd["badge_at"], t_shot, t_start, sid) if "badge_at" in nd else (None if t is None else r3(t + 0.18))
+            pop = " transform: scale(0);" if bt is not None else ""
+            badges.append(f'<div id="{el}-b" class="bd {kind}" style="right: {r3(DIA_W - (x + w - 18))}px; '
+                          f'top: {r3(y - 22)}px;{pop}">{html.escape(nd["badge"])}</div>')
+            if bt is not None:
+                tweens.append([bt, f"#{el}-b", {"scale": 0}, {"scale": 1, "duration": 0.3, "ease": "back.out(2)"}])
+
+    for k, a in enumerate(d.get("arrows", [])):
+        key = a.get("id", f"a{k}")
+        el = f"{p}-{key}"
+        (x1, y1, x2, y2), head, (ux, uy) = arrow_geo(rect[a["from"]], rect[a["to"]])
+        length = r3(math.hypot(x2 - x1, y2 - y1))
+        if "at" in a:
+            t = cue(a["at"], t_shot, t_start, sid)
+        else:
+            ends = [v for v in (t_of[a["from"]], t_of[a["to"]]) if v is not None]
+            t = max(ends) if ends else None
+        off = length if t is not None else 0
+        pts = " ".join(f"{r3(px)},{r3(py)}" for px, py in head)
+        svg.append(f'<line id="{el}-l" x1="{r3(x1)}" y1="{r3(y1)}" x2="{r3(x2)}" y2="{r3(y2)}" '
+                   f'stroke="{EDGE}" stroke-width="5" stroke-dasharray="{length}" stroke-dashoffset="{off}" />')
+        svg.append(f'<polygon id="{el}-h" points="{pts}" fill="{EDGE}" opacity="{0 if t is not None else 1}" />')
+        paint[key] = [(f"#{el}-l", "stroke", EDGE), (f"#{el}-h", "fill", EDGE)]
+        if t is not None:
+            tweens.append([t, f"#{el}-l", {"attr": {"stroke-dashoffset": length}},
+                           {"attr": {"stroke-dashoffset": 0}, "duration": 0.25, "ease": "none"}])
+            sets.append([r3(t + 0.25), f"#{el}-h", {"opacity": 1}])
+            if "at" in a:
+                live.append((t, key))
+        if a.get("label"):
+            mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+            tw, th = cells(a["label"]) * 0.5 * ARROW_FS, ARROW_FS * 1.25
+            if abs(ux) < 0.35:      # mostly vertical: beside the line
+                lx, ly, cls = (mx - 20 - tw if a.get("side") == "left" else mx + 20), my - th / 2, "al"
+            elif abs(uy) < 0.35:    # mostly horizontal: above the line
+                lx, ly, cls = mx - tw / 2, my - th - 8, "al"
+            else:                   # diagonal: on the line, over a plate-coloured chip
+                lx, ly, cls = mx - tw / 2 - 12, my - th / 2, "al chip"
+            hid = " opacity: 0;" if t is not None else ""
+            labels.append(f'<div id="{el}-t" class="{cls}" style="left: {r3(lx)}px; top: {r3(ly)}px;{hid}">'
+                          f'{html.escape(a["label"])}</div>')
+            paint[key].append((f"#{el}-t", "color", EDGE_TEXT))
+            if t is not None:
+                tweens.append([r3(t + 0.1), f"#{el}-t", {"opacity": 0}, {"opacity": 1, "duration": 0.2}])
+
+    arrow_keys = {a.get("id", f"a{k}") for k, a in enumerate(d.get("arrows", []))}
+    for key, at in d.get("focus", []):
+        t = cue(at, t_shot, t_start, sid)
+        live.append((t, key))
+        if key not in arrow_keys:     # arrows only change colour
+            tweens.append([t, f"#{p}-{key}", None,
+                           {"scale": 1.06, "duration": 0.18, "yoyo": True, "repeat": 1, "ease": "power2.out"}])
+
+    def colour(sel, prop, c):
+        return [sel, {"border": {"borderColor": c}, "stroke": {"attr": {"stroke": c}},
+                      "fill": {"attr": {"fill": c}}, "color": {"color": c}}[prop]]
+
+    # mint = what the narration is on right now; it moves on, never stays on two things
+    prev = None
+    for t, key in sorted(live, key=lambda e: e[0]):
+        if prev and prev != key:
+            sets += [[t, *colour(sel, prop, c)] for sel, prop, c in paint[prev]]
+        sets += [[t, *colour(sel, prop, ACCENT)] for sel, prop, _ in paint[key]]
+        prev = key
+
+    if min_fs < DIA_FS_WARN:
+        print(f"  ! {sid}: diagram text down to {min_fs:.0f}px")
+
+    f = html.escape(shot["file"])
+    tab = f'<b>❯</b> {f}' if "." not in f else f'<b>❯</b> <i>cat</i> {f}'
+    top = DIA_TOP + (DIA_BOTTOM - DIA_TOP - nat_h * s) / 2
+    return sid, f"""<template>
+  <style>{GHEAD_FONTS}
+    #root {{ position: absolute; inset: 0; }}
+    #{p}-tab {{
+      position: absolute; left: 44px; top: {PROGRESS_H}px; height: {EDITOR_TOP - PROGRESS_H}px; white-space: pre;
+      font: 400 30px/{EDITOR_TOP - PROGRESS_H}px "D2Coding", monospace; color: #e6edf3;
+    }}
+    #{p}-tab b {{ color: {ACCENT}; font-weight: 400; }}
+    #{p}-tab i {{ color: #7d8590; font-style: normal; }}
+    #{p}-plate {{
+      position: absolute; left: {(W - BOX_W) // 2}px; top: {DIA_TOP}px; width: {BOX_W}px; height: {DIA_BOTTOM - DIA_TOP}px;
+      background: #172033;
+    }}
+    #{p}-dia {{
+      position: absolute; left: {r3((W - DIA_W * s) / 2)}px; top: {r3(top)}px; width: {DIA_W}px; height: {nat_h}px;
+      transform: scale({r3(s)}); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }}
+    #{p}-dia svg {{ position: absolute; left: 0; top: 0; overflow: visible; }}
+    #{p}-dia .fr {{ position: absolute; box-sizing: border-box; border: 4px dashed {EDGE}; border-radius: 18px; }}
+    #{p}-dia .fr.spec {{ border-color: {BORDER["spec"]}; }}
+    #{p}-dia .fr .lb {{ position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }}
+    #{p}-dia .fr.spec .lb {{ color: {BORDER["spec"]}; }}
+    #{p}-dia .nd {{
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: {BOX_BG}; border: 4px solid {EDGE}; border-radius: 14px;
+    }}
+    #{p}-dia .nd.spec {{ border-style: dashed; border-color: {BORDER["spec"]}; }}
+    #{p}-dia .nd.impl {{ border-color: {BORDER["impl"]}; }}
+    #{p}-dia .nd.text, #{p}-dia .nd.db {{ background: none; border: none; }}
+    #{p}-dia .nd .sub {{ margin-top: 6px; color: {EDGE_TEXT}; }}
+    #{p}-dia .nd.db .t {{ position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }}
+    #{p}-dia .cyl {{ fill: {BOX_BG}; stroke: {EDGE}; stroke-width: 4; }}
+    #{p}-dia .bd {{
+      position: absolute; height: {round(BADGE_FS * 1.5)}px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 {BADGE_FS}px/{round(BADGE_FS * 1.5)}px "Pretendard", sans-serif; color: #172033; background: {EDGE};
+    }}
+    #{p}-dia .bd.spec {{ background: {BORDER["spec"]}; }}
+    #{p}-dia .bd.impl {{ background: {BORDER["impl"]}; }}
+    #{p}-dia .al {{ position: absolute; white-space: pre; font-size: {ARROW_FS}px; line-height: 1.25; color: {EDGE_TEXT}; }}
+    #{p}-dia .al.chip {{ padding: 0 12px; background: #172033; }}
+{chr(10).join(f"    #{p}-dia .{k} {{ color: {v}; }}" for k, v in COLORS.items())}
+  </style>
+  <div id="root" data-composition-id="{sid}" data-width="{W}" data-height="{H}">
+    <div id="{p}-tab" data-layout-ignore>{tab}</div>
+    <div id="{p}-plate"></div>
+    <div id="{p}-dia">
+      {(chr(10) + "      ").join(frames)}
+      <svg width="{DIA_W}" height="{nat_h}" viewBox="0 0 {DIA_W} {nat_h}">
+        {(chr(10) + "        ").join(svg)}
+      </svg>
+      {(chr(10) + "      ").join(nodes + labels + badges)}
+    </div>
+  </div>
+  <script>
+    (() => {{
+      const tl = gsap.timeline({{ paused: true }});
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = {json.dumps(tweens, ensure_ascii=False, separators=(",", ":"))};
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = {json.dumps(sets, ensure_ascii=False, separators=(",", ":"))};
+      for (const [t, sel, from, to] of TWEENS) {{
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }}
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({{}}, {{}}, {r3(dur - 0.001)});
+      window.__timelines["{sid}"] = tl;
+    }})();
+  </script>
+</template>
+"""
+
+
 def split_caption(text):
     if len(text) <= CAP_MAX_CHARS:
         return [text]
@@ -358,7 +673,7 @@ def main():
     ends = starts[1:] + [total]
     hosts = []
     for n, (shot, t_shot, a, b) in enumerate(zip(content["shots"], timing["shots"], starts, ends), 1):
-        sid, doc = build_shot(n, shot, t_shot, a, b)
+        sid, doc = (build_diagram if "diagram" in shot else build_shot)(n, shot, t_shot, a, b)
         (comp / f"{sid}.html").write_text(doc)
         hosts.append(f'''      <div id="{sid}" data-composition-id="{sid}" data-composition-src="compositions/{sid}.html"
         data-start="{r3(a)}" data-duration="{r3(b - a)}" data-track-index="1" data-track-kind="graphics"

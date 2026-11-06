@@ -1,0 +1,21 @@
+{
+  "title": "Spring @Transactional은 어떻게 동작할까? 커밋 코드 없이 커밋되는 이유",
+  "description": "@Transactional을 붙인 메서드를 부르면 실제로 무슨 일이 일어나고, 왜 이렇게 만들었나요?\n\n- 주입된 빈은 내 객체가 아니라 프록시다. Spring Boot 기본 설정에선 내 클래스를 상속한 CGLIB 클래스(MemberService$$SpringCGLIB$$0)이고, 진짜 객체는 그 뒤에 있다\n- 프록시의 TransactionInterceptor가 트랜잭션 매니저(JpaTransactionManager)에게 시작을 맡긴다. Hibernate가 풀에서 연결을 빌려 setAutoCommit(false)를 부르고, MySQL엔 SET autocommit=0이 간다. 그래야 여러 SQL이 한 트랜잭션으로 묶인다\n- 연결과 EntityManager는 지금 스레드에 묶인다. 그래서 메서드 안의 save()는 새로 시작하지 않고 그 트랜잭션에 합류한다\n- 프록시 쪽 코드가 진짜 메서드 호출을 try/catch로 감싼다. 정상 반환이면 COMMIT, 예외면 ROLLBACK이고, ROLLBACK이면 이미 MySQL에 간 insert도 남지 않는다\n- 그래서 메서드마다 반복할 시작·커밋·롤백 코드를 직접 쓰지 않는다\n- 기본 규칙은 RuntimeException과 Error만 롤백한다. throws로 선언하는 checked 예외는 EJB 시절 관례대로 예상한 결과로 보고 커밋한다. rollbackFor나, Spring 6.2부터는 @EnableTransactionManagement(rollbackOn = RollbackOn.ALL_EXCEPTIONS)로 바꾼다\n- @Transactional 없는 메서드가 같은 클래스의 @Transactional 메서드를 this로 부르면 프록시를 안 거쳐 트랜잭션이 시작되지 않는다. 다른 클래스로 옮겨 주입받아 부른다\n\n#Spring #Transactional #SpringBoot #JPA #백엔드",
+  "tags": [
+    "Spring",
+    "Transactional",
+    "Spring Boot",
+    "트랜잭션",
+    "프록시",
+    "CGLIB",
+    "JPA",
+    "Hibernate",
+    "MySQL",
+    "백엔드"
+  ],
+  "videoId": "qyq0KCq9gPs",
+  "url": "https://youtube.com/shorts/qyq0KCq9gPs",
+  "privacy": "public",
+  "publishAt": null,
+  "uploadedAt": "2026-11-02T12:19:41+00:00"
+}

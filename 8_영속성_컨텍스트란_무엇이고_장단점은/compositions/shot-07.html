@@ -1,0 +1,94 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s07-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s07-tab b { color: #3ddc97; font-weight: 400; }
+    #s07-tab i { color: #7d8590; font-style: normal; }
+    #s07-plate {
+      position: absolute; left: 40px; top: 125px; width: 1000px; height: 860px;
+      background: #172033;
+    }
+    #s07-dia {
+      position: absolute; left: 124.615px; top: 150.0px; width: 880px; height: 858px;
+      transform: scale(0.944); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }
+    #s07-dia svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #s07-dia .fr { position: absolute; box-sizing: border-box; border: 4px dashed #8b98ad; border-radius: 18px; }
+    #s07-dia .fr.spec { border-color: #e6db74; }
+    #s07-dia .fr .lb { position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }
+    #s07-dia .fr.spec .lb { color: #e6db74; }
+    #s07-dia .nd {
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: #22304a; border: 4px solid #8b98ad; border-radius: 14px;
+    }
+    #s07-dia .nd.spec { border-style: dashed; border-color: #e6db74; }
+    #s07-dia .nd.impl { border-color: #ff6b8b; }
+    #s07-dia .nd.text, #s07-dia .nd.db { background: none; border: none; }
+    #s07-dia .nd .sub { margin-top: 6px; color: #aab4c3; }
+    #s07-dia .nd.db .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+    #s07-dia .cyl { fill: #22304a; stroke: #8b98ad; stroke-width: 4; }
+    #s07-dia .bd {
+      position: absolute; height: 45px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 30px/45px "Pretendard", sans-serif; color: #172033; background: #8b98ad;
+    }
+    #s07-dia .bd.spec { background: #e6db74; }
+    #s07-dia .bd.impl { background: #ff6b8b; }
+    #s07-dia .al { position: absolute; white-space: pre; font-size: 40px; line-height: 1.25; color: #aab4c3; }
+    #s07-dia .al.chip { padding: 0 12px; background: #172033; }
+    #s07-dia .k { color: #ff6b8b; }
+    #s07-dia .n { color: #b699ff; }
+    #s07-dia .s { color: #e6db74; }
+    #s07-dia .c { color: #8b98ad; }
+    #s07-dia .r { color: #ff4438; }
+    #s07-dia .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-07" data-width="1080" data-height="1920">
+    <div id="s07-tab" data-layout-ignore><b>❯</b> <i>cat</i> when.txt</div>
+    <div id="s07-plate"></div>
+    <div id="s07-dia">
+      
+      <svg width="880" height="858" viewBox="0 0 880 858">
+        <line id="s07-a0-l" x1="396.0" y1="164.0" x2="466.0" y2="164.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="70.0" stroke-dashoffset="0" />
+        <polygon id="s07-a0-h" points="484.0,164.0 464.0,177.0 464.0,151.0" fill="#8b98ad" opacity="1" />
+        <line id="s07-a1-l" x1="396.0" y1="484.0" x2="466.0" y2="484.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="70.0" stroke-dashoffset="70.0" />
+        <polygon id="s07-a1-h" points="484.0,484.0 464.0,497.0 464.0,471.0" fill="#8b98ad" opacity="0" />
+        <line id="s07-a2-l" x1="396.0" y1="788.0" x2="466.0" y2="788.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="70.0" stroke-dashoffset="70.0" />
+        <polygon id="s07-a2-h" points="484.0,788.0 464.0,801.0 464.0,775.0" fill="#8b98ad" opacity="0" />
+      </svg>
+      <div id="s07-hc" class="nd text" style="left: 0.0px; top: 0.0px; width: 420.0px; height: 64px;"><div class="t" style="font-size: 54px;">코드</div></div>
+      <div id="s07-hm" class="nd text" style="left: 460.0px; top: 0.0px; width: 420.0px; height: 64px;"><div class="t" style="font-size: 44.3px;">MySQL이 받는 것</div></div>
+      <div id="s07-f" class="nd box" style="left: 30.0px; top: 114.0px; width: 360px; height: 100px;"><div class="t" style="font-size: 49.5px;">findById(1)</div></div>
+      <div id="s07-fs" class="nd box" style="left: 490.0px; top: 114.0px; width: 360px; height: 100px;"><div class="t" style="font-size: 54px;">SELECT</div></div>
+      <div id="s07-s" class="nd box" style="left: 30.0px; top: 264.0px; width: 360px; height: 100px; opacity: 0;"><div class="t" style="font-size: 54px;">setName()</div></div>
+      <div id="s07-sn" class="nd text" style="left: 460.0px; top: 282.0px; width: 420.0px; height: 64px; opacity: 0;"><div class="t" style="font-size: 54px;">(아직 없음)</div></div>
+      <div id="s07-c" class="nd box" style="left: 30.0px; top: 414.0px; width: 360px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">커밋</div><div class="sub" style="font-size: 36px;">직전에 플러시</div></div>
+      <div id="s07-cu" class="nd box" style="left: 490.0px; top: 414.0px; width: 360px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">UPDATE</div><div class="sub" style="font-size: 36px;">그다음 COMMIT</div></div>
+      <div id="s07-ih" class="nd text" style="left: 0.0px; top: 604.0px; width: 420.0px; height: 64px; opacity: 0;"><div class="t" style="font-size: 44.3px;">IDENTITY 키라면</div></div>
+      <div id="s07-sv" class="nd box" style="left: 30.0px; top: 718.0px; width: 360px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">save()</div><div class="sub" style="font-size: 36px;">새 Member</div></div>
+      <div id="s07-si" class="nd box" style="left: 490.0px; top: 718.0px; width: 360px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">INSERT</div><div class="sub" style="font-size: 36px;">바로</div></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = [[6.04,"#s07-s",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[7.082,"#s07-sn",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[3.935,"#s07-c",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[4.237,"#s07-cu",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[9.916,"#s07-ih",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[12.947,"#s07-sv",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[13.614,"#s07-si",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[4.237,"#s07-a1-l",{"attr":{"stroke-dashoffset":70.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[13.614,"#s07-a2-l",{"attr":{"stroke-dashoffset":70.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}]];
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = [[4.487,"#s07-a1-h",{"opacity":1}],[13.864,"#s07-a2-h",{"opacity":1}],[3.935,"#s07-c",{"borderColor":"#3ddc97"}],[4.237,"#s07-c",{"borderColor":"#8b98ad"}],[4.237,"#s07-cu",{"borderColor":"#3ddc97"}],[4.237,"#s07-cu",{"borderColor":"#8b98ad"}],[4.237,"#s07-a1-l",{"attr":{"stroke":"#3ddc97"}}],[4.237,"#s07-a1-h",{"attr":{"fill":"#3ddc97"}}],[6.04,"#s07-a1-l",{"attr":{"stroke":"#8b98ad"}}],[6.04,"#s07-a1-h",{"attr":{"fill":"#8b98ad"}}],[6.04,"#s07-s",{"borderColor":"#3ddc97"}],[12.947,"#s07-s",{"borderColor":"#8b98ad"}],[12.947,"#s07-sv",{"borderColor":"#3ddc97"}],[13.614,"#s07-sv",{"borderColor":"#8b98ad"}],[13.614,"#s07-si",{"borderColor":"#3ddc97"}],[13.614,"#s07-si",{"borderColor":"#8b98ad"}],[13.614,"#s07-a2-l",{"attr":{"stroke":"#3ddc97"}}],[13.614,"#s07-a2-h",{"attr":{"fill":"#3ddc97"}}]];
+      for (const [t, sel, from, to] of TWEENS) {
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({}, {}, 15.018);
+      window.__timelines["shot-07"] = tl;
+    })();
+  </script>
+</template>

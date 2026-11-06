@@ -1,0 +1,415 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "Spring Data JPA": "스프링 데이터 제이피에이",
+    "Spring": "스프링",
+    "SimpleJpaRepository": "심플제이피에이리포지토리",
+    "EntityManager": "엔티티매니저",
+    "repository": "리포지토리",
+    "HikariCP": "히카리씨피",
+    "Hibernate": "하이버네이트",
+    "MySQL": "마이에스큐엘",
+    "JPA": "제이피에이",
+    "JDBC": "제이디비씨",
+    "SQL": "에스큐엘",
+    "save()": "세이브",
+    "persist": "퍼시스트",
+    "Member": "멤버",
+    "insert": "인서트",
+    "autocommit": "오토커밋",
+    "Java": "자바",
+    "kim": "킴",
+    "DB": "디비",
+    "merge": "머지",
+    "id": "아이디"
+  },
+  "thumbnail": {
+    "file": "MemberService.java",
+    "sub": "# Spring Data JPA → MySQL",
+    "title": [
+      "<r>save()</r> 한 줄,",
+      "MySQL까지",
+      "뭘 거쳐 갈까?"
+    ]
+  },
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강. 박스의 실행 출력 줄은 블로그 실험(Spring Boot 4.1.2, Hibernate 7.4.13, Connector/J 9.7.0, MySQL 8.4.13) 기록을 자르거나 줄바꿈만 한 것이다.",
+  "shots": [
+    {
+      "file": "flow.txt",
+      "sentences": [
+        "Spring Data JPA의 save() 한 줄이, 여섯 칸을 지나 MySQL에 닿는다는 그림이에요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<r>Spring Data JPA</r>",
+            " → JPA API",
+            " → Hibernate     <c>JPA 구현체</c>",
+            " → JDBC API",
+            " → MySQL Driver  <c>JDBC 구현체</c>",
+            " → <r>MySQL DB</r>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "MemberService.java",
+      "sentences": [
+        "정말 이대로 갈까요? 실제 기록으로 따라가 볼게요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "memberRepository.<k>save</k>(member);",
+            "<c>// 정말 그림대로 갈까?</c>",
+            "<c>// 칸마다 무슨 일을 할까?</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "MemberRepository.java",
+      "sentences": [
+        "우리는 repository 인터페이스만 만들고, 구현은 Spring이 SimpleJpaRepository로 붙여 줘요.",
+        "저장, 조회 같은 반복 코드를 매번 쓰지 않게 하려는 거예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>interface</k> MemberRepository <k>extends</k>",
+            "    JpaRepository<Member, Long> {}",
+            "<c>// 구현 클래스는 안 써요</c>",
+            "<c># 실행 중 찍은 실제 클래스</c>",
+            "프록시 뒤의 실제 객체 클래스",
+            ": …<k>SimpleJpaRepository</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "SimpleJpaRepository.java",
+      "sentences": [
+        "그 save()를 열어 보면, 새 엔티티면 persist, 아니면 merge를 불러요.",
+        "지금은 새 Member라서 persist예요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>if</k> (entityInformation.isNew(entity)) {",
+            "  entityManager.<k>persist</k>(entity);",
+            "  <k>return</k> entity;",
+            "} <k>else</k> {",
+            "  <k>return</k> entityManager.<k>merge</k>(entity);",
+            "}"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "EntityManager.java",
+      "sentences": [
+        "그런데 JPA 인터페이스인 EntityManager의 persist엔, 실행할 코드가 없어요.",
+        "인터페이스는 이런 메서드가 있다는 약속만 하고, 일은 구현한 쪽이 하거든요.",
+        "호출하면, 그 자리에 실제로 들어 있는 객체의 코드가 바로 실행돼요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<k>public interface</k> EntityManager {",
+            "    <k>void</k> persist(Object entity);",
+            "}"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 실행 중 확인</c>",
+            "EntityManager.persist(Object)",
+            "  는 abstract? <n>true</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "stack.txt",
+      "sentences": [
+        "실제 호출 스택에도, JPA 인터페이스의 코드는 한 줄도 없어요.",
+        "사이의 Spring 프록시는, 지금 트랜잭션의 Hibernate 객체에 넘겨 줄 뿐이고요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># save() 스택</c>",
+            "SPRING-DATA SimpleJpaRepository.save",
+            "<c>  … 5프레임</c>",
+            "HIBERNATE   <k>SessionImpl.persist</k>",
+            "jakarta.persistence.* 프레임 수: <n>0</n>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 5프레임 = Spring 프록시</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "hibernate.log",
+      "sentences": [
+        "JPA를 구현한 Hibernate는, Member 객체를 보고 insert SQL을 만들어요.",
+        "값 자리는 물음표로 비워 두고, 값 kim은 따로 넘기죠.",
+        "여기선 id를 MySQL이 만들어서, persist 안에서 바로 insert가 나가요.",
+        "보통 persist는 예약만 하고, insert는 커밋할 때 나가요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># Hibernate 로그</c>",
+            "insert into member (name) values (<k>?</k>)"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "binding parameter (1:VARCHAR) <- [<s>kim</s>]"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<c># Member의 id</c>",
+            "<k>@GeneratedValue</k>(",
+            "  strategy = GenerationType.<k>IDENTITY</k>)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "types.txt",
+      "sentences": [
+        "JDBC는 Java에 들어 있는 DB 접속 약속이고, 구현은 DB마다 드라이버가 해요.",
+        "그래서 Hibernate는 MySQL 드라이버 클래스를 모른 채, JDBC만 불러요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 실행 중 확인한 타입</c>",
+            "java.sql.Connection",
+            "  interface=<n>true</n>   jrt:/java.sql"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "com.mysql.cj.jdbc.ConnectionImpl",
+            "  interface=<n>false</n>  mysql-connector-j"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "build.gradle.kts",
+      "sentences": [
+        "약속으로 나눠 둔 덕분에, 의존성에서도 MySQL 전용은 드라이버 한 줄뿐이에요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// 의존성 두 줄</c>",
+            "<s>spring-boot-starter-data-jpa</s>",
+            "<c>  Spring Data JPA, JPA,</c>",
+            "<c>  Hibernate, HikariCP</c>",
+            "<s>mysql-connector-j</s>",
+            "<c>  MySQL 전용은 이 줄뿐</c>"
+          ]
+        }
+      ],
+      "hold": 0.7
+    },
+    {
+      "file": "application.properties",
+      "sentences": [
+        "다른 DB로 바꿀 땐, 드라이버 줄과 접속 주소를 바꿔요.",
+        "그 DB에 맞는 SQL은, Hibernate가 알아서 골라 만들어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 접속 주소</c>",
+            "spring.datasource.url=",
+            "  jdbc:<k>mysql</k>://blog-mysql:3306/flow"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># Hibernate 시작 로그</c>",
+            "Database dialect: <k>MySQLDialect</k>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "stack.txt",
+      "sentences": [
+        "그림엔 없지만, Hibernate와 드라이버 사이엔 HikariCP라는 커넥션 풀이 있어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 위가 먼저</c>",
+            "HIBERNATE    …ResultSetReturnImpl",
+            "HIKARICP     <k>HikariProxyPreparedStatement</k>",
+            "HIKARICP     <k>ProxyPreparedStatement</k>",
+            "MYSQL-DRIVER ClientPreparedStatement"
+          ]
+        }
+      ],
+      "hold": 0.8
+    },
+    {
+      "file": "pool.txt",
+      "sentences": [
+        "새 연결엔 네트워크와 드라이버 작업이 드니까, 미리 열어 둔 연결을 빌려주고 돌려받아요.",
+        "다 쓰고 닫아도 진짜로 닫지 않고 풀로 돌려놓으려고, 드라이버 연결을 한 겹 감싼 거죠.",
+        "인터페이스 덕분에, Hibernate는 이게 끼어든 줄도 몰라요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 커넥션 풀:</c> 미리 연 연결을 빌려줌"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "close() → <k>닫지 않고 풀로 반납</k>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<c>Hibernate가 받은 Connection</c>",
+            ": …hikari.pool.<k>HikariProxyConnection</k>",
+            "<c>  그 안의 드라이버 Connection</c>",
+            "  : com.mysql.cj.jdbc.ConnectionImpl"
+          ]
+        }
+      ],
+      "hold": 0.3
+    },
+    {
+      "file": "general.log",
+      "sentences": [
+        "Java 쪽 마지막 칸, MySQL 드라이버는 물음표를 kim으로 채워서 보내요.",
+        "MySQL 로그에도, 그 문자열이 그대로 찍혀요.",
+        "MySQL 드라이버는 기본 설정에서, 값을 서버에 따로 보내지 않고 직접 채워 넣거든요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 드라이버가 보낸 패킷</c>",
+            "COM_QUERY insert into member",
+            "  (name) values (<s>'kim'</s>)"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># MySQL general log</c>",
+            "Query  insert into member",
+            "  (name) values (<s>'kim'</s>)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "StringValueEncoder.java",
+      "sentences": [
+        "채울 땐 따옴표 같은 특수문자를 이스케이프해서, SQL 인젝션을 막아요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// Connector/J, 문자열 값</c>",
+            "<k>if</k> (isEscapeNeededForString(x, …))",
+            "  … StringUtils.<k>escapeString</k>(…)",
+            "<c>// 아니면 작은따옴표로 감싸기</c>",
+            "getBytesWrapped(x, <s>'\\''</s>, <s>'\\''</s>, …)"
+          ]
+        }
+      ],
+      "hold": 0.8
+    },
+    {
+      "file": "general.log",
+      "sentences": [
+        "save()만 따로 부르면, MySQL이 받는 SQL은 하나가 아니라 넷이에요.",
+        "JDBC 연결은 기본으로, 문장 하나마다 바로 커밋되는 autocommit 모드예요.",
+        "save()에 붙은 트랜잭션이 이 모드를 끄고, insert한 뒤 커밋하고 다시 켜요.",
+        "서비스에 트랜잭션이 있으면 거기 합류해서, 끄고 커밋하고 켜는 줄은 한 번만 나가요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># save()만 따로 호출, general log</c>",
+            "Query  SET autocommit=<n>0</n>",
+            "Query  insert into member …",
+            "Query  <k>COMMIT</k>",
+            "Query  SET autocommit=<n>1</n>"
+          ]
+        },
+        {
+          "at": 3,
+          "lines": [
+            "<c># 서비스 트랜잭션 안: SET·COMMIT은 1번만</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, JPA와 JDBC는 약속이고, 실제 일은 Hibernate와 드라이버가 해요.",
+        "덕분에 위층은 아래를 몰라도 되고, MySQL 드라이버 기본값에선 완성된 SQL 문자열이 가요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "[정리]",
+            "JPA, JDBC   = 약속 (인터페이스)",
+            "Hibernate, 드라이버 = 실제 일"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "사이에 Spring 프록시, HikariCP",
+            "<k>→ MySQL엔 완성된 SQL 문자열</k>",
+            "<c>  (Connector/J 기본값)</c>"
+          ]
+        }
+      ]
+    }
+  ]
+}

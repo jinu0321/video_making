@@ -1,0 +1,90 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s08-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s08-tab b { color: #3ddc97; font-weight: 400; }
+    #s08-tab i { color: #7d8590; font-style: normal; }
+    #s08-plate {
+      position: absolute; left: 40px; top: 125px; width: 1000px; height: 860px;
+      background: #172033;
+    }
+    #s08-dia {
+      position: absolute; left: 100.0px; top: 185.0px; width: 880px; height: 740px;
+      transform: scale(1.0); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }
+    #s08-dia svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #s08-dia .fr { position: absolute; box-sizing: border-box; border: 4px dashed #8b98ad; border-radius: 18px; }
+    #s08-dia .fr.spec { border-color: #e6db74; }
+    #s08-dia .fr .lb { position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }
+    #s08-dia .fr.spec .lb { color: #e6db74; }
+    #s08-dia .nd {
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: #22304a; border: 4px solid #8b98ad; border-radius: 14px;
+    }
+    #s08-dia .nd.spec { border-style: dashed; border-color: #e6db74; }
+    #s08-dia .nd.impl { border-color: #ff6b8b; }
+    #s08-dia .nd.text, #s08-dia .nd.db { background: none; border: none; }
+    #s08-dia .nd .sub { margin-top: 6px; color: #aab4c3; }
+    #s08-dia .nd.db .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+    #s08-dia .cyl { fill: #22304a; stroke: #8b98ad; stroke-width: 4; }
+    #s08-dia .bd {
+      position: absolute; height: 45px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 30px/45px "Pretendard", sans-serif; color: #172033; background: #8b98ad;
+    }
+    #s08-dia .bd.spec { background: #e6db74; }
+    #s08-dia .bd.impl { background: #ff6b8b; }
+    #s08-dia .al { position: absolute; white-space: pre; font-size: 40px; line-height: 1.25; color: #aab4c3; }
+    #s08-dia .al.chip { padding: 0 12px; background: #172033; }
+    #s08-dia .k { color: #ff6b8b; }
+    #s08-dia .n { color: #b699ff; }
+    #s08-dia .s { color: #e6db74; }
+    #s08-dia .c { color: #8b98ad; }
+    #s08-dia .r { color: #ff4438; }
+    #s08-dia .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-08" data-width="1080" data-height="1920">
+    <div id="s08-tab" data-layout-ignore><b>❯</b> <i>cat</i> javac.txt</div>
+    <div id="s08-plate"></div>
+    <div id="s08-dia">
+      
+      <svg width="880" height="740" viewBox="0 0 880 740">
+        <line id="s08-a0-l" x1="440.0" y1="146.0" x2="440.0" y2="176.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="30.0" stroke-dashoffset="30.0" />
+        <polygon id="s08-a0-h" points="440.0,194.0 427.0,174.0 453.0,174.0" fill="#8b98ad" opacity="0" />
+        <line id="s08-a1-l" x1="440.0" y1="346.0" x2="440.0" y2="376.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="30.0" stroke-dashoffset="30.0" />
+        <polygon id="s08-a1-h" points="440.0,394.0 427.0,374.0 453.0,374.0" fill="#8b98ad" opacity="0" />
+        <line id="s08-a2-l" x1="440.0" y1="546.0" x2="440.0" y2="576.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="30.0" stroke-dashoffset="30.0" />
+        <polygon id="s08-a2-h" points="440.0,594.0 427.0,574.0 453.0,574.0" fill="#8b98ad" opacity="0" />
+      </svg>
+      <div id="s08-src" class="nd box" style="left: 117.0px; top: 0.0px; width: 646.0px; height: 140px;"><div class="t" style="font-size: 54px;">Member.java</div><div class="sub" style="font-size: 36px;">메서드 0개</div></div>
+      <div id="s08-ast" class="nd box" style="left: 117.0px; top: 200.0px; width: 646.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">AST</div><div class="sub" style="font-size: 36px;">추상 구문 트리: class, 필드 3개</div></div>
+      <div id="s08-ast2" class="nd impl" style="left: 117.0px; top: 400.0px; width: 646.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">AST + getName() …</div><div class="sub" style="font-size: 36px;">메서드 6개가 붙은 트리</div></div>
+      <div id="s08-cls" class="nd box" style="left: 117.0px; top: 600.0px; width: 646.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">Member.class</div><div class="sub" style="font-size: 36px;">getName() 들어 있음</div></div>
+      <div id="s08-a0-t" class="al" style="left: 460.0px; top: 136.0px; opacity: 0;">1. javac</div>
+      <div id="s08-a1-t" class="al" style="left: 460.0px; top: 336.0px; opacity: 0;">2. Lombok</div>
+      <div id="s08-a2-t" class="al" style="left: 460.0px; top: 536.0px; opacity: 0;">3. javac</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = [[4.571,"#s08-ast",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[15.26,"#s08-ast2",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[18.886,"#s08-cls",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[1.373,"#s08-a0-l",{"attr":{"stroke-dashoffset":30.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[1.473,"#s08-a0-t",{"opacity":0},{"opacity":1,"duration":0.2}],[13.02,"#s08-a1-l",{"attr":{"stroke-dashoffset":30.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[13.12,"#s08-a1-t",{"opacity":0},{"opacity":1,"duration":0.2}],[18.073,"#s08-a2-l",{"attr":{"stroke-dashoffset":30.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[18.173,"#s08-a2-t",{"opacity":0},{"opacity":1,"duration":0.2}]];
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = [[1.623,"#s08-a0-h",{"opacity":1}],[13.27,"#s08-a1-h",{"opacity":1}],[18.323,"#s08-a2-h",{"opacity":1}],[1.373,"#s08-a0-l",{"attr":{"stroke":"#3ddc97"}}],[1.373,"#s08-a0-h",{"attr":{"fill":"#3ddc97"}}],[1.373,"#s08-a0-t",{"color":"#3ddc97"}],[4.571,"#s08-a0-l",{"attr":{"stroke":"#8b98ad"}}],[4.571,"#s08-a0-h",{"attr":{"fill":"#8b98ad"}}],[4.571,"#s08-a0-t",{"color":"#aab4c3"}],[4.571,"#s08-ast",{"borderColor":"#3ddc97"}],[13.02,"#s08-ast",{"borderColor":"#8b98ad"}],[13.02,"#s08-a1-l",{"attr":{"stroke":"#3ddc97"}}],[13.02,"#s08-a1-h",{"attr":{"fill":"#3ddc97"}}],[13.02,"#s08-a1-t",{"color":"#3ddc97"}],[15.26,"#s08-a1-l",{"attr":{"stroke":"#8b98ad"}}],[15.26,"#s08-a1-h",{"attr":{"fill":"#8b98ad"}}],[15.26,"#s08-a1-t",{"color":"#aab4c3"}],[15.26,"#s08-ast2",{"borderColor":"#3ddc97"}],[18.073,"#s08-ast2",{"borderColor":"#ff6b8b"}],[18.073,"#s08-a2-l",{"attr":{"stroke":"#3ddc97"}}],[18.073,"#s08-a2-h",{"attr":{"fill":"#3ddc97"}}],[18.073,"#s08-a2-t",{"color":"#3ddc97"}],[18.886,"#s08-a2-l",{"attr":{"stroke":"#8b98ad"}}],[18.886,"#s08-a2-h",{"attr":{"fill":"#8b98ad"}}],[18.886,"#s08-a2-t",{"color":"#aab4c3"}],[18.886,"#s08-cls",{"borderColor":"#3ddc97"}]];
+      for (const [t, sel, from, to] of TWEENS) {
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({}, {}, 20.905);
+      window.__timelines["shot-08"] = tl;
+    })();
+  </script>
+</template>

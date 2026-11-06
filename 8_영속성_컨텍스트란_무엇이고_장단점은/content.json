@@ -1,0 +1,712 @@
+{
+  "voice": "ko-KR-InJoonNeural",
+  "rate": "+20%",
+  "pronounce": {
+    "MemberService": "멤버서비스",
+    "rename": "리네임",
+    "setName": "셋네임",
+    "save()": "세이브",
+    "MySQL": "마이에스큐엘",
+    "UPDATE": "업데이트",
+    "EntityManager": "엔티티매니저",
+    "findById": "파인드바이아이디",
+    "Member": "멤버",
+    "managed": "매니지드",
+    "Spring Boot": "스프링 부트",
+    "Spring": "스프링",
+    "open-in-view": "오픈인뷰",
+    "SELECT": "셀렉트",
+    "DB": "디비",
+    "id": "아이디",
+    "IDENTITY": "아이덴티티",
+    "INSERT": "인서트",
+    "JPQL": "제이피큐엘",
+    "SQL": "에스큐엘",
+    "kim": "킴",
+    "readOnly": "리드온리",
+    "flush()": "플러시",
+    "clear()": "클리어"
+  },
+  "thumbnail": {
+    "file": "MemberService.java",
+    "sub": "# save() 없이 UPDATE가 나갔다",
+    "title": [
+      "<r>영속성</r>",
+      "<r>컨텍스트</r>란?",
+      "장단점은?"
+    ]
+  },
+  "markup": "<k>키워드</k> 분홍 · <n>숫자/값</n> 보라 · <s>문자열</s> 노랑 · <c>주석</c> 회색 · <r>주제</r> 빨강. 실행 출력 줄은 실험 로그(Spring Boot 4.1.2, Spring Framework 7.0.10, Spring Data JPA 4.1.2, Hibernate ORM 7.4.13.Final, HikariCP 7.0.2, Connector/J 9.7.0, MySQL 8.4.13)에서 시각·[앱]·[드라이버→MySQL] 머리표·열을 자르거나 줄바꿈만 한 것이다. '→'는 드라이버가 MySQL로 보낸 SQL 줄 앞에 붙인 표시, '…'는 자른 자리, # 주석 줄은 내가 단 설명이다. '1 | lee' 같은 줄은 실행 뒤 mysql CLI 표를 한 줄로 옮긴 것이다. MemberService 코드는 실험 코드에서 출력용 Probe.* 줄을 빼고 줄만 나눈 것이다. greeting 장면은 줄 끝 주석을 윗줄로 옮겼다. 근거와 원본 줄은 REVIEW.md의 '쓴 사실과 출처'.",
+  "shots": [
+    {
+      "file": "MemberService.java",
+      "sentences": [
+        "MemberService에, rename을 하나 만들었어요.",
+        "회원을 찾아서 setName만 하고, save()는 부르지 않았어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "pretyped": true,
+          "lines": [
+            "<k>@Transactional</k>",
+            "<k>public void</k> rename(Long id,",
+            "                   String name) {",
+            "  Member member = memberRepository",
+            "      .findById(id).orElseThrow();",
+            "  member.setName(name);",
+            "}  <c>// save() 호출 없음</c>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "general.log",
+      "sentences": [
+        "그런데 MySQL 로그엔 UPDATE가 찍혔고, 이름도 정말 바뀌었어요.",
+        "save() 없이 저장된 건, 영속성 컨텍스트 때문이에요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># rename(1, \"lee\"), MySQL general log</c>",
+            "Query  select … where m1_0.id=<n>1</n>",
+            "Query  <k>update</k> member set name=<s>'lee'</s>",
+            "         where id=<n>1</n>",
+            "Query  COMMIT",
+            "<c># 실행 뒤 member 테이블</c>",
+            "<n>1</n> | lee"
+          ]
+        }
+      ],
+      "hold": 0.4
+    },
+    {
+      "file": "context.txt",
+      "sentences": [
+        "영속성 컨텍스트는, EntityManager마다 하나씩 있는 엔티티 묶음이에요.",
+        "DB에서 읽어 오거나, save()로 새로 저장한 엔티티가 여기 들어가요.",
+        "id가 같은 Member는, 객체도 딱 하나만 두고요.",
+        "이렇게 묶음 안에 든 상태를, 관리 중, managed라고 해요."
+      ],
+      "diagram": {
+        "gap": 70,
+        "rows": [
+          [
+            {
+              "id": "em",
+              "text": "EntityManager",
+              "rows": [
+                [
+                  {
+                    "id": "pc",
+                    "text": "영속성 컨텍스트",
+                    "at": "영속성",
+                    "rows": [
+                      [
+                        {
+                          "id": "e1",
+                          "text": "Member",
+                          "sub": "id 1, kim",
+                          "at": "1:읽어"
+                        },
+                        {
+                          "id": "e2",
+                          "text": "Member",
+                          "sub": "id 2, choi",
+                          "at": "1:저장한"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "find",
+              "text": "findById(1)",
+              "sub": "DB에서 읽음",
+              "at": "1:DB에서"
+            },
+            {
+              "id": "save",
+              "text": "save()",
+              "sub": "새 Member 저장",
+              "at": "1:save()로"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "find",
+            "to": "e1"
+          },
+          {
+            "from": "save",
+            "to": "e2"
+          }
+        ],
+        "focus": [
+          [
+            "e1",
+            "2:id가"
+          ],
+          [
+            "pc",
+            "3:managed라고"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "lifetime.txt",
+      "sentences": [
+        "웹 요청 밖에선, 트랜잭션이 시작될 때 EntityManager가 열리고, 끝나면 닫혀요.",
+        "그래서 컨텍스트도, 트랜잭션 하나 동안만 살아요.",
+        "웹 요청에선 Spring Boot 기본값인 open-in-view가, 요청이 끝날 때까지 열어 두고요."
+      ],
+      "diagram": {
+        "gap": 60,
+        "rows": [
+          [
+            {
+              "id": "h1",
+              "text": "웹 요청 밖",
+              "kind": "text"
+            },
+            {
+              "id": "h2",
+              "text": "웹 요청 (기본값)",
+              "kind": "text",
+              "at": "2:웹"
+            }
+          ],
+          [
+            {
+              "id": "b1",
+              "text": "트랜잭션 시작",
+              "sub": "EntityManager 열기",
+              "at": "0:시작될"
+            },
+            {
+              "id": "b2",
+              "text": "요청 시작",
+              "sub": "open-in-view: 열기",
+              "at": "2:open-in-view가"
+            }
+          ],
+          [
+            {
+              "id": "c1",
+              "text": "트랜잭션 끝",
+              "sub": "EntityManager 닫기",
+              "at": "0:닫혀요"
+            },
+            {
+              "id": "c2",
+              "text": "트랜잭션 1, 2 …",
+              "sub": "같은 EntityManager",
+              "at": "2:끝날"
+            }
+          ],
+          [
+            null,
+            {
+              "id": "d2",
+              "text": "요청 끝",
+              "sub": "EntityManager 닫기",
+              "at": "2:끝날"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "b1",
+            "to": "c1"
+          },
+          {
+            "from": "b2",
+            "to": "c2"
+          },
+          {
+            "from": "c2",
+            "to": "d2"
+          }
+        ],
+        "focus": [
+          [
+            "b1",
+            "1:트랜잭션"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "find-twice.log",
+      "sentences": [
+        "그래서 같은 트랜잭션에서 같은 id를 다시 찾으면, SELECT 없이 같은 객체를 줘요.",
+        "findById가 컨텍스트부터 보고, 없을 때만 DB에 가거든요. 1차 캐시라고도 해요.",
+        "다만 다른 요청과는 나눠 쓰지 않아서, 다음 요청은 다시 SELECT해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 같은 트랜잭션에서 두 번</c>",
+            "(1) findById(1) 호출",
+            "  → select … where m1_0.id=<n>1</n>",
+            "(2) findById(1) 다시 호출",
+            "(1)과 같은 객체인가(a == b)? <n>true</n>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "<c># 다른 웹 요청: 새 컨텍스트</c>",
+            "  → select … where m1_0.id=<n>1</n>"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "snapshot.txt",
+      "sentences": [
+        "기본 설정에선 엔티티를 읽을 때, 그 순간 값의 사본, 스냅샷도 같이 들고 있어요.",
+        "커밋 직전엔 지금 값과 스냅샷을 비교해서, 달라진 엔티티만 UPDATE를 만들어요.",
+        "이게 변경 감지예요. 그래서 setName만 했는데도 저장된 거죠."
+      ],
+      "diagram": {
+        "gap": 90,
+        "rows": [
+          [
+            {
+              "id": "pc",
+              "text": "영속성 컨텍스트",
+              "rows": [
+                [
+                  {
+                    "id": "cur",
+                    "text": "Member",
+                    "sub": "지금 name=lee",
+                    "at": "0:엔티티를"
+                  },
+                  {
+                    "id": "snap",
+                    "text": "스냅샷",
+                    "sub": "읽을 때 name=kim",
+                    "at": "0:스냅샷도"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "cmp",
+              "text": "비교",
+              "sub": "커밋 직전",
+              "at": "1:비교해서"
+            }
+          ],
+          [
+            {
+              "id": "db",
+              "text": "MySQL",
+              "kind": "db",
+              "at": "1:UPDATE를"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "cur",
+            "to": "cmp"
+          },
+          {
+            "from": "snap",
+            "to": "cmp"
+          },
+          {
+            "from": "cmp",
+            "to": "db",
+            "label": "UPDATE",
+            "at": "1:UPDATE를"
+          }
+        ],
+        "focus": [
+          [
+            "cur",
+            "2:setName만"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "when.txt",
+      "sentences": [
+        "이렇게 모아 둔 변경을 SQL로 보내는 걸 플러시라고 하고, 기본은 커밋 직전이에요.",
+        "그래서 setName 순간엔, 아직 아무것도 안 나가요.",
+        "단, IDENTITY 키는 DB가 id를 정해서, INSERT가 save() 순간 바로 나가요."
+      ],
+      "diagram": {
+        "gap": 50,
+        "rows": [
+          [
+            {
+              "id": "hc",
+              "text": "코드",
+              "kind": "text"
+            },
+            {
+              "id": "hm",
+              "text": "MySQL이 받는 것",
+              "kind": "text"
+            }
+          ],
+          [
+            {
+              "id": "f",
+              "text": "findById(1)",
+              "w": 360
+            },
+            {
+              "id": "fs",
+              "text": "SELECT",
+              "w": 360
+            }
+          ],
+          [
+            {
+              "id": "s",
+              "text": "setName()",
+              "w": 360,
+              "at": "1:setName"
+            },
+            {
+              "id": "sn",
+              "text": "(아직 없음)",
+              "kind": "text",
+              "at": "1:아직"
+            }
+          ],
+          [
+            {
+              "id": "c",
+              "text": "커밋",
+              "sub": "직전에 플러시",
+              "w": 360,
+              "at": "0:커밋"
+            },
+            {
+              "id": "cu",
+              "text": "UPDATE",
+              "sub": "그다음 COMMIT",
+              "w": 360,
+              "at": "0:직전이에요"
+            }
+          ],
+          [
+            {
+              "id": "ih",
+              "text": "IDENTITY 키라면",
+              "kind": "text",
+              "at": "2:IDENTITY"
+            },
+            null
+          ],
+          [
+            {
+              "id": "sv",
+              "text": "save()",
+              "sub": "새 Member",
+              "w": 360,
+              "at": "2:save()"
+            },
+            {
+              "id": "si",
+              "text": "INSERT",
+              "sub": "바로",
+              "w": 360,
+              "at": "2:바로"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "f",
+            "to": "fs"
+          },
+          {
+            "from": "c",
+            "to": "cu",
+            "at": "0:직전이에요"
+          },
+          {
+            "from": "sv",
+            "to": "si",
+            "at": "2:바로"
+          }
+        ]
+      }
+    },
+    {
+      "file": "flush.log",
+      "sentences": [
+        "바뀐 테이블을 읽는 JPQL 직전에도 플러시해요. 아직 안 보낸 변경이 쿼리 결과에 보여야 하니까요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># setName(\"lee\") 다음, 같은 트랜잭션</c>",
+            "teamRepository.count()",
+            "  → select count(*) from team t1_0",
+            "findByName(\"lee\")",
+            "  → <k>update</k> member set name=<s>'lee'</s> …",
+            "  → select … where m1_0.name=<s>'lee'</s>"
+          ]
+        }
+      ],
+      "hold": 0.8
+    },
+    {
+      "file": "MemberService.java",
+      "sentences": [
+        "하지만 같은 이유로, 저장할 생각이 없던 변경도 저장돼요.",
+        "화면에 님을 붙여 보여 주려고 바꿨을 뿐인데, DB 이름까지 kim님이 됐어요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c>// 화면에 '님'을 붙여 보여 주려고</c>",
+            "member.setName(",
+            "    member.getName() + <s>\"님\"</s>);",
+            "<k>return</k> member.getName();"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "<c># 커밋 때 general log, 실행 뒤 테이블</c>",
+            "Query  <k>update</k> … name=<s>'kim님'</s> …",
+            "<n>1</n> | kim님"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "fix.txt",
+      "sentences": [
+        "그러니 보여 줄 값은 엔티티를 바꾸지 말고 따로 만들어요.",
+        "readOnly만으론 못 막아요. 같은 컨텍스트를 쓰는 쓰기 트랜잭션이, 바꾼 값을 보낼 수 있거든요."
+      ],
+      "diagram": {
+        "gap": 64,
+        "rows": [
+          [
+            {
+              "id": "view",
+              "text": "보여 줄 값",
+              "sub": "엔티티 말고 따로",
+              "at": "0:보여"
+            }
+          ],
+          [
+            {
+              "id": "none",
+              "text": "UPDATE 없음",
+              "at": "0:만들어요"
+            }
+          ],
+          [
+            {
+              "id": "ro",
+              "text": "readOnly = true",
+              "sub": "그 트랜잭션만 플러시 끔",
+              "at": "1:readOnly만으론"
+            }
+          ],
+          [
+            {
+              "id": "upd",
+              "text": "UPDATE 나갈 수 있음",
+              "sub": "같은 컨텍스트의 쓰기 트랜잭션",
+              "at": "1:쓰기"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "view",
+            "to": "none",
+            "at": "0:만들어요"
+          },
+          {
+            "from": "ro",
+            "to": "upd",
+            "at": "1:보낼"
+          }
+        ]
+      }
+    },
+    {
+      "file": "batch.log",
+      "sentences": [
+        "또 컨텍스트는 읽어 온 엔티티를, 닫힐 때까지 계속 붙잡아 둬요.",
+        "그리고 플러시할 때마다, 관리 중인 엔티티를 전부 스냅샷과 비교하죠.",
+        "1000개씩 열 번 읽어 바꾸면, 마지막엔 만 개를 비교해요."
+      ],
+      "blocks": [
+        {
+          "at": 0,
+          "lines": [
+            "<c># 1000개씩 10번 읽어 바꾸기, 트랜잭션 1개</c>"
+          ]
+        },
+        {
+          "at": 1,
+          "lines": [
+            "Flushed: … to <n>1000</n> objects",
+            "Flushed: … to <n>2000</n> objects",
+            "<c>…</c>"
+          ]
+        },
+        {
+          "at": 2,
+          "lines": [
+            "관리 중 엔티티 수=<n>10000</n>",
+            "Flushed: … to <n>10000</n> objects"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "batch.txt",
+      "sentences": [
+        "그래서 배치에선 일정 개수마다 flush()로 보내고, clear()로 비워요.",
+        "clear()만 하면 안 보낸 변경이 버려지니, flush()가 먼저예요."
+      ],
+      "diagram": {
+        "gap": 60,
+        "rows": [
+          [
+            {
+              "id": "read",
+              "text": "1000개 읽고 바꾸기"
+            }
+          ],
+          [
+            {
+              "id": "fl",
+              "text": "flush()",
+              "sub": "UPDATE 보내기",
+              "at": "0:flush()로"
+            }
+          ],
+          [
+            {
+              "id": "cl",
+              "text": "clear()",
+              "sub": "비우기: 관리 중 0개",
+              "at": "0:clear()로"
+            }
+          ],
+          [
+            {
+              "id": "next",
+              "text": "다음 1000개",
+              "kind": "text",
+              "at": "0:비워요"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "read",
+            "to": "fl"
+          },
+          {
+            "from": "fl",
+            "to": "cl"
+          },
+          {
+            "from": "cl",
+            "to": "next"
+          }
+        ],
+        "focus": [
+          [
+            "fl",
+            "1:flush()가"
+          ]
+        ]
+      }
+    },
+    {
+      "file": "summary.md",
+      "sentences": [
+        "정리하면, 영속성 컨텍스트는 엔티티와 스냅샷을 들고 있다가, 플러시 때 바뀐 것만 SQL로 보내요.",
+        "덕분에 관리 중인 엔티티는 커밋 때 save() 없이 수정되지만, 원치 않는 UPDATE와 쌓이는 엔티티는 직접 챙겨야 해요."
+      ],
+      "diagram": {
+        "gap": 56,
+        "rows": [
+          [
+            {
+              "id": "pc",
+              "text": "영속성 컨텍스트",
+              "rows": [
+                [
+                  {
+                    "id": "ent",
+                    "text": "엔티티",
+                    "sub": "id마다 하나"
+                  },
+                  {
+                    "id": "snap",
+                    "text": "스냅샷",
+                    "sub": "DB와 맞춘 값"
+                  }
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "id": "fl",
+              "text": "플러시",
+              "sub": "비교해서 바뀐 것만 SQL",
+              "at": "0:플러시"
+            }
+          ],
+          [
+            {
+              "id": "good",
+              "text": "덕분에",
+              "sub": "같은 객체 · save() 없이 수정",
+              "at": "1:덕분에"
+            }
+          ],
+          [
+            {
+              "id": "care",
+              "text": "챙길 것",
+              "sub": "원치 않는 UPDATE · 쌓이는 엔티티",
+              "at": "1:원치"
+            }
+          ]
+        ],
+        "arrows": [
+          {
+            "from": "pc",
+            "to": "fl"
+          }
+        ]
+      }
+    }
+  ]
+}

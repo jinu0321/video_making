@@ -1,0 +1,87 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    #s03-tab {
+      position: absolute; left: 44px; top: 12px; height: 93px; white-space: pre;
+      font: 400 30px/93px "D2Coding", monospace; color: #e6edf3;
+    }
+    #s03-tab b { color: #3ddc97; font-weight: 400; }
+    #s03-tab i { color: #7d8590; font-style: normal; }
+    #s03-plate {
+      position: absolute; left: 40px; top: 125px; width: 1000px; height: 860px;
+      background: #172033;
+    }
+    #s03-dia {
+      position: absolute; left: 100.0px; top: 223.0px; width: 880px; height: 664px;
+      transform: scale(1.0); transform-origin: 0 0; font-family: "D2Coding", monospace; color: #ffffff;
+    }
+    #s03-dia svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #s03-dia .fr { position: absolute; box-sizing: border-box; border: 4px dashed #8b98ad; border-radius: 18px; }
+    #s03-dia .fr.spec { border-color: #e6db74; }
+    #s03-dia .fr .lb { position: absolute; left: 28px; top: 14px; white-space: pre; color: #c9d1d9; }
+    #s03-dia .fr.spec .lb { color: #e6db74; }
+    #s03-dia .nd {
+      position: absolute; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; white-space: pre; line-height: 1.15;
+      background: #22304a; border: 4px solid #8b98ad; border-radius: 14px;
+    }
+    #s03-dia .nd.spec { border-style: dashed; border-color: #e6db74; }
+    #s03-dia .nd.impl { border-color: #ff6b8b; }
+    #s03-dia .nd.text, #s03-dia .nd.db { background: none; border: none; }
+    #s03-dia .nd .sub { margin-top: 6px; color: #aab4c3; }
+    #s03-dia .nd.db .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+    #s03-dia .cyl { fill: #22304a; stroke: #8b98ad; stroke-width: 4; }
+    #s03-dia .bd {
+      position: absolute; height: 45px; padding: 0 16px; border-radius: 999px; white-space: pre;
+      font: 700 30px/45px "Pretendard", sans-serif; color: #172033; background: #8b98ad;
+    }
+    #s03-dia .bd.spec { background: #e6db74; }
+    #s03-dia .bd.impl { background: #ff6b8b; }
+    #s03-dia .al { position: absolute; white-space: pre; font-size: 40px; line-height: 1.25; color: #aab4c3; }
+    #s03-dia .al.chip { padding: 0 12px; background: #172033; }
+    #s03-dia .k { color: #ff6b8b; }
+    #s03-dia .n { color: #b699ff; }
+    #s03-dia .s { color: #e6db74; }
+    #s03-dia .c { color: #8b98ad; }
+    #s03-dia .r { color: #ff4438; }
+    #s03-dia .w { color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="shot-03" data-width="1080" data-height="1920">
+    <div id="s03-tab" data-layout-ignore><b>❯</b> <i>cat</i> build.txt</div>
+    <div id="s03-plate"></div>
+    <div id="s03-dia">
+      <div id="s03-proj" class="fr box" style="left: 0.0px; top: 0.0px; width: 880.0px; height: 256px; opacity: 0;"><div class="lb" style="font-size: 48px;">한 프로젝트</div></div>
+      <svg width="880" height="664" viewBox="0 0 880 664">
+        <line id="s03-a0-l" x1="304.807" y1="234.528" x2="363.382" y2="301.889" stroke="#8b98ad" stroke-width="5" stroke-dasharray="89.268" stroke-dashoffset="89.268" />
+        <polygon id="s03-a0-h" points="375.193,315.472 352.26,308.911 371.88,291.85" fill="#8b98ad" opacity="0" />
+        <line id="s03-a1-l" x1="575.193" y1="234.528" x2="516.618" y2="301.889" stroke="#8b98ad" stroke-width="5" stroke-dasharray="89.268" stroke-dashoffset="89.268" />
+        <polygon id="s03-a1-h" points="504.807,315.472 508.12,291.85 527.74,308.911" fill="#8b98ad" opacity="0" />
+        <line id="s03-a2-l" x1="440.0" y1="466.0" x2="440.0" y2="500.0" stroke="#8b98ad" stroke-width="5" stroke-dasharray="34.0" stroke-dashoffset="34.0" />
+        <polygon id="s03-a2-h" points="440.0,518.0 427.0,498.0 453.0,498.0" fill="#8b98ad" opacity="0" />
+      </svg>
+      <div id="s03-java" class="nd box" style="left: 60.0px; top: 90.0px; width: 360.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">App.java</div><div class="sub" style="font-size: 36px;">Java</div></div>
+      <div id="s03-kt" class="nd box" style="left: 460.0px; top: 90.0px; width: 360.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">App.kt</div><div class="sub" style="font-size: 36px;">Kotlin</div></div>
+      <div id="s03-cls" class="nd box" style="left: 132.0px; top: 320.0px; width: 616.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">.class</div><div class="sub" style="font-size: 36px;">바이트코드</div></div>
+      <div id="s03-jvm" class="nd box" style="left: 132.0px; top: 524.0px; width: 616.0px; height: 140px; opacity: 0;"><div class="t" style="font-size: 54px;">JVM</div><div class="sub" style="font-size: 36px;">읽고 실행</div></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // [time, selector, from (null = tween from where it is), to]: boxes appear, arrows draw, badges pop
+      const TWEENS = [[5.894,"#s03-proj",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[0.06,"#s03-java",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[0.841,"#s03-kt",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[2.872,"#s03-cls",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[1.966,"#s03-jvm",{"opacity":0,"scale":0.94},{"opacity":1,"scale":1,"duration":0.3,"ease":"power2.out"}],[2.872,"#s03-a0-l",{"attr":{"stroke-dashoffset":89.268}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[2.872,"#s03-a1-l",{"attr":{"stroke-dashoffset":89.268}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}],[2.872,"#s03-a2-l",{"attr":{"stroke-dashoffset":34.0}},{"attr":{"stroke-dashoffset":0},"duration":0.25,"ease":"none"}]];
+      // [time, selector, vars]: arrow heads, and the mint highlight moving with the narration
+      const SETS = [[3.122,"#s03-a0-h",{"opacity":1}],[3.122,"#s03-a1-h",{"opacity":1}],[3.122,"#s03-a2-h",{"opacity":1}],[0.06,"#s03-java",{"borderColor":"#3ddc97"}],[0.841,"#s03-java",{"borderColor":"#8b98ad"}],[0.841,"#s03-kt",{"borderColor":"#3ddc97"}],[1.966,"#s03-kt",{"borderColor":"#8b98ad"}],[1.966,"#s03-jvm",{"borderColor":"#3ddc97"}],[2.872,"#s03-jvm",{"borderColor":"#8b98ad"}],[2.872,"#s03-cls",{"borderColor":"#3ddc97"}],[5.894,"#s03-cls",{"borderColor":"#8b98ad"}],[5.894,"#s03-proj",{"borderColor":"#3ddc97"}]];
+      for (const [t, sel, from, to] of TWEENS) {
+        if (from) tl.fromTo(sel, from, to, t);
+        else tl.to(sel, to, t);
+      }
+      for (const [t, sel, vars] of SETS) tl.set(sel, vars, t);
+      tl.set({}, {}, 8.027);
+      window.__timelines["shot-03"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,209 @@
+<template>
+  <style>
+      @font-face { font-family: "D2Coding"; src: url("assets/fonts/D2Coding-Regular.ttf") format("truetype"); font-weight: 400; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; }
+    .cg { position: absolute; left: 0; top: 1000px; width: 1080px; height: 520px; }
+    /* the panel stays on for the whole video; only the caption groups come and go */
+    .panel {
+      position: absolute; left: 0; top: 1000px; width: 1080px; height: 520px;
+      background: #080a10; border-top: 2px solid #21262d;
+    }
+    .cg .txt {
+      position: absolute; left: 110px; right: 110px; top: 0; bottom: 0;
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap; align-content: center;
+      text-align: center; word-break: keep-all; overflow: visible;
+      font: 700 48px/1.7 "Pretendard", sans-serif; letter-spacing: -0.01em; color: #ffffff;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.85);
+    }
+    .cg .w { margin: 0 0.18em; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div class="panel"></div>
+    <div id="cg-00" class="cg clip" data-start="0.0" data-duration="4.505" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-00-0">MySQL,</span> <span class="w" id="cw-00-1">Kafka,</span> <span class="w" id="cw-00-2">Redis</span> <span class="w" id="cw-00-3">같은</span> <span class="w" id="cw-00-4">프로그램은</span> <span class="w" id="cw-00-5">설치</span> <span class="w" id="cw-00-6">대신,</span></div>
+    </div>
+    <div id="cg-01" class="cg clip" data-start="4.505" data-duration="1.825" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-01-0">이런</span> <span class="w" id="cw-01-1">한</span> <span class="w" id="cw-01-2">줄로</span> <span class="w" id="cw-01-3">띄우곤</span> <span class="w" id="cw-01-4">해요.</span></div>
+    </div>
+    <div id="cg-02" class="cg clip" data-start="6.61" data-duration="1.875" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-02-0">설치도</span> <span class="w" id="cw-02-1">안</span> <span class="w" id="cw-02-2">했는데</span> <span class="w" id="cw-02-3">띄운다는</span> <span class="w" id="cw-02-4">건,</span></div>
+    </div>
+    <div id="cg-03" class="cg clip" data-start="8.485" data-duration="3.148" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-03-0">내</span> <span class="w" id="cw-03-1">컴퓨터에서</span> <span class="w" id="cw-03-2">실제로</span> <span class="w" id="cw-03-3">뭘</span> <span class="w" id="cw-03-4">실행한다는</span> <span class="w" id="cw-03-5">뜻일까요?</span></div>
+    </div>
+    <div id="cg-04" class="cg clip" data-start="12.013" data-duration="1.604" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-04-0">프로그램을</span> <span class="w" id="cw-04-1">실행한다는</span> <span class="w" id="cw-04-2">건,</span></div>
+    </div>
+    <div id="cg-05" class="cg clip" data-start="13.617" data-duration="3.263" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-05-0">디스크의</span> <span class="w" id="cw-05-1">실행</span> <span class="w" id="cw-05-2">파일을</span> <span class="w" id="cw-05-3">읽어</span> <span class="w" id="cw-05-4">프로세스를</span> <span class="w" id="cw-05-5">만드는</span> <span class="w" id="cw-05-6">거예요.</span></div>
+    </div>
+    <div id="cg-06" class="cg clip" data-start="17.16" data-duration="2.533" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-06-0">그런데</span> <span class="w" id="cw-06-1">실행</span> <span class="w" id="cw-06-2">파일</span> <span class="w" id="cw-06-3">혼자선</span> <span class="w" id="cw-06-4">못</span> <span class="w" id="cw-06-5">돌아요.</span></div>
+    </div>
+    <div id="cg-07" class="cg clip" data-start="20.241" data-duration="2.562" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-07-0">nginx는</span> <span class="w" id="cw-07-1">libssl</span> <span class="w" id="cw-07-2">같은</span> <span class="w" id="cw-07-3">라이브러리가,</span></div>
+    </div>
+    <div id="cg-08" class="cg clip" data-start="22.803" data-duration="1.888" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-08-0">Kafka는</span> <span class="w" id="cw-08-1">Java가</span> <span class="w" id="cw-08-2">있어야</span> <span class="w" id="cw-08-3">하죠.</span></div>
+    </div>
+    <div id="cg-09" class="cg clip" data-start="24.971" data-duration="3.835" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-09-0">설치란,</span> <span class="w" id="cw-09-1">이런</span> <span class="w" id="cw-09-2">파일들을</span> <span class="w" id="cw-09-3">내</span> <span class="w" id="cw-09-4">컴퓨터에</span> <span class="w" id="cw-09-5">깔아</span> <span class="w" id="cw-09-6">두는</span> <span class="w" id="cw-09-7">일이에요.</span></div>
+    </div>
+    <div id="cg-10" class="cg clip" data-start="29.186" data-duration="3.063" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-10-0">Docker</span> <span class="w" id="cw-10-1">이미지는,</span> <span class="w" id="cw-10-2">프로그램과</span> <span class="w" id="cw-10-3">그게</span> <span class="w" id="cw-10-4">기대는</span> <span class="w" id="cw-10-5">파일을,</span></div>
+    </div>
+    <div id="cg-11" class="cg clip" data-start="32.249" data-duration="2.991" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-11-0">리눅스</span> <span class="w" id="cw-11-1">기본</span> <span class="w" id="cw-11-2">파일까지</span> <span class="w" id="cw-11-3">통째로</span> <span class="w" id="cw-11-4">묶은</span> <span class="w" id="cw-11-5">거예요.</span></div>
+    </div>
+    <div id="cg-12" class="cg clip" data-start="35.62" data-duration="4.377" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-12-0">그래서</span> <span class="w" id="cw-12-1">컨테이너</span> <span class="w" id="cw-12-2">안을</span> <span class="w" id="cw-12-3">보면,</span> <span class="w" id="cw-12-4">이미지마다</span> <span class="w" id="cw-12-5">다른</span> <span class="w" id="cw-12-6">리눅스가</span> <span class="w" id="cw-12-7">들어</span> <span class="w" id="cw-12-8">있어요.</span></div>
+    </div>
+    <div id="cg-13" class="cg clip" data-start="40.277" data-duration="1.98" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-13-0">필요한</span> <span class="w" id="cw-13-1">파일이</span> <span class="w" id="cw-13-2">이미지에</span> <span class="w" id="cw-13-3">다</span> <span class="w" id="cw-13-4">있으니,</span></div>
+    </div>
+    <div id="cg-14" class="cg clip" data-start="42.257" data-duration="2.366" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-14-0">내</span> <span class="w" id="cw-14-1">컴퓨터엔</span> <span class="w" id="cw-14-2">따로</span> <span class="w" id="cw-14-3">깔</span> <span class="w" id="cw-14-4">게</span> <span class="w" id="cw-14-5">없는</span> <span class="w" id="cw-14-6">거죠.</span></div>
+    </div>
+    <div id="cg-15" class="cg clip" data-start="45.303" data-duration="3.709" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-15-0">docker</span> <span class="w" id="cw-15-1">run은,</span> <span class="w" id="cw-15-2">이</span> <span class="w" id="cw-15-3">파일들</span> <span class="w" id="cw-15-4">위에</span> <span class="w" id="cw-15-5">컨테이너만의</span> <span class="w" id="cw-15-6">쓰기</span> <span class="w" id="cw-15-7">칸을</span> <span class="w" id="cw-15-8">얹고,</span></div>
+    </div>
+    <div id="cg-16" class="cg clip" data-start="49.012" data-duration="2.418" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-16-0">그</span> <span class="w" id="cw-16-1">위에서</span> <span class="w" id="cw-16-2">프로세스</span> <span class="w" id="cw-16-3">하나를</span> <span class="w" id="cw-16-4">실행해요.</span></div>
+    </div>
+    <div id="cg-17" class="cg clip" data-start="51.81" data-duration="2.117" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-17-0">이</span> <span class="w" id="cw-17-1">프로세스가</span> <span class="w" id="cw-17-2">컨테이너예요.</span></div>
+    </div>
+    <div id="cg-18" class="cg clip" data-start="54.479" data-duration="3.815" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-18-0">안에서</span> <span class="w" id="cw-18-1">보면</span> <span class="w" id="cw-18-2">1번</span> <span class="w" id="cw-18-3">프로세스가,</span> <span class="w" id="cw-18-4">각자</span> <span class="w" id="cw-18-5">그</span> <span class="w" id="cw-18-6">프로그램이죠.</span></div>
+    </div>
+    <div id="cg-19" class="cg clip" data-start="58.974" data-duration="3.793" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-19-0">그래서</span> <span class="w" id="cw-19-1">그</span> <span class="w" id="cw-19-2">프로세스가</span> <span class="w" id="cw-19-3">끝나면,</span> <span class="w" id="cw-19-4">컨테이너도</span> <span class="w" id="cw-19-5">끝나요.</span></div>
+    </div>
+    <div id="cg-20" class="cg clip" data-start="63.047" data-duration="1.917" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-20-0">Redis에</span> <span class="w" id="cw-20-1">종료</span> <span class="w" id="cw-20-2">명령을</span> <span class="w" id="cw-20-3">보내면,</span></div>
+    </div>
+    <div id="cg-21" class="cg clip" data-start="64.964" data-duration="2.908" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-21-0">컨테이너</span> <span class="w" id="cw-21-1">상태가</span> <span class="w" id="cw-21-2">곧바로</span> <span class="w" id="cw-21-3">Exited로</span> <span class="w" id="cw-21-4">바뀌어요.</span></div>
+    </div>
+    <div id="cg-22" class="cg clip" data-start="68.152" data-duration="4.398" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-22-0">컨테이너는</span> <span class="w" id="cw-22-1">따로</span> <span class="w" id="cw-22-2">켜</span> <span class="w" id="cw-22-3">둔</span> <span class="w" id="cw-22-4">컴퓨터가</span> <span class="w" id="cw-22-5">아니라,</span> <span class="w" id="cw-22-6">그</span> <span class="w" id="cw-22-7">프로세스</span> <span class="w" id="cw-22-8">자체니까요.</span></div>
+    </div>
+    <div id="cg-23" class="cg clip" data-start="72.93" data-duration="2.907" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-23-0">가상</span> <span class="w" id="cw-23-1">머신은</span> <span class="w" id="cw-23-2">OS를</span> <span class="w" id="cw-23-3">통째로</span> <span class="w" id="cw-23-4">하나</span> <span class="w" id="cw-23-5">더</span> <span class="w" id="cw-23-6">부팅하지만,</span></div>
+    </div>
+    <div id="cg-24" class="cg clip" data-start="75.837" data-duration="2.325" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-24-0">컨테이너는</span> <span class="w" id="cw-24-1">보통</span> <span class="w" id="cw-24-2">프로세스예요.</span></div>
+    </div>
+    <div id="cg-25" class="cg clip" data-start="78.442" data-duration="3.835" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-25-0">대신</span> <span class="w" id="cw-25-1">커널이</span> <span class="w" id="cw-25-2">이</span> <span class="w" id="cw-25-3">프로세스에게</span> <span class="w" id="cw-25-4">보이는</span> <span class="w" id="cw-25-5">범위를</span> <span class="w" id="cw-25-6">따로</span> <span class="w" id="cw-25-7">잘라</span> <span class="w" id="cw-25-8">줘요.</span></div>
+    </div>
+    <div id="cg-26" class="cg clip" data-start="82.858" data-duration="1.992" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-26-0">이걸</span> <span class="w" id="cw-26-1">namespace라고</span> <span class="w" id="cw-26-2">해요.</span></div>
+    </div>
+    <div id="cg-27" class="cg clip" data-start="85.23" data-duration="4.96" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-27-0">nginx는</span> <span class="w" id="cw-27-1">안에서</span> <span class="w" id="cw-27-2">보면</span> <span class="w" id="cw-27-3">1번인데,</span> <span class="w" id="cw-27-4">밖에서</span> <span class="w" id="cw-27-5">보면</span> <span class="w" id="cw-27-6">4829번이에요.</span></div>
+    </div>
+    <div id="cg-28" class="cg clip" data-start="90.47" data-duration="1.844" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-28-0">파일은</span> <span class="w" id="cw-28-1">이미지</span> <span class="w" id="cw-28-2">것만</span> <span class="w" id="cw-28-3">보이고,</span></div>
+    </div>
+    <div id="cg-29" class="cg clip" data-start="92.314" data-duration="3.117" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-29-0">네트워크도</span> <span class="w" id="cw-29-1">컨테이너마다</span> <span class="w" id="cw-29-2">IP를</span> <span class="w" id="cw-29-3">따로</span> <span class="w" id="cw-29-4">받아요.</span></div>
+    </div>
+    <div id="cg-30" class="cg clip" data-start="95.811" data-duration="3.856" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-30-0">보이는</span> <span class="w" id="cw-30-1">범위와</span> <span class="w" id="cw-30-2">별개로,</span> <span class="w" id="cw-30-3">쓸</span> <span class="w" id="cw-30-4">수</span> <span class="w" id="cw-30-5">있는</span> <span class="w" id="cw-30-6">양도</span> <span class="w" id="cw-30-7">나눌</span> <span class="w" id="cw-30-8">수</span> <span class="w" id="cw-30-9">있어요.</span></div>
+    </div>
+    <div id="cg-31" class="cg clip" data-start="100.259" data-duration="1.877" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-31-0">이건</span> <span class="w" id="cw-31-1">cgroup이</span> <span class="w" id="cw-31-2">맡아요.</span></div>
+    </div>
+    <div id="cg-32" class="cg clip" data-start="102.416" data-duration="2.323" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-32-0">메모리를</span> <span class="w" id="cw-32-1">512MB로</span> <span class="w" id="cw-32-2">정해</span> <span class="w" id="cw-32-3">띄우면,</span></div>
+    </div>
+    <div id="cg-33" class="cg clip" data-start="104.739" data-duration="3.721" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-33-0">커널이</span> <span class="w" id="cw-33-1">그</span> <span class="w" id="cw-33-2">프로세스의</span> <span class="w" id="cw-33-3">메모리</span> <span class="w" id="cw-33-4">상한을</span> <span class="w" id="cw-33-5">512MB로</span> <span class="w" id="cw-33-6">걸어</span> <span class="w" id="cw-33-7">둬요.</span></div>
+    </div>
+    <div id="cg-34" class="cg clip" data-start="108.839" data-duration="5.219" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-34-0">그리고</span> <span class="w" id="cw-34-1">커널은</span> <span class="w" id="cw-34-2">하나예요.</span> <span class="w" id="cw-34-3">네</span> <span class="w" id="cw-34-4">컨테이너</span> <span class="w" id="cw-34-5">모두</span> <span class="w" id="cw-34-6">같은</span> <span class="w" id="cw-34-7">커널</span> <span class="w" id="cw-34-8">위에서</span> <span class="w" id="cw-34-9">돌아요.</span></div>
+    </div>
+    <div id="cg-35" class="cg clip" data-start="114.338" data-duration="1.302" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-35-0">맥과</span> <span class="w" id="cw-35-1">윈도우에선,</span></div>
+    </div>
+    <div id="cg-36" class="cg clip" data-start="115.64" data-duration="2.69" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-36-0">Docker</span> <span class="w" id="cw-36-1">Desktop이</span> <span class="w" id="cw-36-2">띄운</span> <span class="w" id="cw-36-3">리눅스</span> <span class="w" id="cw-36-4">VM의</span> <span class="w" id="cw-36-5">커널이죠.</span></div>
+    </div>
+    <div id="cg-37" class="cg clip" data-start="118.71" data-duration="1.385" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-37-0">OS</span> <span class="w" id="cw-37-1">부팅이</span> <span class="w" id="cw-37-2">없으니,</span></div>
+    </div>
+    <div id="cg-38" class="cg clip" data-start="120.095" data-duration="3.346" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-38-0">컨테이너를</span> <span class="w" id="cw-38-1">만들고</span> <span class="w" id="cw-38-2">지우는</span> <span class="w" id="cw-38-3">데</span> <span class="w" id="cw-38-4">0.2초도</span> <span class="w" id="cw-38-5">안</span> <span class="w" id="cw-38-6">걸렸어요.</span></div>
+    </div>
+    <div id="cg-39" class="cg clip" data-start="124.121" data-duration="1.511" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-39-0">네트워크가</span> <span class="w" id="cw-39-1">따로라서,</span></div>
+    </div>
+    <div id="cg-40" class="cg clip" data-start="125.632" data-duration="3.439" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-40-0">-p</span> <span class="w" id="cw-40-1">없이</span> <span class="w" id="cw-40-2">띄운</span> <span class="w" id="cw-40-3">Redis는</span> <span class="w" id="cw-40-4">내</span> <span class="w" id="cw-40-5">컴퓨터에서</span> <span class="w" id="cw-40-6">접속이</span> <span class="w" id="cw-40-7">안</span> <span class="w" id="cw-40-8">돼요.</span></div>
+    </div>
+    <div id="cg-41" class="cg clip" data-start="129.351" data-duration="1.042" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-41-0">-p로</span> <span class="w" id="cw-41-1">이으면,</span></div>
+    </div>
+    <div id="cg-42" class="cg clip" data-start="130.393" data-duration="4.45" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-42-0">내</span> <span class="w" id="cw-42-1">컴퓨터</span> <span class="w" id="cw-42-2">8080번으로</span> <span class="w" id="cw-42-3">온</span> <span class="w" id="cw-42-4">연결이</span> <span class="w" id="cw-42-5">nginx의</span> <span class="w" id="cw-42-6">80번으로</span> <span class="w" id="cw-42-7">넘어가요.</span></div>
+    </div>
+    <div id="cg-43" class="cg clip" data-start="135.723" data-duration="1.835" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-43-0">파일도</span> <span class="w" id="cw-43-1">마찬가지예요.</span></div>
+    </div>
+    <div id="cg-44" class="cg clip" data-start="138.117" data-duration="3.991" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-44-0">안에서</span> <span class="w" id="cw-44-1">쓴</span> <span class="w" id="cw-44-2">파일은</span> <span class="w" id="cw-44-3">기본적으로</span> <span class="w" id="cw-44-4">그</span> <span class="w" id="cw-44-5">컨테이너의</span> <span class="w" id="cw-44-6">쓰기</span> <span class="w" id="cw-44-7">칸에</span> <span class="w" id="cw-44-8">들어가요.</span></div>
+    </div>
+    <div id="cg-45" class="cg clip" data-start="142.388" data-duration="2.856" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-45-0">그래서</span> <span class="w" id="cw-45-1">컨테이너를</span> <span class="w" id="cw-45-2">지우면</span> <span class="w" id="cw-45-3">같이</span> <span class="w" id="cw-45-4">사라져요.</span></div>
+    </div>
+    <div id="cg-46" class="cg clip" data-start="145.792" data-duration="3.211" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-46-0">남겨야</span> <span class="w" id="cw-46-1">할</span> <span class="w" id="cw-46-2">데이터는</span> <span class="w" id="cw-46-3">볼륨으로</span> <span class="w" id="cw-46-4">컨테이너</span> <span class="w" id="cw-46-5">밖에</span> <span class="w" id="cw-46-6">둬요.</span></div>
+    </div>
+    <div id="cg-47" class="cg clip" data-start="149.383" data-duration="2.396" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-47-0">정리하면,</span> <span class="w" id="cw-47-1">Docker로</span> <span class="w" id="cw-47-2">띄운다는</span> <span class="w" id="cw-47-3">건,</span></div>
+    </div>
+    <div id="cg-48" class="cg clip" data-start="151.779" data-duration="3.637" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-48-0">이미지의</span> <span class="w" id="cw-48-1">파일로</span> <span class="w" id="cw-48-2">프로세스</span> <span class="w" id="cw-48-3">하나를</span> <span class="w" id="cw-48-4">칸막이</span> <span class="w" id="cw-48-5">안에서</span> <span class="w" id="cw-48-6">실행하는</span> <span class="w" id="cw-48-7">거예요.</span></div>
+    </div>
+    <div id="cg-49" class="cg clip" data-start="155.696" data-duration="2.052" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-49-0">보이는</span> <span class="w" id="cw-49-1">범위는</span> <span class="w" id="cw-49-2">namespace가,</span></div>
+    </div>
+    <div id="cg-50" class="cg clip" data-start="157.748" data-duration="3.534" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-50-0">쓸</span> <span class="w" id="cw-50-1">양은</span> <span class="w" id="cw-50-2">cgroup이</span> <span class="w" id="cw-50-3">나누고,</span> <span class="w" id="cw-50-4">커널은</span> <span class="w" id="cw-50-5">다</span> <span class="w" id="cw-50-6">같이</span> <span class="w" id="cw-50-7">써요.</span></div>
+    </div>
+    <div id="cg-51" class="cg clip" data-start="161.562" data-duration="2.208" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-51-0">그래서</span> <span class="w" id="cw-51-1">설치</span> <span class="w" id="cw-51-2">없이</span> <span class="w" id="cw-51-3">바로</span> <span class="w" id="cw-51-4">뜨는</span> <span class="w" id="cw-51-5">대신,</span></div>
+    </div>
+    <div id="cg-52" class="cg clip" data-start="163.77" data-duration="4.567" data-track-index="0">
+      <div class="txt"><span class="w" id="cw-52-0">포트와</span> <span class="w" id="cw-52-1">남길</span> <span class="w" id="cw-52-2">파일은</span> <span class="w" id="cw-52-3">밖으로</span> <span class="w" id="cw-52-4">이어</span> <span class="w" id="cw-52-5">줘야</span> <span class="w" id="cw-52-6">해요.</span></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      const NOW = "#3ddc97", DONE = "#96989e";
+      // [word id, time it is spoken, time the next word starts (null = last of its group), heartbeat length]
+      const WORDS = [["cw-00-0",0.21,1.179,0.42],["cw-00-1",1.179,2.241,0.42],["cw-00-2",2.241,2.741,0.42],["cw-00-3",2.741,3.033,0.292],["cw-00-4",3.033,3.533,0.42],["cw-00-5",3.533,3.825,0.292],["cw-00-6",3.825,null,0.42],["cw-01-0",4.585,4.908,0.323],["cw-01-1",4.908,5.033,0.125],["cw-01-2",5.033,5.314,0.281],["cw-01-3",5.314,5.689,0.375],["cw-01-4",5.689,null,0.42],["cw-02-0",6.69,7.252,0.42],["cw-02-1",7.252,7.367,0.115],["cw-02-2",7.367,7.732,0.365],["cw-02-3",7.732,8.18,0.42],["cw-02-4",8.18,null,0.343],["cw-03-0",8.565,8.846,0.281],["cw-03-1",8.846,9.461,0.42],["cw-03-2",9.461,9.888,0.42],["cw-03-3",9.888,10.086,0.198],["cw-03-4",10.086,10.648,0.42],["cw-03-5",10.648,null,0.42],["cw-04-0",12.093,12.718,0.42],["cw-04-1",12.718,13.249,0.42],["cw-04-2",13.249,null,0.365],["cw-05-0",13.697,14.239,0.42],["cw-05-1",14.239,14.52,0.281],["cw-05-2",14.52,14.978,0.42],["cw-05-3",14.978,15.228,0.25],["cw-05-4",15.228,15.822,0.42],["cw-05-5",15.822,16.145,0.323],["cw-05-6",16.145,null,0.42],["cw-06-0",17.24,17.781,0.42],["cw-06-1",17.781,18.073,0.292],["cw-06-2",18.073,18.302,0.229],["cw-06-3",18.302,18.729,0.42],["cw-06-4",18.729,18.885,0.156],["cw-06-5",18.885,null,0.42],["cw-07-0",20.321,21.154,0.42],["cw-07-1",21.154,21.758,0.42],["cw-07-2",21.758,22.04,0.282],["cw-07-3",22.04,null,0.42],["cw-08-0",22.883,23.477,0.42],["cw-08-1",23.477,23.831,0.354],["cw-08-2",23.831,24.133,0.302],["cw-08-3",24.133,null,0.42],["cw-09-0",25.051,26.009,0.42],["cw-09-1",26.009,26.363,0.354],["cw-09-2",26.363,26.874,0.42],["cw-09-3",26.874,27.051,0.177],["cw-09-4",27.051,27.52,0.42],["cw-09-5",27.52,27.759,0.239],["cw-09-6",27.759,28.009,0.25],["cw-09-7",28.009,null,0.42],["cw-10-0",29.266,29.662,0.396],["cw-10-1",29.662,30.402,0.42],["cw-10-2",30.402,31.089,0.42],["cw-10-3",31.089,31.329,0.24],["cw-10-4",31.329,31.704,0.375],["cw-10-5",31.704,null,0.42],["cw-11-0",32.329,32.902,0.42],["cw-11-1",32.902,33.183,0.281],["cw-11-2",33.183,33.787,0.42],["cw-11-3",33.787,34.225,0.42],["cw-11-4",34.225,34.516,0.291],["cw-11-5",34.516,null,0.42],["cw-12-0",35.7,36.2,0.42],["cw-12-1",36.2,36.711,0.42],["cw-12-2",36.711,36.95,0.239],["cw-12-3",36.95,37.534,0.42],["cw-12-4",37.534,38.19,0.42],["cw-12-5",38.19,38.45,0.26],["cw-12-6",38.45,38.961,0.42],["cw-12-7",38.961,39.159,0.198],["cw-12-8",39.159,null,0.42],["cw-13-0",40.357,40.857,0.42],["cw-13-1",40.857,41.243,0.386],["cw-13-2",41.243,41.618,0.375],["cw-13-3",41.618,41.743,0.125],["cw-13-4",41.743,null,0.42],["cw-14-0",42.337,42.628,0.291],["cw-14-1",42.628,43.212,0.42],["cw-14-2",43.212,43.462,0.25],["cw-14-3",43.462,43.649,0.187],["cw-14-4",43.649,43.764,0.115],["cw-14-5",43.764,44.024,0.26],["cw-14-6",44.024,null,0.42],["cw-15-0",45.383,45.769,0.386],["cw-15-1",45.769,46.3,0.42],["cw-15-2",46.3,46.592,0.292],["cw-15-3",46.592,47.019,0.42],["cw-15-4",47.019,47.31,0.291],["cw-15-5",47.31,47.967,0.42],["cw-15-6",47.967,48.185,0.218],["cw-15-7",48.185,48.435,0.25],["cw-15-8",48.435,null,0.42],["cw-16-0",49.092,49.435,0.343],["cw-16-1",49.435,49.821,0.386],["cw-16-2",49.821,50.279,0.42],["cw-16-3",50.279,50.571,0.292],["cw-16-4",50.571,null,0.42],["cw-17-0",51.89,52.203,0.313],["cw-17-1",52.203,52.817,0.42],["cw-17-2",52.817,null,0.42],["cw-18-0",54.559,55.038,0.42],["cw-18-1",55.038,55.372,0.334],["cw-18-2",55.372,55.726,0.354],["cw-18-3",55.726,56.611,0.42],["cw-18-4",56.611,57.069,0.42],["cw-18-5",57.069,57.288,0.219],["cw-18-6",57.288,null,0.42],["cw-19-0",59.054,59.502,0.42],["cw-19-1",59.502,59.731,0.229],["cw-19-2",59.731,60.314,0.42],["cw-19-3",60.314,61.064,0.42],["cw-19-4",61.064,61.845,0.42],["cw-19-5",61.845,null,0.42],["cw-20-0",63.127,63.752,0.42],["cw-20-1",63.752,64.034,0.282],["cw-20-2",64.034,64.388,0.354],["cw-20-3",64.388,null,0.42],["cw-21-0",65.044,65.617,0.42],["cw-21-1",65.617,66.002,0.385],["cw-21-2",66.002,66.429,0.42],["cw-21-3",66.429,66.929,0.42],["cw-21-4",66.929,null,0.42],["cw-22-0",68.232,69.014,0.42],["cw-22-1",69.014,69.284,0.27],["cw-22-2",69.284,69.441,0.157],["cw-22-3",69.441,69.67,0.229],["cw-22-4",69.67,70.149,0.42],["cw-22-5",70.149,70.764,0.42],["cw-22-6",70.764,71.055,0.291],["cw-22-7",71.055,71.493,0.42],["cw-22-8",71.493,null,0.42],["cw-23-0",73.01,73.448,0.42],["cw-23-1",73.448,73.917,0.42],["cw-23-2",73.917,74.354,0.42],["cw-23-3",74.354,74.708,0.354],["cw-23-4",74.708,74.896,0.188],["cw-23-5",74.896,75.042,0.146],["cw-23-6",75.042,null,0.42],["cw-24-0",75.917,76.719,0.42],["cw-24-1",76.719,77.062,0.343],["cw-24-2",77.062,null,0.42],["cw-25-0",78.522,79.022,0.42],["cw-25-1",79.022,79.438,0.416],["cw-25-2",79.438,79.595,0.157],["cw-25-3",79.595,80.313,0.42],["cw-25-4",80.313,80.667,0.354],["cw-25-5",80.667,81.063,0.396],["cw-25-6",81.063,81.282,0.219],["cw-25-7",81.282,81.574,0.292],["cw-25-8",81.574,null,0.42],["cw-26-0",82.938,83.376,0.42],["cw-26-1",83.376,84.209,0.42],["cw-26-2",84.209,null,0.42],["cw-27-0",85.31,86.143,0.42],["cw-27-1",86.143,86.414,0.271],["cw-27-2",86.414,86.685,0.271],["cw-27-3",86.685,87.518,0.42],["cw-27-4",87.518,87.997,0.42],["cw-27-5",87.997,88.341,0.344],["cw-27-6",88.341,null,0.42],["cw-28-0",90.55,91.134,0.42],["cw-28-1",91.134,91.425,0.291],["cw-28-2",91.425,91.727,0.302],["cw-28-3",91.727,null,0.42],["cw-29-0",92.394,93.259,0.42],["cw-29-1",93.259,93.957,0.42],["cw-29-2",93.957,94.405,0.42],["cw-29-3",94.405,94.613,0.208],["cw-29-4",94.613,null,0.42],["cw-30-0",95.891,96.453,0.42],["cw-30-1",96.453,96.839,0.386],["cw-30-2",96.839,97.505,0.42],["cw-30-3",97.505,97.859,0.354],["cw-30-4",97.859,97.964,0.105],["cw-30-5",97.964,98.234,0.27],["cw-30-6",98.234,98.474,0.24],["cw-30-7",98.474,98.724,0.25],["cw-30-8",98.724,98.818,0.094],["cw-30-9",98.818,null,0.42],["cw-31-0",100.339,100.766,0.42],["cw-31-1",100.766,101.214,0.42],["cw-31-2",101.214,null,0.42],["cw-32-0",102.496,103.214,0.42],["cw-32-1",103.214,103.912,0.42],["cw-32-2",103.912,104.162,0.25],["cw-32-3",104.162,null,0.42],["cw-33-0",104.819,105.339,0.42],["cw-33-1",105.339,105.558,0.219],["cw-33-2",105.558,106.1,0.42],["cw-33-3",106.1,106.433,0.333],["cw-33-4",106.433,106.881,0.42],["cw-33-5",106.881,107.59,0.42],["cw-33-6",107.59,107.808,0.218],["cw-33-7",107.808,null,0.42],["cw-34-0",108.919,109.43,0.42],["cw-34-1",109.43,109.794,0.364],["cw-34-2",109.794,111.209,0.42],["cw-34-3",111.209,111.532,0.323],["cw-34-4",111.532,112.053,0.42],["cw-34-5",112.053,112.324,0.271],["cw-34-6",112.324,112.626,0.302],["cw-34-7",112.626,112.928,0.302],["cw-34-8",112.928,113.188,0.26],["cw-34-9",113.188,null,0.42],["cw-35-0",114.418,114.845,0.42],["cw-35-1",114.845,null,0.42],["cw-36-0",115.72,116.116,0.396],["cw-36-1",116.116,116.627,0.42],["cw-36-2",116.627,116.908,0.281],["cw-36-3",116.908,117.314,0.406],["cw-36-4",117.314,117.574,0.26],["cw-36-5",117.574,null,0.42],["cw-37-0",118.79,119.217,0.42],["cw-37-1",119.217,119.54,0.323],["cw-37-2",119.54,null,0.42],["cw-38-0",120.175,120.852,0.42],["cw-38-1",120.852,121.196,0.344],["cw-38-2",121.196,121.54,0.344],["cw-38-3",121.54,121.748,0.208],["cw-38-4",121.748,122.373,0.42],["cw-38-5",122.373,122.498,0.125],["cw-38-6",122.498,null,0.42],["cw-39-0",124.201,124.909,0.42],["cw-39-1",124.909,null,0.42],["cw-40-0",125.712,126.045,0.333],["cw-40-1",126.045,126.274,0.229],["cw-40-2",126.274,126.534,0.26],["cw-40-3",126.534,127.087,0.42],["cw-40-4",127.087,127.305,0.218],["cw-40-5",127.305,127.857,0.42],["cw-40-6",127.857,128.264,0.407],["cw-40-7",128.264,128.389,0.125],["cw-40-8",128.389,null,0.42],["cw-41-0",129.431,129.848,0.417],["cw-41-1",129.848,null,0.42],["cw-42-0",130.473,130.775,0.302],["cw-42-1",130.775,131.181,0.406],["cw-42-2",131.181,132.098,0.42],["cw-42-3",132.098,132.317,0.219],["cw-42-4",132.317,132.744,0.42],["cw-42-5",132.744,133.358,0.42],["cw-42-6",133.358,133.931,0.42],["cw-42-7",133.931,null,0.42],["cw-43-0",135.803,136.386,0.42],["cw-43-1",136.386,null,0.42],["cw-44-0",138.197,138.697,0.42],["cw-44-1",138.697,138.905,0.208],["cw-44-2",138.905,139.363,0.42],["cw-44-3",139.363,140.04,0.42],["cw-44-4",140.04,140.259,0.219],["cw-44-5",140.259,140.78,0.42],["cw-44-6",140.78,140.988,0.208],["cw-44-7",140.988,141.228,0.24],["cw-44-8",141.228,null,0.42],["cw-45-0",142.468,142.968,0.42],["cw-45-1",142.968,143.541,0.42],["cw-45-2",143.541,143.958,0.417],["cw-45-3",143.958,144.281,0.323],["cw-45-4",144.281,null,0.42],["cw-46-0",145.872,146.414,0.42],["cw-46-1",146.414,146.549,0.135],["cw-46-2",146.549,147.102,0.42],["cw-46-3",147.102,147.622,0.42],["cw-46-4",147.622,148.081,0.42],["cw-46-5",148.081,148.341,0.26],["cw-46-6",148.341,null,0.42],["cw-47-0",149.463,150.452,0.42],["cw-47-1",150.452,150.952,0.42],["cw-47-2",150.952,151.39,0.42],["cw-47-3",151.39,null,0.364],["cw-48-0",151.859,152.39,0.42],["cw-48-1",152.39,152.848,0.42],["cw-48-2",152.848,153.286,0.42],["cw-48-3",153.286,153.598,0.312],["cw-48-4",153.598,153.973,0.375],["cw-48-5",153.973,154.296,0.323],["cw-48-6",154.296,154.702,0.406],["cw-48-7",154.702,null,0.42],["cw-49-0",155.776,156.297,0.42],["cw-49-1",156.297,156.714,0.417],["cw-49-2",156.714,null,0.42],["cw-50-0",157.828,158.339,0.42],["cw-50-1",158.339,158.516,0.177],["cw-50-2",158.516,158.922,0.406],["cw-50-3",158.922,159.547,0.42],["cw-50-4",159.547,160.109,0.42],["cw-50-5",160.109,160.297,0.188],["cw-50-6",160.297,160.568,0.271],["cw-50-7",160.568,null,0.42],["cw-51-0",161.642,162.1,0.42],["cw-51-1",162.1,162.392,0.292],["cw-51-2",162.392,162.642,0.25],["cw-51-3",162.642,162.912,0.27],["cw-51-4",162.912,163.152,0.24],["cw-51-5",163.152,null,0.42],["cw-52-0",163.85,164.381,0.42],["cw-52-1",164.381,164.735,0.354],["cw-52-2",164.735,165.142,0.407],["cw-52-3",165.142,165.569,0.42],["cw-52-4",165.569,165.777,0.208],["cw-52-5",165.777,166.027,0.25],["cw-52-6",166.027,null,0.42]];
+      for (const [id, on, off, beat] of WORDS) {
+        const el = document.getElementById(id);
+        tl.set(el, { color: NOW }, on);
+        if (off !== null) tl.set(el, { color: DONE }, off);
+        // heartbeat: two beats (lub-dub) when the word lasts long enough, one beat otherwise
+        if (beat >= 0.3) {
+          tl.to(el, { scale: 1.1, duration: beat * 0.2, ease: "power2.out" }, on)
+            .to(el, { scale: 1, duration: beat * 0.25, ease: "power1.in" }, ">")
+            .to(el, { scale: 1.05, duration: beat * 0.17, ease: "power2.out" }, ">")
+            .to(el, { scale: 1, duration: beat * 0.38, ease: "power1.inOut" }, ">");
+        } else {
+          tl.to(el, { scale: 1.08, duration: beat * 0.4, ease: "power2.out" }, on)
+            .to(el, { scale: 1, duration: beat * 0.6, ease: "power1.in" }, ">");
+        }
+      }
+      tl.set({}, {}, 168.336);
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

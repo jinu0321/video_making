@@ -1,0 +1,21 @@
+{
+  "title": "Spring @Transactional 프록시 클래스, 누가 언제 만들까? final·private엔 왜 안 걸릴까",
+  "description": "@Transactional을 붙이면 내 필드에 들어오는 '프록시 클래스'는 정체가 뭐고, 누가 언제 만들어 넣나요? 그래서 final·private 메서드엔 왜 트랜잭션이 안 걸리나요?\n\n- 정체: 실행 중에 메모리에서 만든 MemberService의 하위 클래스(MemberService$$SpringCGLIB$$0)다. CGLIB이 바이트 배열을 만들어 바로 클래스로 정의해서, 이 영상의 jar엔 그 클래스 파일이 없다\n- 누가·언제: 생성자와 @PostConstruct 같은 초기화가 끝난 뒤, 자동 프록시 생성기라는 BeanPostProcessor가 만든다(Spring Boot 기본 설정). 컨테이너는 BeanPostProcessor가 돌려준 객체를 빈으로 등록해서, 초기화 때의 this는 진짜 객체인데 주입되는 건 프록시다\n- 누구를 감싸나: 그 빈에 맞는 advisor가 하나라도 있으면 감싼다. 클래스나 메서드에 @Transactional이 있으면 감싸고, @Transactional도 @Cacheable 같은 기능도 없는 빈은 그대로 둔다\n- 프록시 객체는 기본으로 Objenesis를 써서 생성자를 부르지 않고 만든다. 그래서 프록시의 필드(memberRepository)는 null이고, 콜백 필드에 인터셉터가 들어 있다\n- 프록시가 덮어쓴 메서드는 콜백의 intercept로 넘기고, 콜백은 TransactionInterceptor를 거쳐 필드가 채워진 진짜 객체의 메서드를 부른다\n- final 메서드는 덮어쓸 수 없어 부모 코드가 빈 프록시 객체 위에서 돈다. 트랜잭션이 없고, 주입 필드를 쓰면 NullPointerException이 난다. 시작 때 WARN 한 줄뿐이니 이런 빈의 메서드엔 final을 붙이지 않는다\n- private 메서드도 덮어쓸 수 없어 경고도 없이 안 걸린다. protected와 같은 패키지의 package-private은 덮어쓸 수 있어서, Spring 6.0부터 클래스 기반 프록시에선 트랜잭션이 걸린다\n\n#Spring #Transactional #SpringBoot #CGLIB #백엔드",
+  "tags": [
+    "Spring",
+    "Transactional",
+    "Spring Boot",
+    "프록시",
+    "CGLIB",
+    "BeanPostProcessor",
+    "Spring AOP",
+    "Objenesis",
+    "트랜잭션",
+    "백엔드"
+  ],
+  "videoId": "Y9SvsiSBv2c",
+  "url": "https://youtube.com/shorts/Y9SvsiSBv2c",
+  "privacy": "public",
+  "publishAt": null,
+  "uploadedAt": "2026-11-03T00:45:02+00:00"
+}
